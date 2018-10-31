@@ -1,0 +1,11 @@
+{
+    "appName": "myapp",
+    "roleName": "pinpointLambdaRole1c11f127",
+    "cloudWatchPolicyName": "cloudWatchPolicy1c11f127",
+    "pinpointPolicyName": "pinpointPolicy1c11f127",
+    "authPolicyName": "pinpoint_amplify_1c11f127",
+    "unauthPolicyName": "pinpoint_amplify_1c11f127",
+    "authRoleName": "myapp-20181030214040-authRole",
+    "unauthRoleName": "myapp-20181030214040-unauthRole",
+    "IAMPrefix": "309756673699"
+}

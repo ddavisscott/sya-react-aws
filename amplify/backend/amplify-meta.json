@@ -1,0 +1,52 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "myapp-20181030214040-authRole",
+			"UnauthRoleArn": "arn:aws:iam::309756673699:role/myapp-20181030214040-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::309756673699:role/myapp-20181030214040-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "myapp-20181030214040-deployment",
+			"UnauthRoleName": "myapp-20181030214040-unauthRole",
+			"StackName": "myapp-20181030214040",
+			"StackId": "arn:aws:cloudformation:us-east-1:309756673699:stack/myapp-20181030214040/1ec06cd0-dcc7-11e8-bf3e-50d5cad95262"
+		}
+	},
+	"auth": {
+		"cognito0d99a13a": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181030214040-deployment/amplify-cfn-templates/auth/cognito0d99a13a-cloudformation-template.yml",
+				"logicalId": "authcognito0d99a13a"
+			},
+			"lastPushTimeStamp": "2018-10-31T05:11:47.689Z",
+			"output": {
+				"AppClientSecret": "1ko376palueuoogqd0h9lpnbt3vggq56b4eimghbdim4n5f6e84",
+				"UserPoolId": "us-east-1_xV0YnvLFq",
+				"AppClientIDWeb": "30tocs8nb1kh1l5gg9lohrbmj1",
+				"AppClientID": "32vci1qi3qqvqst8agfo6ok9b3",
+				"IdentityPoolId": "us-east-1:95e2801d-ef80-4cc7-9c3e-6d8e2bc3ffd0",
+				"IdentityPoolName": "cognito0d99a13a_identitypool_0d99a13a",
+				"UserPoolName": "cognito0d99a13a_userpool_0d99a13a"
+			},
+			"lastPushDirHash": "i/8xTqPSHq8ZH0Sb+DDtZmlQi0U="
+		}
+	},
+	"analytics": {
+		"myapp": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181030214040-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsmyapp"
+			},
+			"lastPushTimeStamp": "2018-10-31T05:11:47.689Z",
+			"output": {
+				"appName": "myapp",
+				"Region": "us-east-1",
+				"Id": "aae3dadfecc94580ae33ccdcfbbe9f90"
+			},
+			"lastPushDirHash": "trgA17QwjuqxZyifVtS+JH4HXXM="
+		}
+	}
+}
