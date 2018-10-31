@@ -5,6 +5,9 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap
 import { Auth } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react'
 import { Analytics } from 'aws-amplify'
+Auth.currentAuthenticatedUser()
+    .then(user => console.log(user))
+    .catch(err => console.log(err));
 
 
 class App extends Component {
@@ -19,6 +22,11 @@ class App extends Component {
       inputValue:'this is input value'
     };
   }
+signOut = () => {
+  Auth.signOut()
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+}
 recordEvent = () => {
   console.log('recording...')
   Analytics.record({
@@ -57,11 +65,12 @@ recordEvent = () => {
           placeholder="Enter text"
           onChange={this.handleChange}
         />
-        <button onClick = {this.recordEvent}>Record Event</button>
+        <button onClick = {this.signOut}>Sign Out</button>
         <FormControl.Feedback />
         <HelpBlock>Validation is based on string length.</HelpBlock>
       </FormGroup>
     </form>
+    
     </div>
     );
   }
