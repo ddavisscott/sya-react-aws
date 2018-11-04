@@ -144,6 +144,21 @@
 					"IAMPrefix": "309756673699"
 				}
 			}
+		},
+		"storageImageStorage": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181030214040-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"Parameters": {
+					"bucketName": "images",
+					"authPolicyName": "s3_amplify_2ea36598",
+					"unauthPolicyName": "s3_amplify_2ea36598",
+					"authRoleName": "myapp-20181030214040-authRole",
+					"unauthRoleName": "myapp-20181030214040-unauthRole",
+					"authPermissions": "rw",
+					"unauthPermissions": "rw"
+				}
+			}
 		}
 	},
 	"Outputs": {
