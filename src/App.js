@@ -6,6 +6,8 @@ import { Auth } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react'
 import { Analytics } from 'aws-amplify'
 import { Storage } from 'aws-amplify';
+import UploadImage from './UploadImage'
+const aws = require('aws-sdk');
 
 Auth.currentAuthenticatedUser()
     .then(user => console.log(user))
@@ -15,6 +17,10 @@ class App extends Component {
     constructor(props){
         super(props);
 
+        this.state = {
+            imgURL: 'https://myapp-20181030214040-deployment.s3.amazonaws.com/public/'
+        }
+
     }
 
       signOut = () => {
@@ -23,13 +29,16 @@ class App extends Component {
           .catch(err => console.log(err));
       }
       onChange(e) {
+          
           const file = e.target.files[0];
           Storage.put('example2.png', file, {
-              contentType: 'image/png',  //,
+              contentType: 'image/png',
               bucket: 'myapp-20181030214040-deployment'
           })
           .then (result => console.log(result))
           .catch(err => console.log(err));
+
+          let imgURL = "https://s3.amazonaws.com/myapp-20181030214040-deployment/public/" + file.originalname;
 
           Storage.get('example2.png', {
             bucket: 'myapp-20181030214040-deployment'
@@ -39,20 +48,25 @@ class App extends Component {
           
           
       }
-    
+
       render() {
           let me = Auth.currentAuthenticatedUser()
           .then(user => console.log(user));
 
           console.log(me);
 
+          Storage.list('',{
+            bucket: 'myapp-20181030214040-deployment'
+          })
+          .then(result => console.log(result))
+          .catch(err => console.log(err));
+
           return (
             <div>
-              <input
-                  type="file" accept='image/*'
-                  onChange={(e) => this.onChange(e)}
-              />
-              <button onClick = {this.signOut}>Sign Out</button>
+
+                <UploadImage/>
+              
+                <button onClick = {this.signOut}>Sign Out</button>
             </div>
           )
       }
