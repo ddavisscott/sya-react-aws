@@ -5,6 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify'
 import config from './aws-exports';
+import UploadPage from "./components/UploadPage.js";
+import NavigationBar from "./components/NavigationBar.js";
+import "./main.css";
 
 
 Amplify.configure(config)
