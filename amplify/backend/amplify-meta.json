@@ -57,7 +57,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/myapp-20181030214040-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
                 "logicalId": "storageImageStorage"
             },
-            "lastPushTimeStamp": "2018-11-03T06:03:29.036Z"
+            "lastPushTimeStamp": "2018-11-05T01:46:44.826Z"
         }
     }
 }
