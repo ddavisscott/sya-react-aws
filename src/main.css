@@ -1,0 +1,12 @@
+.title {
+    font-family: "Covered By Your Grace";
+    font-size: 1.5em;
+  }
+  .page {
+    margin-left: 120px;
+    margin-right: 120px;
+  }
+  .rightToolBar {
+    margin-left: "auto";
+    margin-right: -12;
+  }

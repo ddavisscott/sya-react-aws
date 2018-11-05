@@ -6,7 +6,13 @@ import { Auth } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react'
 import { Analytics } from 'aws-amplify'
 import { Storage } from 'aws-amplify';
-import UploadImage from './UploadImage'
+import UploadImage from './UploadImage';
+import NavigationBar from './components/NavigationBar';
+import UploadPage from './components/UploadPage';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import "./main.css";
+import Dashboard from './Dashboard';
+import CardMedia from './CardMedia';
 const aws = require('aws-sdk');
 
 Auth.currentAuthenticatedUser()
@@ -20,7 +26,7 @@ class App extends Component {
 
       signOut = () => {
         Auth.signOut()
-          .then(data => console.log(data))
+          .then(data => console.log(data), window.location.reload(true))
           .catch(err => console.log(err));
       }
 
@@ -37,8 +43,9 @@ class App extends Component {
       render() {
           return (
             <div>
-
                 <UploadImage/>
+                <Dashboard/>
+                
               
                 <button onClick = {this.signOut}>Sign Out</button>
             </div>
