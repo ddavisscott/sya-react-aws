@@ -16,11 +16,6 @@ Auth.currentAuthenticatedUser()
 class App extends Component {
     constructor(props){
         super(props);
-
-        this.state = {
-            imgURL: 'https://myapp-20181030214040-deployment.s3.amazonaws.com/public/'
-        }
-
     }
 
       signOut = () => {
@@ -28,8 +23,8 @@ class App extends Component {
           .then(data => console.log(data))
           .catch(err => console.log(err));
       }
+
       onChange(e) {
-          
           const file = e.target.files[0];
           Storage.put('example2.png', file, {
               contentType: 'image/png',
@@ -37,30 +32,9 @@ class App extends Component {
           })
           .then (result => console.log(result))
           .catch(err => console.log(err));
-
-          let imgURL = "https://s3.amazonaws.com/myapp-20181030214040-deployment/public/" + file.originalname;
-
-          Storage.get('example2.png', {
-            bucket: 'myapp-20181030214040-deployment'
-          })
-          .then(result => console.log(result))
-          .catch(err => console.log(err));
-          
-          
       }
 
       render() {
-          let me = Auth.currentAuthenticatedUser()
-          .then(user => console.log(user));
-
-          console.log(me);
-
-          Storage.list('',{
-            bucket: 'myapp-20181030214040-deployment'
-          })
-          .then(result => console.log(result))
-          .catch(err => console.log(err));
-
           return (
             <div>
 
