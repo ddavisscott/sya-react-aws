@@ -1,3 +1,16 @@
+## Instructions to run:
+  First, in the project directory run:
+  ### `npm install`
+  to install all required packages. There are two additional packages that must be 
+  manually installed. These packages are:
+  @material-ui/core 
+  @material-ui/icons
+  
+  Now to start the project, run 
+  ### `npm start`
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

@@ -14,10 +14,7 @@ import "./main.css";
 import Dashboard from './Dashboard';
 import CardMedia from './CardMedia';
 const aws = require('aws-sdk');
-import CssBaseline from "@material-ui/core/CssBaseline";
-import NavigationBar from "./components/NavigationBar.js";
-import UploadPage from "./components/UploadPage.js";
-import "./main.css";
+
 
 Auth.currentAuthenticatedUser()
     .then(user => console.log(user))
@@ -47,17 +44,18 @@ class App extends Component {
       render() {
           return (
             <div>
+                <React.Fragment>
+                <CssBaseline />
+                <NavigationBar />
+                <UploadPage />
+                </React.Fragment>
                 <UploadImage/>
                 <Dashboard/>
                 
-              
+                
                 <button onClick = {this.signOut}>Sign Out</button>
             </div>
-            <React.Fragment>
-            <CssBaseline />
-            <NavigationBar />
-            <UploadPage />
-            </React.Fragment>
+            
           )
       }
     }
