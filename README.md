@@ -1,8 +1,8 @@
 ## Instructions to run:
   First, in the project directory run:
   ### `npm install`
-  to install all required packages. There are two additional packages that must be 
-  manually installed. These packages are:
+  to install all required packages.
+   There are two additional packages that must be manually installed. These packages are:
   @material-ui/core 
   @material-ui/icons
   
