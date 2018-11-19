@@ -13,7 +13,35 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "./main.css";
 import Dashboard from './Dashboard';
 import CardMedia from './CardMedia';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 const aws = require('aws-sdk');
+const Home = () => <h2>Home</h2>;
+const About = () => <h2>About</h2>;
+const uploadArt = () => <UploadPage/>;
+
+const Header = () => (
+  <ul>
+    <li>
+      <Link to="/">Home</Link>
+    </li>
+    <li>
+      <Link to="/about">About</Link>
+    </li>
+    <li>
+      <Link to="/artistDashBoard">Dashboard</Link>
+    </li>
+    <li>
+      <Link to="/uploadArt">Upload Art</Link>
+    </li>
+    
+  </ul>
+);
+
+const mainPage = () => <h1>MAIN PAGE</h1>;
+const artistDashBoard = () => <Dashboard/>;
+
+
 
 
 Auth.currentAuthenticatedUser()
@@ -41,19 +69,34 @@ class App extends Component {
           .catch(err => console.log(err));
       }
 
+      
+
       render() {
           return (
             <div>
+                <NavigationBar />
+                <button onClick = {this.signOut}>Sign Out</button>
+                <Router>
+                    <div>
+                        <Header />
+
+                        <Route exact path="/" component={Home} />
+                        <Route path="/about" component={About} />
+                        <Route path="/artistDashBoard" component={artistDashBoard} />
+                        <Route path="/uploadArt" component={uploadArt} />
+                    </div>
+                </Router>
+
                 <React.Fragment>
                 <CssBaseline />
-                <NavigationBar />
-                <UploadPage />
+                
+                
                 </React.Fragment>
-                <UploadImage/>
-                <Dashboard/>
                 
                 
-                <button onClick = {this.signOut}>Sign Out</button>
+                
+                
+                
             </div>
             
           )
