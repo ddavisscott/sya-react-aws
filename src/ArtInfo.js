@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import orange from '@material-ui/core/colors/orange';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const styles = theme => ({
   container: {
     display: 'grid',
@@ -67,7 +68,7 @@ const styles = theme => ({
 });
 
 
-class ArtistSignUp extends Component {
+class ArtInfo extends Component {
   state = {
     name: '',
     email: '',
@@ -166,15 +167,15 @@ class ArtistSignUp extends Component {
           Back
         </Button>
         <Button onClick={this.handleSubmit}>
-          SIGN UP
+          Submit
         </Button>
       </div>
     )
   }
 }
 
-ArtistSignUp.propTypes = {
+ArtInfo.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ArtistSignUp);
+export default withStyles(styles)(ArtInfo);
