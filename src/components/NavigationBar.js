@@ -68,7 +68,7 @@ class NavigationBar extends React.Component {
                 Share Yourself Artists
               </p>
               <section>
-                <Button color="secondary">Freebie Credits: 0</Button>
+                <Button color="secondary">Freebie Credits: 420</Button>
                 <Button className="rightToolBar" color="primary">
                   Submit Your Work
                 </Button>
