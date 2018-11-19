@@ -2,14 +2,12 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import "../main.css";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+import { Auth } from 'aws-amplify'
 
 const theme = createMuiTheme({
   palette: {
@@ -26,7 +24,18 @@ const theme = createMuiTheme({
   }
 });
 
+Auth.currentAuthenticatedUser()
+    .then(user => console.log(user))
+    .catch(err => console.log(err));
+
+
 class NavigationBar extends React.Component {
+
+  signOut = () => {
+    Auth.signOut()
+    .then(data => console.log(data), window.location.reload(true))
+    .catch(err => console.log(err));
+  }
   render() {
     return (
       <div>
@@ -63,6 +72,9 @@ class NavigationBar extends React.Component {
                 <Button className="rightToolBar" color="primary">
                   Submit Your Work
                 </Button>
+                <Button onClick={this.signOut}>
+                  Sign Out
+                </Button> 
               </section>
             </MuiThemeProvider>
           </Toolbar>

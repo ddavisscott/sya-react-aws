@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Title from './title'
-import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap'
-import { Auth } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react'
-import { Analytics } from 'aws-amplify'
-import { Storage } from 'aws-amplify';
 import UploadImage from './UploadImage';
 import NavigationBar from './components/NavigationBar';
 import UploadPage from './components/UploadPage';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "./main.css";
 import Dashboard from './Dashboard';
+import ArtistSignUp from './ArtistSignUp';
+
 import CardMedia from './CardMedia';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -49,10 +46,7 @@ Auth.currentAuthenticatedUser()
     .catch(err => console.log(err));
 
 class App extends Component {
-    constructor(props){
-        super(props);
-    }
-
+    render() {
       signOut = () => {
         Auth.signOut()
           .then(data => console.log(data), window.location.reload(true))
@@ -69,7 +63,6 @@ class App extends Component {
           .catch(err => console.log(err));
       }
 
-      
 
       render() {
           return (
@@ -86,27 +79,9 @@ class App extends Component {
                         <Route path="/uploadArt" component={uploadArt} />
                     </div>
                 </Router>
-
-                <React.Fragment>
-                <CssBaseline />
-                
-                
-                </React.Fragment>
-                
-                
-                
-                
-                
             </div>
-            
           )
-      }
     }
+}
     
-
-
-
-
 export default withAuthenticator(App);
-
-
