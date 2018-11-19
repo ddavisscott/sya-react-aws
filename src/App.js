@@ -60,9 +60,7 @@ const Header = () => (
     <li>
       <Link to="/uploadArt">Upload Art</Link>
     </li>
-    <li>
-      <Link to="/artInfo">ART INFO (DEBUG)</Link>
-    </li>
+  
     
   </ul>
 );
