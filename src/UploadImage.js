@@ -2,17 +2,34 @@ import React, { Component } from 'react';
 import { Auth } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react'
 import { Storage } from 'aws-amplify';
+import {axios} from 'axios';
+import {uuid} from 'uuid';
 
 
 class UploadImage extends Component {
-    
+
     constructor() {
+        const uuidv4 = require('uuid/v4');
+
         super();
+
         this.state = {
-            file:null,
+            file: null,
             name: '',
-            description: ''
+            image_key: uuidv4(),
+            descript: '',
+            user_name: '',
+            date: '',
+            sub: ''
         }
+
+        Auth.currentAuthenticatedUser()
+        .then(user => {
+                this.setState({user_name: user.username});
+                this.setState({sub: user.attributes.sub});
+            }
+        )
+
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChangeName = this.handleChangeName.bind(this)
@@ -35,7 +52,7 @@ class UploadImage extends Component {
     }
 
     handleChangeDes = (event) => {
-        this.setState({description: event.target.value})
+        this.setState({descript: event.target.value})
     }
 
     handleSubmit = (event) => {
@@ -43,20 +60,41 @@ class UploadImage extends Component {
         if (this.state.file == null) {
             alert("File Not Chosen")
         }
-        else {     
-        const file = this.state.file;
-        Storage.put(this.state.name, file, {
-            contentType: 'image',
-            bucket:'myapp-20181030214040-deployment'
-        })
-        .then (result => console.log(result))
-        .catch(err => console.log(err));
+        else {   
+
+            const user = {
+                art_title:   this.state.name,
+                sub:         this.state.sub,
+                artist_name: this.state.user_name,
+                descript:    this.state.descript,
+                upload_date: new Date(),
+                image_key:   this.state.image_key 
+            };
+
+            fetch('https://ckz78jlmb1.execute-api.us-east-1.amazonaws.com/dev', {
+                method: 'POST',
+                art_title:   this.state.name,
+                sub:         this.state.sub,
+                artist_name: this.state.user_name,
+                descript:    this.state.descript,
+                upload_date: new Date(),
+                image_key:   this.state.image_key 
+            })
+            .then (result => console.log(result))
+            .catch(err => console.log(err));
+
+            /*
+            Storage.put(this.state.name, file, {
+                contentType: 'image',
+                bucket:'myapp-20181030214040-deployment'
+            })
+            .then (result => console.log(result))
+            .catch(err => console.log(err));
+            */
         }
     }
 
     render() {
-        Auth.currentAuthenticatedUser()
-            .then(user => console.log(user))
         return(
             <div>
             <form onSubmit = {this.handleSubmit}>
@@ -64,7 +102,7 @@ class UploadImage extends Component {
                 <p><input type = "text" value={this.state.name}
                 onChange = {this.handleChangeName}/></p>
                 Description:
-                <p><input type = "text" value={this.state.description}
+                <p><input type = "text" value={this.state.descript}
                 onChange = {this.handleChangeDes}/></p>
                 <input label = 'upload image' 
                 type = 'file' onChange = {this.handleChange} 
