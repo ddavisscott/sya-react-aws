@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import "../main.css";
-import { Auth } from 'aws-amplify'
+import { Auth } from 'aws-amplify';
 
 const theme = createMuiTheme({
   palette: {

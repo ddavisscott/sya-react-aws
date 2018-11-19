@@ -3,9 +3,11 @@ import './App.css';
 import { withAuthenticator } from 'aws-amplify-react'
 import NavigationBar from './components/NavigationBar';
 import UploadPage from './components/UploadPage';
+import UploadImage from './UploadImage';
 import "./main.css";
 import Dashboard from './Dashboard';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import PersistentDrawerLeft from './components/PersistentDrawerLeft';
 
 const Home = () => <h2>Home</h2>;
 const About = () => <h2>About</h2>;
@@ -37,7 +39,8 @@ class App extends Component {
     render() {
           return (
             <div>
-                <NavigationBar />
+                <PersistentDrawerLeft /> 
+                <UploadImage/>
                 <Router>
                     <div>
                         <Header />
@@ -47,6 +50,7 @@ class App extends Component {
                         <Route path="/uploadArt" component={uploadArt} />
                     </div>
                 </Router>
+
             </div>
           )
     }

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Auth } from 'aws-amplify'
-import { withAuthenticator } from 'aws-amplify-react'
+import { Auth } from 'aws-amplify';
+
+import {API} from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
 import { Storage } from 'aws-amplify';
 import {axios} from 'axios';
 import {uuid} from 'uuid';
+import { runInThisContext } from 'vm';
 
 
 class UploadImage extends Component {
 
     constructor() {
         const uuidv4 = require('uuid/v4');
-
         super();
 
         this.state = {
@@ -20,15 +22,20 @@ class UploadImage extends Component {
             descript: '',
             user_name: '',
             date: '',
-            sub: ''
+            sub: '',
+            token: ''
         }
 
         Auth.currentAuthenticatedUser()
         .then(user => {
                 this.setState({user_name: user.username});
                 this.setState({sub: user.attributes.sub});
+                this.setState({token: user.signInUserSession.idToken.jwtToken});
+                console.log(user.signInUserSession.idToken.jwtToken);
             }
         )
+
+        console.log(Auth.currentAuthenticatedUser());
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -62,23 +69,21 @@ class UploadImage extends Component {
         }
         else {   
 
-            const user = {
+            const users = {
                 art_title:   this.state.name,
                 sub:         this.state.sub,
                 artist_name: this.state.user_name,
                 descript:    this.state.descript,
                 upload_date: new Date(),
                 image_key:   this.state.image_key 
-            };
+            }
 
-            fetch('https://ckz78jlmb1.execute-api.us-east-1.amazonaws.com/dev', {
+            fetch('https://ckz78jlmb1.execute-api.us-east-1.amazonaws.com/prod/upload-image',{
                 method: 'POST',
-                art_title:   this.state.name,
-                sub:         this.state.sub,
-                artist_name: this.state.user_name,
-                descript:    this.state.descript,
-                upload_date: new Date(),
-                image_key:   this.state.image_key 
+                body: users,
+                headers: {
+                    'Authorization' : this.state.token,
+                }
             })
             .then (result => console.log(result))
             .catch(err => console.log(err));
