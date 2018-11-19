@@ -22,6 +22,57 @@ const theme = createMuiTheme({
 });
 
 class UploadPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+        file:null,
+        name: '',
+        description: '',
+        fileNotSelected: true
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChangeName = this.handleChangeName.bind(this)
+    this.handleChangeDes= this.handleChangeDes.bind(this)
+}
+
+handleChange = (event) => {
+    if ( event.target.files[0]) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            this.setState({image: e.target.result});
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        this.setState({fileNotSelected: false});
+    }
+    this.setState({file: event.target.files[0]})
+}
+
+handleChangeName = (event) => {
+    this.setState({name: event.target.value});
+}
+
+handleChangeDes = (event) => {
+    this.setState({description: event.target.value})
+}
+
+handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.file == null) {
+        alert("File Not Chosen")
+    }
+    else {     
+    const file = this.state.file;
+    Storage.put(this.state.name, file, {
+        contentType: 'image',
+        bucket:'myapp-20181030214040-deployment'
+    })
+    .then (result => console.log(result))
+    .catch(err => console.log(err));
+    }
+}
+
+
   render() {
     return (
       <div className="page" style={{ padding: 40 }}>
@@ -44,12 +95,19 @@ class UploadPage extends React.Component {
         <MuiThemeProvider theme={theme}>
           <Grid container spacing={20}>
             <Grid>
+              <form onSubmit = {this.handleSubmit}>
               <Button variant="contained" color="secondary">
+                <input
+                  type = 'file' 
+                  onChange = {this.handleChange} 
+                  accept = "image/*"
+                />
                 Upload Your Art
               </Button>
+              </form>
             </Grid>
             <Grid>
-              <Button disabled variant="contained" color="Primary">
+              <Button disabled={this.state.fileNotSelected} variant="contained" color="Primary">
                 Next
               </Button>
             </Grid>
