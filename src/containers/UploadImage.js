@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Auth, Storage } from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react";
+
 class UploadImage extends Component {
   constructor() {
     const uuidv4 = require("uuid/v4");
@@ -16,8 +16,6 @@ class UploadImage extends Component {
       sub: "",
       token: ""
     };
-
-    console.log(this.state.image_key);
 
     Auth.currentAuthenticatedUser().then(user => {
       this.setState({ user_name: user.username });
@@ -123,4 +121,4 @@ class UploadImage extends Component {
     );
   }
 }
-export default withAuthenticator(UploadImage);
+export default UploadImage; 

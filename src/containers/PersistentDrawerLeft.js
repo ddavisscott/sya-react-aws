@@ -46,8 +46,8 @@ const styles = theme => ({
     })
   },
   menuButton: {
-    marginLeft: 12,
-    marginRight: 20
+    //marginLeft: 12,
+    //marginRight: 20
   },
   hide: {
     display: "none"
@@ -157,10 +157,10 @@ class PersistentDrawerLeft extends React.Component {
               </p>
               <section>
                 <Button color="secondary">Freebie Credits: 0</Button>
-                <Button className="rightToolBar" color="primary">
+                <Button color="primary">
                   Submit Your Work
                 </Button>
-                <Button onClick={this.signOut}>Sign Out</Button>
+                <Button style={{alignItems: 'flex-end'}} onClick={this.signOut}>Sign Out</Button>
               </section>
             </MuiThemeProvider>
           </Toolbar>
