@@ -15,18 +15,22 @@ export default class ArtistSignUp extends Component {
 
     this.state = {
       isLoading: false,
+      name: "",
       email: "",
       password: "",
       confirmPassword: "",
       confirmationCode: "",
+      instagram: "",
       newUser: null
     };
   }
 
   validateForm() {
     return (
+      this.state.name.length > 0 &&
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
+      this.state.instagram.length > 0 &&
       this.state.password === this.state.confirmPassword
     );
   }
@@ -48,8 +52,10 @@ export default class ArtistSignUp extends Component {
 
     try {
       const newUser = await Auth.signUp({
-        username: this.state.email,
-        password: this.state.password
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        instagram: this.state.instagram,
       });
       this.setState({
         newUser
@@ -107,6 +113,15 @@ export default class ArtistSignUp extends Component {
   renderForm() {
     return (
       <form onSubmit={this.handleSubmit}>
+         <FormGroup controlId="email" bsSize="large">
+          <ControlLabel>Name</ControlLabel>
+          <FormControl
+            autoFocus
+            type="text"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
         <FormGroup controlId="email" bsSize="large">
           <ControlLabel>Email</ControlLabel>
           <FormControl
@@ -130,6 +145,14 @@ export default class ArtistSignUp extends Component {
             value={this.state.confirmPassword}
             onChange={this.handleChange}
             type="password"
+          />
+        </FormGroup>
+        <FormGroup controlId="email" bsSize="large">
+          <ControlLabel>Instagram</ControlLabel>
+          <FormControl
+            value={this.state.instagram}
+            onChange={this.handleChange}
+            type="text"
           />
         </FormGroup>
         <LoaderButton

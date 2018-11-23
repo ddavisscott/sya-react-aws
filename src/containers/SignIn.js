@@ -23,7 +23,7 @@ export default class Login extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-  }
+  };
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -36,9 +36,7 @@ export default class Login extends Component {
       alert(e.message);
       this.setState({ isLoading: false });
     }
-
-    console.log(Auth.currentAuthenticatedUser());
-  }
+  };
 
   render() {
     return (

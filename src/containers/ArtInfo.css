@@ -1,9 +1,9 @@
 @media all and (min-width: 480px) {
-    .SignIn {
+    .ArtInfo {
       padding: 60px 0;
     }
   
-    .SignIn form {
+    .ArtInfo form {
       margin: 0 auto;
       max-width: 320px;
     }

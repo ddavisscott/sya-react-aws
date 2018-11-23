@@ -109,6 +109,9 @@ class App extends Component {
             <LinkContainer to="/Dashboard">
               <ListItem><DashboardIcon/> Dashboard</ListItem>
             </LinkContainer>
+            <LinkContainer to="/UploadPage">
+              <ListItem>Upload Art</ListItem>
+            </LinkContainer>
           </List>
         </Drawer>
         <Routes childProps={childProps} />
