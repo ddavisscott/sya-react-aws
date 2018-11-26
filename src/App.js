@@ -68,7 +68,7 @@ class App extends Component {
                 </Navbar.Brand>
               ) : null}
             <Navbar.Brand>
-              <Link to="/">              
+              <Link to="/Home">              
               {<img
                   src="https://i.imgur.com/5vIKxfR.png"
                   alt=""
