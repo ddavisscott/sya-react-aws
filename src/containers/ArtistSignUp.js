@@ -113,7 +113,7 @@ export default class ArtistSignUp extends Component {
   renderForm() {
     return (
       <form onSubmit={this.handleSubmit}>
-         <FormGroup controlId="email" bsSize="large">
+         <FormGroup controlId="name" bsSize="large">
           <ControlLabel>Name</ControlLabel>
           <FormControl
             autoFocus
@@ -147,7 +147,7 @@ export default class ArtistSignUp extends Component {
             type="password"
           />
         </FormGroup>
-        <FormGroup controlId="email" bsSize="large">
+        <FormGroup controlId="instagram" bsSize="large">
           <ControlLabel>Instagram</ControlLabel>
           <FormControl
             value={this.state.instagram}

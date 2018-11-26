@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Routes from "./Routes";
-import {Drawer,List,ListItem, IconButton} from "@material-ui/core";
+import { Drawer, List, ListItem, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import "./App.css";
@@ -16,7 +16,7 @@ class App extends Component {
     this.state = {
       isAuthenticated: false,
       isAuthenticating: true,
-      clickedDrawer: false,
+      clickedDrawer: false
     };
   }
 
@@ -24,9 +24,8 @@ class App extends Component {
     try {
       await Auth.currentSession();
       this.userHasAuthenticated(true);
-    }
-    catch(e) {
-      if (e !== 'No current user') {
+    } catch (e) {
+      if (e !== "No current user") {
         alert(e);
       }
     }
@@ -36,7 +35,7 @@ class App extends Component {
 
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
-  }
+  };
 
   handleLogout = async event => {
     await Auth.signOut();
@@ -44,11 +43,11 @@ class App extends Component {
     this.userHasAuthenticated(false);
 
     this.props.history.push("/SignIn");
-  }
+  };
 
   handleDrawer = event => {
-      this.setState({clickedDrawer: this.state.clickedDrawer? false : true});
-  }
+    this.setState({ clickedDrawer: this.state.clickedDrawer ? false : true });
+  };
 
   render() {
     const childProps = {
@@ -57,65 +56,70 @@ class App extends Component {
     };
 
     return (
-      !this.state.isAuthenticating &&
-      <div className="App container">
-        <Navbar fluid collapseOnSelect>
-          <Navbar.Header>
-            {
-              this.state.isAuthenticated?
-              <Navbar.Brand>
-              <IconButton onClick={this.handleDrawer}>
-                <MenuIcon/>
-              </IconButton>
-              </Navbar.Brand> : null
-            }
+      !this.state.isAuthenticating && (
+        <div className="App container">
+          <Navbar fluid collapseOnSelect>
+            <Navbar.Header>
+              {this.state.isAuthenticated ? (
+                <Navbar.Brand>
+                  <IconButton onClick={this.handleDrawer}>
+                    <MenuIcon />
+                  </IconButton>
+                </Navbar.Brand>
+              ) : null}
 
-            <Navbar.Brand>
-              <Link to="/">              
-              {<img
-                  src="https://i.imgur.com/5vIKxfR.png"
-                  alt=""
-                  height="45"
-                  width="45"
-                />}
-              </Link>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav pullRight>
-              {this.state.isAuthenticated
-                ? <Fragment>
+              <Navbar.Brand>
+                <Link to="/">
+                  {
+                    <img
+                      src="https://i.imgur.com/5vIKxfR.png"
+                      alt=""
+                      height="45"
+                      width="45"
+                    />
+                  }
+                </Link>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav pullRight>
+                {this.state.isAuthenticated ? (
+                  <Fragment>
                     <LinkContainer to="/settings">
                       <NavItem>Settings</NavItem>
                     </LinkContainer>
                     <NavItem onClick={this.handleLogout}>Sign Out</NavItem>
                   </Fragment>
-                : <Fragment>
+                ) : (
+                  <Fragment>
                     <LinkContainer to="/SignIn">
                       <NavItem>Sign In</NavItem>
                     </LinkContainer>
                   </Fragment>
-              }
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <Drawer
-          anchor="left"
-          open={this.state.clickedDrawer}
-          onClick={this.handleDrawer}
-        >
-          <List>
-            <LinkContainer to="/Dashboard">
-              <ListItem><DashboardIcon/> Dashboard</ListItem>
-            </LinkContainer>
-            <LinkContainer to="/UploadPage">
-              <ListItem>Upload Art</ListItem>
-            </LinkContainer>
-          </List>
-        </Drawer>
-        <Routes childProps={childProps} />
-      </div>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+          <Drawer
+            anchor="left"
+            open={this.state.clickedDrawer}
+            onClick={this.handleDrawer}
+          >
+            <List>
+              <LinkContainer to="/Dashboard">
+                <ListItem>
+                  <DashboardIcon /> Dashboard
+                </ListItem>
+              </LinkContainer>
+              <LinkContainer to="/UploadPage">
+                <ListItem>Upload Art</ListItem>
+              </LinkContainer>
+            </List>
+          </Drawer>
+          <Routes childProps={childProps} />
+        </div>
+      )
     );
   }
 }
