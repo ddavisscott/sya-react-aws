@@ -1,0 +1,11 @@
+@media all and (min-width: 480px) {
+    .ArtInfo {
+      padding: 60px 0;
+    }
+  
+    .ArtInfo form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+    
+}
