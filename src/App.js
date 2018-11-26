@@ -67,32 +67,37 @@ class App extends Component {
                   </IconButton>
                 </Navbar.Brand>
               ) : null}
+            <Navbar.Brand>
+              <Link to="/">              
+              {<img
+                  src="https://i.imgur.com/5vIKxfR.png"
+                  alt=""
+                  height="45"
+                  width="45"
+                />}
+              </Link>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullRight>
+                <Fragment>
+                  <LinkContainer to="/AboutUs">
+                    <NavItem>About Us</NavItem>
+                  </LinkContainer>
+                </Fragment>
+              {this.state.isAuthenticated
+                ? (<Fragment>
 
-              <Navbar.Brand>
-                <Link to="/">
-                  {
-                    <img
-                      src="https://i.imgur.com/5vIKxfR.png"
-                      alt=""
-                      height="45"
-                      width="45"
-                    />
-                  }
-                </Link>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <Nav pullRight>
-                {this.state.isAuthenticated ? (
-                  <Fragment>
                     <LinkContainer to="/settings">
                       <NavItem>Settings</NavItem>
                     </LinkContainer>
+                    
                     <NavItem onClick={this.handleLogout}>Sign Out</NavItem>
                   </Fragment>
                 ) : (
                   <Fragment>
+
                     <LinkContainer to="/SignIn">
                       <NavItem>Sign In</NavItem>
                     </LinkContainer>

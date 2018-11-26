@@ -16,7 +16,6 @@ export default class Home extends Component {
     if (!this.props.isAuthenticated) {
       return;
     }
-
     this.setState({ isLoading: false });
   }
 

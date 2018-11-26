@@ -11,11 +11,13 @@ import AppliedRoute from "./components/AppliedRoute";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Dashboard from "./containers/Dashboard";
+import AboutUs from "./containers/AboutUs";
 
 export default ({ childProps }) =>
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
     <UnauthenticatedRoute path="/SignIn" exact component={SignIn} props={childProps} />
+    <AppliedRoute path="/AboutUs" exact component={AboutUs} props={childProps} />
     <UnauthenticatedRoute path="/ArtistSignUp" exact component={ArtistSignUp} props={childProps} />
     <AuthenticatedRoute path="/UploadImage" exact component={UploadImage} props={childProps} />
     <AuthenticatedRoute path="/UploadPage" exact component={UploadPage} props={childProps} />
