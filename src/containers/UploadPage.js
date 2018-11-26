@@ -6,6 +6,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import { LinkContainer } from "react-router-bootstrap";
+import { BrowserRouter as Route, Redirect } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -20,6 +21,9 @@ const theme = createMuiTheme({
   }
 });
 
+
+
+
 class UploadPage extends React.Component {
   constructor() {
     super();
@@ -32,7 +36,23 @@ class UploadPage extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChangeName = this.handleChangeName.bind(this)
-    this.handleChangeDes= this.handleChangeDes.bind(this)
+    this.handleChangeDes = this.handleChangeDes.bind(this)
+    this.BasicExample = this.BasicExample.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
+}
+
+BasicExample = () => {
+}
+
+handleOnClick = (event) => {
+  return(
+    <Route
+        
+        render={() => <Redirect to="/artInfo" />}
+      />
+  );
+
+  
 }
 
 handleChange = (event) => {
@@ -107,7 +127,7 @@ handleSubmit = (event) => {
             </Grid>
             <Grid>
             <LinkContainer to="/ArtInfo">
-            <Button disabled={this.state.fileNotSelected} variant="contained" color="Primary">
+               <Button disabled={this.state.fileNotSelected} variant="contained" color="Primary">
                 Next
               </Button>
             </LinkContainer>

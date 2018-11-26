@@ -50,17 +50,23 @@ export default class ArtistSignUp extends Component {
 
     this.setState({ isLoading: true });
 
+    console.log(this.state.name);
+
     try {
       const newUser = await Auth.signUp({
-        name: this.state.name,
-        email: this.state.email,
+        username: this.state.name,
         password: this.state.password,
-        instagram: this.state.instagram,
-      });
+        attributes: {
+          email: this.state.email,
+          role: "artist"
+        }
+      }
+      );
       this.setState({
         newUser
       });
     } catch (e) {
+      console.log(e);
       alert(e.message);
     }
 
@@ -73,13 +79,15 @@ export default class ArtistSignUp extends Component {
     this.setState({ isLoading: true });
 
     try {
-      await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
+      //await Auth.signUp(this.state.name, this.state.password);
+      await Auth.confirmSignUp(this.state.name, this.state.confirmationCode);
       await Auth.signIn(this.state.email, this.state.password);
 
       this.props.userHasAuthenticated(true);
       this.props.history.push("/");
     } catch (e) {
       alert(e.message);
+      console.log(e);
       this.setState({ isLoading: false });
     }
   }
@@ -113,7 +121,7 @@ export default class ArtistSignUp extends Component {
   renderForm() {
     return (
       <form onSubmit={this.handleSubmit}>
-         <FormGroup controlId="email" bsSize="large">
+         <FormGroup controlId="name" bsSize="large">
           <ControlLabel>Name</ControlLabel>
           <FormControl
             autoFocus
@@ -147,7 +155,7 @@ export default class ArtistSignUp extends Component {
             type="password"
           />
         </FormGroup>
-        <FormGroup controlId="email" bsSize="large">
+        <FormGroup controlId="instagram" bsSize="large">
           <ControlLabel>Instagram</ControlLabel>
           <FormControl
             value={this.state.instagram}
