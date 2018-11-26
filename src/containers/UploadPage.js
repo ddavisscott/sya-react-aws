@@ -5,11 +5,8 @@ import Button from "@material-ui/core/Button";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
-<<<<<<< HEAD:src/containers/UploadPage.js
 import { LinkContainer } from "react-router-bootstrap";
-=======
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
->>>>>>> e5763e987ed0468ecc77f7cff5d0378d83c18142:src/components/UploadPage.js
+import { BrowserRouter as Route, Redirect } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
