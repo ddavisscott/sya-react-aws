@@ -21,26 +21,6 @@ export default class Home extends Component {
     this.setState({ isLoading: false });
   }
 
-
-
-  renderLander() {
-    return (
-      <div className="lander">
-        <h1>Share Yourself Artists</h1>
-        <p>A place to share your art</p>
-        <div>
-          <Link to="/SignIn" className="btn btn-info btn-lg">
-            Login
-          </Link>
-          <Link to="/ArtistSignUp" className="btn btn-success btn-lg">
-            Sign up
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-
   render() {
     return (
       <div className="Home">
