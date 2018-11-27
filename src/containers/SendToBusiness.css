@@ -1,0 +1,18 @@
+
+  .Cards kill{
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .kill{
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .card title{
+    text-align: left
+  }
