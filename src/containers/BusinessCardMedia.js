@@ -72,21 +72,20 @@ let state = { expanded: false };
             <Typography component="h2" variant="h4" align="left" gutterBottom>
               About:
             </Typography>
-            <Typography variant="p" align="left" children={props.children} gutterBottom>
+            <Typography variant="p" align="left" children={props.about} gutterBottom>
             
             </Typography>
             <Typography component="h2" variant="h4" align="left" gutterBottom>
               The Good:
             </Typography>
-            <Typography variant="p" align="left" gutterBottom>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-        unde suscipit, quam beatae rerum inventore consectetur,
+            <Typography variant="p" align="left" children={props.theGood} gutterBottom>
+            
             </Typography>
             <Typography component="h2" variant="h4" align="left" gutterBottom>
               Additional Notes:
             </Typography>
-            <Typography variant="p" align="left" gutterBottom>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+            <Typography variant="p" align="left" children={props.addNotes} gutterBottom>
+            
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>

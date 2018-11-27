@@ -29,6 +29,9 @@ export default class SendToBusiness extends Component {
             author: 'author',
             cols: 1,
             about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquamdignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.",
+            theGood: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur,",
+            addNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur",
+
         },
         {
             img: 'placeholder2',
@@ -91,7 +94,9 @@ export default class SendToBusiness extends Component {
                         <BusinessCardMedia
                         title={tileData.name}
                         subheader = {"Joined: " + tileData.joinDate}
-                        children = {tileData.about}
+                        about = {tileData.about}
+                        theGood = {tileData.theGood}
+                        addNotes = {tileData.addNotes}
                         src={this.tileData.img}
                       />
                     ))}
