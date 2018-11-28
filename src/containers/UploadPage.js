@@ -6,7 +6,9 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import { LinkContainer } from "react-router-bootstrap";
-import { BrowserRouter as Route, Redirect } from "react-router-dom";
+//import { BrowserRouter as Route, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+import { selectImage } from '../actions/imageActions'
 
 const theme = createMuiTheme({
   palette: {
@@ -28,22 +30,16 @@ class UploadPage extends React.Component {
   constructor() {
     super();
     this.state = {
-        file:null,
         name: '',
         description: '',
         fileNotSelected: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChangeName = this.handleChangeName.bind(this)
-    this.handleChangeDes = this.handleChangeDes.bind(this)
-    this.BasicExample = this.BasicExample.bind(this)
-    this.handleOnClick = this.handleOnClick.bind(this)
+    //this.handleOnClick = this.handleOnClick.bind(this)
 }
 
-BasicExample = () => {
-}
-
+/*
 handleOnClick = (event) => {
   return(
     <Route
@@ -54,42 +50,23 @@ handleOnClick = (event) => {
 
   
 }
+*/
 
 handleChange = (event) => {
     if ( event.target.files[0]) {
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            this.setState({image: e.target.result});
-        };
-        reader.readAsDataURL(event.target.files[0]);
         this.setState({fileNotSelected: false});
     }
-    this.setState({file: event.target.files[0]})
-}
-
-handleChangeName = (event) => {
-    this.setState({name: event.target.value});
-}
-
-handleChangeDes = (event) => {
-    this.setState({description: event.target.value})
+    this.props.selectImage(event.target.files[0]);
 }
 
 handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.file == null) {
+    if (this.props.image == null) {
         alert("File Not Chosen")
     }
-    else {     
-    const file = this.state.file;
-    Storage.put(this.state.name, file, {
-        contentType: 'image',
-        bucket:'myapp-20181030214040-deployment'
-    })
-    .then (result => console.log(result))
-    .catch(err => console.log(err));
-    }
 }
+
+
 
 
   render() {
@@ -139,4 +116,8 @@ handleSubmit = (event) => {
   }
 }
 
-export default withStyles(theme)(UploadPage);
+const mapStateToProps = state => ({
+  image:state.imageReducer.image
+})
+
+export default connect (mapStateToProps, {selectImage})(withStyles(theme)(UploadPage));
