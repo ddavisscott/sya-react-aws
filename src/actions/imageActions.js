@@ -18,3 +18,4 @@ export const selectImage = (image) => dispatch => {
     })
 }
 */
+
