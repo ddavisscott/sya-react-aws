@@ -7,7 +7,9 @@ exports.handler = (event, context, callback) =>{
   var input = JSON.parse(event.body);
   //key is the users sub value, which is unique and used as the primary key 
   //to the user table.
-  var key = event.queryStringParameters;
+  var key = event.queryStringParameters.key;
+
+  var role = event.queryStringParameters.role; //artist or business
 
   var instagramLink = 'https://www.instagram.com/';
   var facebookLink = 'https://www.facebook.com/';
@@ -17,7 +19,7 @@ exports.handler = (event, context, callback) =>{
   //format for updating values in a table
   var exprString = "set ";
   var params = {
-    TableName: 'artists',
+    TableName: role,
     Key: key,
     //E: exprString,
     ExpressionAttributeValues:{
@@ -25,33 +27,38 @@ exports.handler = (event, context, callback) =>{
     }
   }
 
-  if(input.instagram !== null && input.instagram !== undefined){
+  if(input.instagram !== null || input.instagram !== undefined){
     instagramLink = instagramLink + input.instagram;
     //exprString = exprString + "info.instagramLink = :i, ";
     params.ExpressionAttributeValues["instagramLink"] = instagramLink;
   }
 
-  if(input.facebook !== null && input.facebook !== undefined){
+  if(input.facebook !== null || input.facebook !== undefined){
     facebookLink = facebookLink + input.facebook;
     //exprString = exprString + "info.facebookLink = :f, ";
     params.ExpressionAttributeValues["facebookLink"] = facebookLink;
   }
 
-  if(input.tumblr !== null && input.tumblr !== undefined){
+  if(input.tumblr !== null || input.tumblr !== undefined){
     tumblrLink = tumblrLink + input.tumblr;
     //exprString = exprString + "info.tumblrLink = :t, ";
     params.ExpressionAttributeValues["tumblrLink"] = tumblrLink;
   }
 
-  if(input.twitter !== null && input.twitter !== undefined){
+  if(input.twitter !== null || input.twitter !== undefined){
     twitterLink = twitterLink + input.twitter;
     //exprString = exprString + "info.twitterLink = :w, ";
     params.ExpressionAttributeValues["twitterLink"] = twitterLink;
   }
 
-  if(input.about !== null && input.about !== undefined){
+  if(input.about !== null || input.about !== undefined){
     //exprString = exprString + "info.about = :a, ";
     params.ExpressionAttributeValues["about"] = input.about;
+  }
+
+  if(input.additionalNotes !== null || input.addtionalNotes !== undefined){
+    //exprString = exprString + "info.additionalNotes = :n, ";
+    params.ExpressionAttributeValues["additonalNotes"] = input.additionalNotes;
   }
 
   docClient.update(params, function(err,data){
