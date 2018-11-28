@@ -4,7 +4,7 @@ const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east'});
 // user to update is given by a querystring parameter.
 exports.handler = (event, context, callback) =>{
   //data holds all values passed into the body of the http request
-  var data = JSON.parse(event.body);
+  var input = JSON.parse(event.body);
   //key is the users sub value, which is unique and used as the primary key 
   //to the user table.
   var key = event.queryStringParameters;
@@ -13,35 +13,56 @@ exports.handler = (event, context, callback) =>{
   var facebookLink = 'https://www.facebook.com/';
   var tumblrLink = 'https://www.tumblr.com/';
   var twitterLink = 'https://www.twitter.com/';
-  
+
+  //format for updating values in a table
+  var exprString = "set ";
   var params = {
     TableName: 'artists',
     Key: key,
+    //E: exprString,
     ExpressionAttributeValues:{
 
     }
   }
 
-  if(data.instagram !== null && data.instagram !== undefined){
-    instagramLink = instagramLink + data.instagram;
-
-    params.Item["instagramLink"] = instagramLink;
+  if(input.instagram !== null && input.instagram !== undefined){
+    instagramLink = instagramLink + input.instagram;
+    //exprString = exprString + "info.instagramLink = :i, ";
+    params.ExpressionAttributeValues["instagramLink"] = instagramLink;
   }
 
-  if(data.facebook !== null && data.facebook !== undefined){
-    facebookLink = facebookLink + data.facebook;
-    params.Item["facebookLink"] = facebookLink;
+  if(input.facebook !== null && input.facebook !== undefined){
+    facebookLink = facebookLink + input.facebook;
+    //exprString = exprString + "info.facebookLink = :f, ";
+    params.ExpressionAttributeValues["facebookLink"] = facebookLink;
   }
 
-  if(data.tumblr !== null && data.tumblr !== undefined){
-    tumblrLink = tumblrLink + data.tumblr;
-    params.Item["tumblrLink"] = tumblrLink;
+  if(input.tumblr !== null && input.tumblr !== undefined){
+    tumblrLink = tumblrLink + input.tumblr;
+    //exprString = exprString + "info.tumblrLink = :t, ";
+    params.ExpressionAttributeValues["tumblrLink"] = tumblrLink;
   }
 
-  if(data.twitter !== null && data.twitter !== undefined){
-    twitterLink = twitterLink + data.twitter;
-    params.Item["twitterLink"] = twitterLink;
+  if(input.twitter !== null && input.twitter !== undefined){
+    twitterLink = twitterLink + input.twitter;
+    //exprString = exprString + "info.twitterLink = :w, ";
+    params.ExpressionAttributeValues["twitterLink"] = twitterLink;
   }
+
+  if(input.about !== null && input.about !== undefined){
+    //exprString = exprString + "info.about = :a, ";
+    params.ExpressionAttributeValues["about"] = input.about;
+  }
+
+  docClient.update(params, function(err,data){
+    if(err){
+      console.log(err);
+      callback(err);
+    }
+    else{
+      callback(null, data)
+    }
+  });
 
   
 }
