@@ -50,15 +50,13 @@ export default class ArtistSignUp extends Component {
 
     this.setState({ isLoading: true });
 
-    console.log(this.state.name);
-
     try {
       const newUser = await Auth.signUp({
         username: this.state.name,
         password: this.state.password,
         attributes: {
           email: this.state.email,
-          role: "artist"
+          'custom:role': "artist"
         }
       }
       );
@@ -79,15 +77,13 @@ export default class ArtistSignUp extends Component {
     this.setState({ isLoading: true });
 
     try {
-      //await Auth.signUp(this.state.name, this.state.password);
       await Auth.confirmSignUp(this.state.name, this.state.confirmationCode);
-      await Auth.signIn(this.state.email, this.state.password);
+
+      await Auth.signIn(this.state.name, this.state.password);
 
       this.props.userHasAuthenticated(true);
       this.props.history.push("/");
     } catch (e) {
-      alert(e.message);
-      console.log(e);
       this.setState({ isLoading: false });
     }
   }
