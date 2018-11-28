@@ -40,6 +40,7 @@ class Dashboard extends Component {
                                 <CardMedia 
                                     title={value.artTitle}
                                     src={value.url}
+                                    descript={value.description}
                                  />
                             </Grid>
                         ))}

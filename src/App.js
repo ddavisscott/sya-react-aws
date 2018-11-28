@@ -117,7 +117,7 @@ class App extends Component {
                                 </ListItem>
                             </LinkContainer>
                             <LinkContainer to="/UploadPage">
-                                <ListItem>Upload Art</ListItem>
+                                <ListItem> Upload Art </ListItem>
                             </LinkContainer>
                             <LinkContainer to="/UploadImage">
                                 <ListItem>Upload Image</ListItem>

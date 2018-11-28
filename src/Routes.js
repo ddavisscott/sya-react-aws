@@ -12,6 +12,7 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Dashboard from "./containers/Dashboard";
 import AboutUs from "./containers/AboutUs";
+import ViewArt from "./containers/ViewArt";
 import BusinessSignUp from "./containers/BusinessSignUp";
 
 export default ({ childProps }) =>
@@ -25,6 +26,7 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/UploadImage" exact component={UploadImage} props={childProps} />
     <AuthenticatedRoute path="/UploadPage" exact component={UploadPage} props={childProps} />
     <AuthenticatedRoute path="/ArtInfo" exact component={ArtInfo} props={childProps} />
+    <AuthenticatedRoute path="/ViewArt" exact component={ViewArt} props={childProps} />
     <AuthenticatedRoute path="/Dashboard" exact component={Dashboard} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
