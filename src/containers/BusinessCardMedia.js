@@ -26,9 +26,6 @@ const styles = theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  title: {
-    textTransform: 'capitalize',
-  },
   actions: {
     display: 'flex',
   },
@@ -44,6 +41,10 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
+  },
+  title: {
+    textTransform: 'capitalize',
+    textAlign: 'left'
   }
 });
 
@@ -57,7 +58,7 @@ let state = { expanded: false };
           <CardHeader
             avatar={
               <Avatar 
-                  src="https://i.imgur.com/5vIKxfR.png" className={classes.avatar}>
+                  src={props.img} className={classes.avatar}>
               </Avatar>
             }
             action={
@@ -66,6 +67,7 @@ let state = { expanded: false };
               </IconButton>
             }
             title= {props.title}
+            //titleTypographyProps = {}
             subheader= {props.subheader}
           />
           <CardContent>

@@ -23,10 +23,9 @@ export default class SendToBusiness extends Component {
 
     this.tileData = [
         {
-            img: 'placeholder',
+            img: "https://i.imgur.com/5vIKxfR.png",
             name: 'SYA Official',
             joinDate: 'April 20, 2018',
-            author: 'author',
             cols: 1,
             about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquamdignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.",
             theGood: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur,",
@@ -34,39 +33,53 @@ export default class SendToBusiness extends Component {
 
         },
         {
-            img: 'placeholder2',
+            img: "https://i.imgur.com/xOvnIwR.png",
             name: 'BigInstagram Page',
             joinDate: 'March 18, 2018',
-            author: 'author2',
             cols: 1, 
+            about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquamdignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.",
+            theGood: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur,",
+            addNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur",
+
         },
         {
-            img: 'placeholder',
+            img: "https://i.imgur.com/Nc9XyBq.jpg",
             name: 'Dank Foodie Pics',
             joinDate: 'August 12, 2018',
-            author: 'author',
             cols: 1,
+            about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquamdignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.",
+            theGood: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur,",
+            addNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur",
+
         },
         {
-            img: 'placeholder2',
+            img: "https://i.imgur.com/cj5aj2V.gif",
             name: 'Best Memes of Instagram',
             joinDate: 'January 3, 2017',
-            author: 'author2',
             cols: 1, 
+            about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquamdignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.",
+            theGood: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur,",
+            addNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur",
+
         },
         {
-            img: 'placeholder',
+            img: "https://i.imgur.com/Pi5eFC7.jpg",
             name: '#noodleWorship',
             joinDate: 'April 19, 2018',
-            author: 'author',
             cols: 1,
+            about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquamdignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.",
+            theGood: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur,",
+            addNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur",
+
         },
         {
-            img: 'placeholder2',
+            img: "https://i.imgur.com/cO5kvXi.jpg?1",
             name: 'Fruit of the Spoon',
             joinDate: 'April 21, 2018',
-            author: 'author2',
             cols: 1, 
+            about: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquamdignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.",
+            theGood: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis teneturunde suscipit, quam beatae rerum inventore consectetur,",
+            addNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur",
         },
     ];
   }
@@ -86,18 +99,19 @@ export default class SendToBusiness extends Component {
     return (
         <div>
             <div className="Header">
-                <h1>Business's</h1>
+                <h1>Share Yourself Business's</h1>
+                <h2>Choose a business to send your art to!</h2>
             </div>
             <div className ="Cards">
                 <Grid cellHeight={160} justify={'center'} spacing={Number(16)} cols={1}>
                     {this.tileData.map(tileData => (
                         <BusinessCardMedia
-                        title={tileData.name}
-                        subheader = {"Joined: " + tileData.joinDate}
-                        about = {tileData.about}
-                        theGood = {tileData.theGood}
-                        addNotes = {tileData.addNotes}
-                        src={this.tileData.img}
+                        title={tileData.name}                           //Account name
+                        img = {tileData.img}                            //Avatar image
+                        subheader = {"Joined: " + tileData.joinDate}    //Join date field
+                        about = {tileData.about}                        //About section
+                        theGood = {tileData.theGood}                    //The Good Section
+                        addNotes = {tileData.addNotes}                  //Additional Notes section
                       />
                     ))}
                 </Grid>
