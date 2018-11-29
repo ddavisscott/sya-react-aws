@@ -23,10 +23,9 @@ exports.handler = (event, context, callback) => {
   
   //data relating to responses
   var replied = false;
-  var repliedDate = "";
   //var response = data.response;
   var refunded = 0;
-  var submittedWithFreeCredit = '';
+  var submittedWithFreeCredit = data.submittedWithFreeCredit;
 
   var params = { 
     TableName: 'reviewRequest',
@@ -47,7 +46,8 @@ exports.handler = (event, context, callback) => {
       },
       'readByArtist': false,
       'refunded': refunded,
-      'replied': false
+      'replied': false,
+      'submittedWithFreeCredit': submittedWithFreeCredit
       }
 
     }

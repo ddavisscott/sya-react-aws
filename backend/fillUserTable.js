@@ -9,7 +9,7 @@ in the business DB.
 */
 
 const AWS = require('aws-sdk');
-const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east'});
+const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
 exports.handler = (event, context, callback) => {
     var date = new Date().toUTCString();

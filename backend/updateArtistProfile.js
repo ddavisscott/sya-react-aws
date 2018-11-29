@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east'});
+const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
 // user to update is given by a querystring parameter.
 exports.handler = (event, context, callback) =>{
