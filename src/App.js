@@ -96,9 +96,6 @@ class App extends Component {
                     <LinkContainer to="/settings">
                       <NavItem>Settings</NavItem>
                     </LinkContainer>
-                    <LinkContainer to="/BusinessChoice"> 
-                      <NavItem>Business</NavItem>
-                    </LinkContainer>
                     <NavItem onClick={this.handleLogout}>Sign Out</NavItem>
                   </Fragment>
                 ) : (
