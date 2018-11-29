@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Auth, Storage } from "aws-amplify";
 
+
 class UploadImage extends Component {
   constructor() {
     const uuidv4 = require("uuid/v4");
@@ -29,7 +30,7 @@ class UploadImage extends Component {
     this.handleChangeDes = this.handleChangeDes.bind(this);
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     if (event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = e => {
@@ -40,15 +41,15 @@ class UploadImage extends Component {
     this.setState({ file: event.target.files[0] });
   };
 
-  handleChangeName = event => {
+  handleChangeName = (event) => {
     this.setState({ name: event.target.value });
   };
 
-  handleChangeDes = event => {
+  handleChangeDes = (event) => {
     this.setState({ descript: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.file == null) {
       alert("File Not Chosen");
