@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import "./SendToBusiness.css";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -98,12 +97,12 @@ export default class SendToBusiness extends Component {
   render() {
     return (
         <div>
-            <div className="Header">
+            <div>
                 <h1>Share Yourself Business's</h1>
                 <h2>Choose a business to send your art to!</h2>
             </div>
-            <div className ="Cards">
-                <Grid cellHeight={160} justify={'center'} spacing={Number(16)} cols={1}>
+            <div>
+                <Grid container cellHeight={160} justify="space-evenly" spacing={16} cols={1}>
                     {this.tileData.map(tileData => (
                         <BusinessCardMedia
                         title={tileData.name}                           //Account name

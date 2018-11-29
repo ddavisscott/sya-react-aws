@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
+import AddIcon from '@material-ui/icons/Add';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -19,8 +20,8 @@ import "./SendToBusiness.css";
 
 const styles = theme => ({
   card: {
-    maxWidth: 600,
-    minWidth: 400
+    Width: 'auto',
+    minWidth: 150
   },
   media: {
     height: 0,
@@ -48,7 +49,6 @@ const styles = theme => ({
   }
 });
 
-
 let state = { expanded: false };
 
   function BusinessMediaCard(props) {
@@ -62,12 +62,11 @@ let state = { expanded: false };
               </Avatar>
             }
             action={
-              <IconButton>
-                <MoreVertIcon />
+              <IconButton color="secondary">
+                <AddIcon />
               </IconButton>
             }
             title= {props.title}
-            //titleTypographyProps = {}
             subheader= {props.subheader}
           />
           <CardContent>
@@ -91,12 +90,7 @@ let state = { expanded: false };
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
+            
             
           </CardActions>
           
