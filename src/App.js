@@ -87,16 +87,16 @@ class App extends Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                             <Nav pullRight>
-                              <Fragment>
-                                <LinkContainer to="/Home">
-                                  <NavItem>Home</NavItem>
-                                </LinkContainer>
-                              </Fragment>
-                              <Fragment>
-                                <LinkContainer to="/AboutUs">
-                                  <NavItem>About Us</NavItem>
-                                </LinkContainer>
-                              </Fragment>
+                                <Fragment>
+                                    <LinkContainer to="/Home">
+                                        <NavItem>Home</NavItem>
+                                    </LinkContainer>
+                                </Fragment>
+                                <Fragment>
+                                    <LinkContainer to="/AboutUs">
+                                        <NavItem>About Us</NavItem>
+                                    </LinkContainer>
+                                </Fragment>
                                 {this.state.isAuthenticated ? (
                                     <Fragment>
                                         <LinkContainer to="/settings">
