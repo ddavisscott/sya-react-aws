@@ -12,7 +12,7 @@ exports.handler = (event, context, callback) => {
   var artistID = data.sub;
   var artistEmail = data.artist_email;
   var artDescription = data.descript;
-  var reviewDate = data.upload_date;
+  var uploadDate = data.upload_date;
   var sourceKey = data.image_key; //s3 image key
   var url = "https://s3.amazonaws.com/myapp-20181030214040-deployment/public/" + sourceKey;
   
@@ -47,7 +47,8 @@ exports.handler = (event, context, callback) => {
       'readByArtist': false,
       'refunded': refunded,
       'replied': false,
-      'submittedWithFreeCredit': submittedWithFreeCredit
+      'submittedWithFreeCredit': submittedWithFreeCredit,
+      'requestDate': uploadDate
       }
 
     }
