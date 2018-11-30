@@ -16,7 +16,6 @@ export default class Home extends Component {
     if (!this.props.isAuthenticated) {
       return;
     }
-
     this.setState({ isLoading: false });
   }
 
@@ -27,7 +26,7 @@ export default class Home extends Component {
       <h2>Share Yourself Artists is the easiest way to share your artwork 
         to millions of art lovers AROUND THE WORLD!
       </h2>
-      <LinkContainer to="/BusniessSignUp">
+      <LinkContainer to="/BusinessSignUp">
           <Button>Busniess Sign Up</Button>
       </LinkContainer>
       <LinkContainer to="/ArtistSignUp">
