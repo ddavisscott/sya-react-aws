@@ -24,7 +24,7 @@ exports.handler = (event, context, callback) =>{
   var params = {
     TableName: role,
     Key: key,
-    //E: exprString,
+    UpdateExpression: exprString,
     ExpressionAttributeValues:{
 
     }
@@ -32,8 +32,8 @@ exports.handler = (event, context, callback) =>{
 
   if(input.instagram !== null || input.instagram !== undefined){
     instagramLink = instagramLink + input.instagram;
-    //exprString = exprString + "info.instagramLink = :i, ";
-    params.ExpressionAttributeValues["instagramLink"] = instagramLink;
+    exprString = exprString + "info.instagram = :i, ";
+    params.ExpressionAttributeValues[":i"] = instagramLink;
   }
 
   if(input.facebook !== null || input.facebook !== undefined){
