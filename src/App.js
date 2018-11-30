@@ -122,9 +122,10 @@ class App extends Component {
                         anchor="left"
                         open={this.state.clickedDrawer}
                         onClick={this.handleDrawer}
+                        width="200"
                     >
                         <List>
-                            <LinkContainer to="/UploadImage">
+                            <LinkContainer to="/UploadPage">
                                 <ListItem>
                                 <Button color="red">
                                     Upload Art 
@@ -137,9 +138,6 @@ class App extends Component {
                                     <DashboardIcon /> Dashboard 
                                     </Button>
                                 </ListItem>
-                            </LinkContainer>
-                            <LinkContainer to="/UploadPage">
-                                <ListItem> Upload Art </ListItem>
                             </LinkContainer>
                             <LinkContainer to="/MyAccount">
                                 <ListItem>My Account</ListItem>

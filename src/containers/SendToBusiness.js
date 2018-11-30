@@ -102,7 +102,7 @@ export default class SendToBusiness extends Component {
                 <h2>Choose a business to send your art to!</h2>
             </div>
             <div>
-                <Grid container cellHeight={160} justify="space-evenly" spacing={16} cols={1}>
+                <Grid container justify="space-evenly" spacing={16}>
                     {this.tileData.map(tileData => (
                         <BusinessCardMedia
                         title={tileData.name}                           //Account name
@@ -112,6 +112,7 @@ export default class SendToBusiness extends Component {
                         theGood = {tileData.theGood}                    //The Good Section
                         addNotes = {tileData.addNotes}                  //Additional Notes section
                       />
+                      
                     ))}
                 </Grid>
             </div>

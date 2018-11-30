@@ -21,7 +21,6 @@ export default class BusinessSignUp extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      logo: null,
       newUser: null
     };
   }
@@ -31,7 +30,6 @@ export default class BusinessSignUp extends Component {
       this.state.name.length > 0 &&
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
-      this.state.logo != null &&
       this.state.password === this.state.confirmPassword
     );
   }
@@ -152,15 +150,6 @@ export default class BusinessSignUp extends Component {
             type="password"
           />
         </FormGroup>
-        <FormGroup controlId="logo" bsSize="large">
-          <Button> 
-          <input
-              type="file"
-              accept="image/*"
-            />
-          </Button>
-        </FormGroup>
-
         <LoaderButton
           block
           bsSize="large"

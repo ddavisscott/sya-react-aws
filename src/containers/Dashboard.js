@@ -3,6 +3,11 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "./CardMedia";
 import { Auth } from "aws-amplify";
 import Axios from "axios";
+import { LinkContainer } from "react-router-bootstrap";
+import { Button } from "@material-ui/core";
+
+import { connect } from 'react-redux';
+import { dashBoardImages } from '../actions/dashBoardImageAction';
 
 
 class Dashboard extends Component {
@@ -28,6 +33,7 @@ class Dashboard extends Component {
             )
                 .then(result => this.setState({ images: result.data.Items }))
                 .catch(err => console.log(err));
+            this.props.dashBoardImages(this.state.images);
         } catch (e) {
             alert(e);
         }
@@ -37,7 +43,8 @@ class Dashboard extends Component {
         return (
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
-                    {this.state.images.map(imageInfo => (
+                    { this.state.images.length !== 0?  
+                        this.state.images.map(imageInfo => (
                         <Grid key={imageInfo.key} item>
                             <CardMedia
                                 title={imageInfo.artTitle}
@@ -45,11 +52,23 @@ class Dashboard extends Component {
                                 descript={imageInfo.description}
                             />
                         </Grid>
-                    ))}
+                    )) : 
+                        <div>
+                            <h1>No images yet.</h1>
+                            <h1>If you want to add an image press the button below!</h1>
+                            <LinkContainer to="/UploadPage">
+                                <Button>Upload Image</Button>
+                            </LinkContainer>
+                        </div>
+                    } 
                 </Grid>
             </div>
         );
     }
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({
+    //images: state.dashBoardImages.images
+})
+
+export default connect(mapStateToProps, {dashBoardImages}) (Dashboard);
