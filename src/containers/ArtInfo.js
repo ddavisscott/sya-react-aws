@@ -5,9 +5,8 @@ import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./ArtInfo.css";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from 'react-redux';
-import { selectImage } from '../actions/imageActions';
 import { Auth, Storage } from "aws-amplify";
-
+import { Redirect } from 'react-router';
 class ArtInfo extends Component {
   constructor(props) {
     const uuidv4 = require("uuid/v4");
@@ -20,6 +19,7 @@ class ArtInfo extends Component {
       user_name: "",
       sub: "", 
       token: "",
+      redirect: false
     };
 
     Auth.currentAuthenticatedUser().then(user => {
@@ -63,9 +63,15 @@ class ArtInfo extends Component {
       })
       .then (result => console.log(result))
       .catch(err => console.log(err));
-
+      this.setState({redirect: true});
     }    
   };
+
+  Redirectrender = () => {
+    if (this.state.redirect) {
+      return <Redirect to ="/Dashboard" />
+    }
+  }
 
   handleChange = event => {
     this.setState({
@@ -74,10 +80,9 @@ class ArtInfo extends Component {
   };
 
   render() {
-    console.log("artinfo render");
-    console.log(this.props.image);
     return (     
       <div className="ArtInfo">
+        {this.Redirectrender()}
         <title>Art Info</title>
         <form onSubmit={this.handleSubmit}>
           <FormGroup bsSize="large">
