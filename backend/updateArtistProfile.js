@@ -7,9 +7,12 @@ exports.handler = (event, context, callback) =>{
   var input = JSON.parse(event.body);
   //key is the users sub value, which is unique and used as the primary key 
   //to the user table.
-  var key = event.queryStringParameters.key;
 
-  var role = event.queryStringParameters.role; //artist or business
+  var key = event.request.userAttributes.sub;
+  var role = event.request.userAttributes['custom:role'];
+
+  //var key = event.queryStringParameters.key;
+  //var role = event.queryStringParameters.role; //artist or business
 
   var instagramLink = 'https://www.instagram.com/';
   var facebookLink = 'https://www.facebook.com/';

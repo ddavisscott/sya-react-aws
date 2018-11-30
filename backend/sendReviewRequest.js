@@ -7,7 +7,7 @@ exports.handler = (event, context, callback) => {
   //reviewID = uuid of review request
   var reviewID = data.review_id; 
   //artist related data
-  var imageName = data.art_title;
+  var artTitle = data.art_title;
   var artistName = data.artist_name;
   var artistID = data.sub;
   var artistEmail = data.artist_email;
@@ -33,7 +33,7 @@ exports.handler = (event, context, callback) => {
       'businessId': businessID, //primary key
       'reviewID': reviewID,    //sort key
       'artwork':{
-        'artTitle': imageName,
+        'artTitle': artTitle,
         'artistID': artistID,
         'artistName': artistName,
         'artistEmail': artistEmail,
