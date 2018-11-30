@@ -14,13 +14,14 @@ import Dashboard from "./containers/Dashboard";
 import AboutUs from "./containers/AboutUs";
 import ViewArt from "./containers/ViewArt";
 import BusinessSignUp from "./containers/BusinessSignUp";
+import SendToBusiness from "./containers/SendToBusiness";
 
 export default ({ childProps }) =>
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
     <AppliedRoute path="/Home" exact component={Home} props={childProps} />
-    <UnauthenticatedRoute path="/SignIn" exact component={SignIn} props={childProps} />
     <AppliedRoute path="/AboutUs" exact component={AboutUs} props={childProps} />
+    <UnauthenticatedRoute path="/SignIn" exact component={SignIn} props={childProps} />
     <UnauthenticatedRoute path="/ArtistSignUp" exact component={ArtistSignUp} props={childProps} />
     <UnauthenticatedRoute path="/BusinessSignUp" exact component={BusinessSignUp} props={childProps} />
     <AuthenticatedRoute path="/UploadImage" exact component={UploadImage} props={childProps} />
@@ -28,6 +29,7 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/ArtInfo" exact component={ArtInfo} props={childProps} />
     <AuthenticatedRoute path="/ViewArt" exact component={ViewArt} props={childProps} />
     <AuthenticatedRoute path="/Dashboard" exact component={Dashboard} props={childProps} />
+    <AuthenticatedRoute path="/BusinessChoice" exact component={SendToBusiness} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;
