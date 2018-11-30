@@ -13,15 +13,17 @@ import { LinkContainer } from "react-router-bootstrap";
 
 const styles = {
     card: {
-        maxWidth: 500
+        maxWidth: 500,
     },
     media: {
-        height: 200,
-        width: 200
+        height: 300,
+        width: 300
     }
 };
 
+
 function MediaCard(props) {
+
     const { classes } = props;
 
     return (
@@ -40,15 +42,20 @@ function MediaCard(props) {
                     <Typography component="p">{props.description}</Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <LinkContainer to="/ViewArt" information="info">
+            <CardActions align="center">
+                <LinkContainer to="/ViewArt">
                     <Button size="small" color="primary">
                         VIEW
                     </Button>
                 </LinkContainer>
-                <LinkContainer to="/SubmitArt" info="hello">
+                <LinkContainer to="/SubmitArt">
                     <Button size="small" color="primary">
                         SUBMIT THIS PIECE
+                    </Button>
+                </LinkContainer>
+                <LinkContainer to="/RemoveArt">
+                    <Button size="small" color="primary">
+                        Remove
                     </Button>
                 </LinkContainer>
             </CardActions>

@@ -4,9 +4,11 @@ import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Routes from "./Routes";
-import { Drawer, List, ListItem, IconButton } from "@material-ui/core";
+import { Drawer, List, ListItem, IconButton, Input } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+
+import Button from '@material-ui/core/Button';
 import "./App.css";
 
 class App extends Component {
@@ -111,16 +113,28 @@ class App extends Component {
                         onClick={this.handleDrawer}
                     >
                         <List>
+                            <LinkContainer to="/UploadImage">
+                                <ListItem>
+                                <Button color="red">
+                                    Upload Art 
+                                    </Button>
+                                </ListItem>
+                            </LinkContainer>
                             <LinkContainer to="/Dashboard">
                                 <ListItem>
-                                    <DashboardIcon /> Dashboard
+                                    <Button>
+                                    <DashboardIcon /> Dashboard 
+                                    </Button>
                                 </ListItem>
                             </LinkContainer>
                             <LinkContainer to="/UploadPage">
                                 <ListItem> Upload Art </ListItem>
                             </LinkContainer>
-                            <LinkContainer to="/UploadImage">
-                                <ListItem>Upload Image</ListItem>
+                            <LinkContainer to="/MyAccount">
+                                <ListItem>My Account</ListItem>
+                            </LinkContainer>
+                            <LinkContainer to="/ArtistReviews">
+                                <ListItem>Reviews</ListItem>
                             </LinkContainer>
                         </List>
                     </Drawer>

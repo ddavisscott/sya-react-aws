@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "./CardMedia";
-
 import { Auth } from "aws-amplify";
 import Axios from "axios";
+
+
 class Dashboard extends Component {
-    constructor() {
-        super();
+
+    constructor(props) {
+        super(props);
 
         this.state = {
-            keys: [],
+            images: [],
             mySub: ""
         };
     }
@@ -17,14 +19,15 @@ class Dashboard extends Component {
     async componentDidMount() {
         try {
             await Auth.currentAuthenticatedUser().then(user => {
-                this.setState({ mySub: user.attributes.sub }
-                );
+                this.setState({ mySub: user.attributes.sub });
             });
-            
-            Axios.get( "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" + this.state.mySub) 
-            .then(result => this.setState({ keys: result.data.Items }))
-            .catch(err => console.log(err));
 
+            Axios.get(
+                "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
+                    this.state.mySub
+            )
+                .then(result => this.setState({ images: result.data.Items }))
+                .catch(err => console.log(err));
         } catch (e) {
             alert(e);
         }
@@ -32,21 +35,19 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <Grid container spacing={16}>
-                <Grid item xs={12}>
-                    <Grid container justify="flex-start" spacing={Number(16)}>
-                        {this.state.keys.map(value => (
-                            <Grid key={value.key} item>
-                                <CardMedia 
-                                    title={value.artTitle}
-                                    src={value.url}
-                                    descript={value.description}
-                                 />
-                            </Grid>
-                        ))}
-                    </Grid>
+            <div>
+                <Grid container justify="space-evenly" spacing={16}>
+                    {this.state.images.map(imageInfo => (
+                        <Grid key={imageInfo.key} item>
+                            <CardMedia
+                                title={imageInfo.artTitle}
+                                src={imageInfo.url}
+                                descript={imageInfo.description}
+                            />
+                        </Grid>
+                    ))}
                 </Grid>
-            </Grid>
+            </div>
         );
     }
 }
