@@ -22,9 +22,7 @@ exports.handler = (event, context, callback) => {
   var businessID = data.businessID;
   
   //data relating to responses
-  var replied = false;
   //var response = data.response;
-  var refunded = 0;
   var submittedWithFreeCredit = data.submittedWithFreeCredit;
 
   var params = { 
@@ -45,7 +43,7 @@ exports.handler = (event, context, callback) => {
         'businessName': businessName,
       },
       'readByArtist': false,
-      'refunded': refunded,
+      'refunded': 0,
       'replied': false,
       'submittedWithFreeCredit': submittedWithFreeCredit,
       'requestDate': uploadDate
