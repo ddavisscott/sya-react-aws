@@ -8,9 +8,9 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import { connect } from 'react-redux';
 import { LinkContainer } from "react-router-bootstrap";
-
+import { requestReviewAction } from "../actions/requestReviewAction";
 const styles = {
     card: {
         maxWidth: 500,
@@ -23,7 +23,17 @@ const styles = {
 
 
 function MediaCard(props) {
-
+    const handleReviewSubmit =  event => {
+        props.rra(
+            props.date,
+            props.sourceKey,
+            props.artistName, 
+            props.artTitle, 
+            props.url,
+            props.descript,
+            props.userSub 
+        );
+    };
     const { classes } = props;
 
     return (
@@ -31,15 +41,14 @@ function MediaCard(props) {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image={props.src}
-                    title={props.title}
+                    image={props.url}
+                    title={props.artTitle}
                     style={styles.media}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {props.title}
+                        {props.artTitle}
                     </Typography>
-                    <Typography component="p">{props.description}</Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions align="center">
@@ -48,11 +57,11 @@ function MediaCard(props) {
                         VIEW
                     </Button>
                 </LinkContainer>
-                <LinkContainer to="/SubmitArt">
-                    <Button size="small" color="primary">
+                < LinkContainer to="/BusinessChoice" >
+                    <Button size="small" color="primary" onClick={handleReviewSubmit}>
                         SUBMIT THIS PIECE
                     </Button>
-                </LinkContainer>
+                </ LinkContainer>
                 <LinkContainer to="/RemoveArt">
                     <Button size="small" color="primary">
                         Remove
@@ -67,4 +76,9 @@ MediaCard.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MediaCard);
+const mapDispatchToProps = {
+    rra: requestReviewAction,
+    
+}
+
+export default connect( null ,mapDispatchToProps )(withStyles(styles)(MediaCard));

@@ -35,14 +35,19 @@ class Dashboard extends Component {
 
     render() {
         return (
+            console.log(this.props.url),
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
                     {this.state.images.map(imageInfo => (
                         <Grid key={imageInfo.key} item>
                             <CardMedia
-                                title={imageInfo.artTitle}
-                                src={imageInfo.url}
+                                date={imageInfo.date}
+                                sourceKey={imageInfo.sourceKey}
+                                artistName={imageInfo.artistName}
+                                artTitle={imageInfo.artTitle}
+                                url={imageInfo.url}
                                 descript={imageInfo.description}
+                                userSub={imageInfo.userSub}
                             />
                         </Grid>
                     ))}

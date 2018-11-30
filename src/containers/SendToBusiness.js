@@ -10,9 +10,11 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import BusinessCardMedia from './BusinessCardMedia';
+//import { connect } from "net";
+import { connect } from "react-redux";
 
 
-export default class SendToBusiness extends Component {
+class SendToBusiness extends Component {
   constructor(props) {
     super(props);
 
@@ -119,3 +121,14 @@ export default class SendToBusiness extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+    date:state.requestReviewReducer.date,
+    sourceKey:state.requestReviewReducer.sourceKey,
+    artistName:state.requestReviewReducer.artistName,
+    artTitle:state.requestReviewReducer.artTitle,
+    url:state.requestReviewReducer.url,
+    descript:state.requestReviewReducer.descript,
+    userSub:state.requestReviewReducer.userSub
+})
+
+export default connect(mapStateToProps)(SendToBusiness);
