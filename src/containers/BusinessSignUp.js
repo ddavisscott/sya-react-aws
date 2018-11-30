@@ -7,7 +7,6 @@ import {
 } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
-import { Button } from "react-bootstrap";
 import "./BusinessSignUp.css";
 
 export default class BusinessSignUp extends Component {
@@ -81,7 +80,7 @@ export default class BusinessSignUp extends Component {
       await Auth.signIn(this.state.name, this.state.password);
 
       this.props.userHasAuthenticated(true);
-      this.props.history.push("/");
+      this.props.history.push("/Dashboard");
     } catch (e) {
       this.setState({ isLoading: false });
     }

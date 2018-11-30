@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import "./App.css";
 
 class App extends Component {
+    
     constructor(props) {
         super(props);
 
@@ -101,9 +102,6 @@ class App extends Component {
                                 </Fragment>
                                 {this.state.isAuthenticated ? (
                                     <Fragment>
-                                        <LinkContainer to="/settings">
-                                            <NavItem>Settings</NavItem>
-                                        </LinkContainer>
                                         <NavItem onClick={this.handleLogout}>
                                             Sign Out
                                         </NavItem>

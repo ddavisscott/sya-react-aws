@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import SignIn from "./containers/SignIn";
 import ArtistSignUp from "./containers/ArtistSignUp";
-import UploadImage from "./containers/UploadImage";
 import UploadPage from "./containers/UploadPage";
 import ArtInfo from "./containers/ArtInfo";
 import NotFound from "./containers/NotFound";
@@ -24,7 +23,6 @@ export default ({ childProps }) =>
     <UnauthenticatedRoute path="/SignIn" exact component={SignIn} props={childProps} />
     <UnauthenticatedRoute path="/ArtistSignUp" exact component={ArtistSignUp} props={childProps} />
     <UnauthenticatedRoute path="/BusinessSignUp" exact component={BusinessSignUp} props={childProps} />
-    <AuthenticatedRoute path="/UploadImage" exact component={UploadImage} props={childProps} />
     <AuthenticatedRoute path="/UploadPage" exact component={UploadPage} props={childProps} />
     <AuthenticatedRoute path="/ArtInfo" exact component={ArtInfo} props={childProps} />
     <AuthenticatedRoute path="/ViewArt" exact component={ViewArt} props={childProps} />

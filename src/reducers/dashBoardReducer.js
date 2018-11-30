@@ -1,7 +1,7 @@
 import {DASHBOARD_IMAGES} from '../actions/types';
 
 const initialState = {
-    images: null
+    images: []
 }
 
 export default function(state = initialState, action) {

@@ -7,6 +7,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { connect } from 'react-redux';
 import { Auth, Storage } from "aws-amplify";
 import { Redirect } from 'react-router';
+
 class ArtInfo extends Component {
   constructor(props) {
     const uuidv4 = require("uuid/v4");

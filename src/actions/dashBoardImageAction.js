@@ -1,7 +1,6 @@
 import {DASHBOARD_IMAGES} from './types';
 
-
-export function dashBoardImages(images) {
+export function selectImage(images) {
     console.log("action called")
     return function(dispatch) {
         dispatch({
