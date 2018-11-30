@@ -13,7 +13,6 @@ exports.handler = (event, context, callback) => {
   var requestID = event.queryStringParameters.requestID;
 
   var input = JSON.parse(event.body);
-  var 
 
   var exprString = 'set ';
   var parse = {
