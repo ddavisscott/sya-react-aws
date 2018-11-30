@@ -7,9 +7,10 @@ import {
 } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
-import "./ArtistSignUp.css";
+import { Button } from "react-bootstrap";
+import "./BusinessSignUp.css";
 
-export default class ArtistSignUp extends Component {
+export default class BusinessSignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +21,7 @@ export default class ArtistSignUp extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      instagram: "",
+      logo: null,
       newUser: null
     };
   }
@@ -30,7 +31,7 @@ export default class ArtistSignUp extends Component {
       this.state.name.length > 0 &&
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
-      this.state.instagram.length > 0 &&
+      this.state.logo != null &&
       this.state.password === this.state.confirmPassword
     );
   }
@@ -56,7 +57,7 @@ export default class ArtistSignUp extends Component {
         password: this.state.password,
         attributes: {
           email: this.state.email,
-          'custom:role': "artist"
+          'custom:role': "business"
         }
       }
       );
@@ -118,7 +119,7 @@ export default class ArtistSignUp extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
          <FormGroup controlId="name" bsSize="large">
-          <ControlLabel>Name</ControlLabel>
+          <ControlLabel>Business Name*</ControlLabel>
           <FormControl
             autoFocus
             type="text"
@@ -127,7 +128,7 @@ export default class ArtistSignUp extends Component {
           />
         </FormGroup>
         <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
+          <ControlLabel>Email*</ControlLabel>
           <FormControl
             autoFocus
             type="email"
@@ -136,7 +137,7 @@ export default class ArtistSignUp extends Component {
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
+          <ControlLabel>Password*</ControlLabel>
           <FormControl
             value={this.state.password}
             onChange={this.handleChange}
@@ -144,21 +145,22 @@ export default class ArtistSignUp extends Component {
           />
         </FormGroup>
         <FormGroup controlId="confirmPassword" bsSize="large">
-          <ControlLabel>Confirm Password</ControlLabel>
+          <ControlLabel>Confirm Password*</ControlLabel>
           <FormControl
             value={this.state.confirmPassword}
             onChange={this.handleChange}
             type="password"
           />
         </FormGroup>
-        <FormGroup controlId="instagram" bsSize="large">
-          <ControlLabel>Instagram</ControlLabel>
-          <FormControl
-            value={this.state.instagram}
-            onChange={this.handleChange}
-            type="text"
-          />
+        <FormGroup controlId="logo" bsSize="large">
+          <Button> 
+          <input
+              type="file"
+              accept="image/*"
+            />
+          </Button>
         </FormGroup>
+
         <LoaderButton
           block
           bsSize="large"
@@ -174,7 +176,7 @@ export default class ArtistSignUp extends Component {
 
   render() {
     return (
-      <div className="ArtistSignUp">
+      <div className="BusinessSignUp">
         {this.state.newUser === null
           ? this.renderForm()
           : this.renderConfirmationForm()}

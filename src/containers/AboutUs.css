@@ -1,0 +1,22 @@
+
+  .mainHead h1{
+    text-align: center;
+  }
+
+  .mainHead p{
+    text-align: left;
+    font-size: 140%;
+  }
+
+  .people p {
+    text-align: left;
+    font-size: 140%;
+  }
+
+  a {
+      color: orange;
+  }
+  .people h1{
+    text-align: left;
+  }
+
