@@ -45,7 +45,7 @@ export default class AboutUs extends Component {
                     <p>
                         <em>(Software Development Team Fall 2018)</em>
                         <br></br>
-                        Team Members: Brandon Zwier, Gavin Moy, Kevin Samra, Christian Ortiz, Eric Yup, Sophie Ku. This valiant team of aspiring software engineers constructed the website you see before you during Fall of 2018. We toiled tirelessly in order to provide artists and businesses with a stable platform in which to communicate and share art. We hope you enjoy this platform and share your art with the world!
+                        Team Members: Brandon Zwier, Gavin Moy, Kevin Samra, Christian Ortiz, Eric Yup, Sophie Ku. This valiant team of aspiring software engineers constructed the website you see before you during Fall of 2018. We toiled tirelessly in order to provide artists and businesses with a stable platform in which to communicate and share art. We all hope you enjoy this platform and share your art with the world!
                     </p>
             </div>
         </div>
