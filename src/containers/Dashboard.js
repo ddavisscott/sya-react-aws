@@ -34,11 +34,9 @@ class Dashboard extends Component {
 
     render() {
         return (
-            console.log(this.props.images[1]),
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
                     {this.props.images.map(imageInfo => (
-
                         <Grid key={imageInfo.key} item>
                             <CardMedia
                                 date={imageInfo.date}
