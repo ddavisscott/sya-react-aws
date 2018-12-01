@@ -15,8 +15,9 @@ import ViewArt from "./containers/ViewArt";
 import BusinessSignUp from "./containers/BusinessSignUp";
 import SendToBusiness from "./containers/SendToBusiness";
 import BusinessSubmissions from "./containers/BusinessSubmissions";
+import ConfirmReviewRequest from "./containers/ConfirmReviewRequest";
 
-export default ({ childProps }) =>
+export default ({childProps}) =>
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
     <AppliedRoute path="/Home" exact component={Home} props={childProps} />
@@ -24,6 +25,7 @@ export default ({ childProps }) =>
     <UnauthenticatedRoute path="/SignIn" exact component={SignIn} props={childProps} />
     <UnauthenticatedRoute path="/ArtistSignUp" exact component={ArtistSignUp} props={childProps} />
     <UnauthenticatedRoute path="/BusinessSignUp" exact component={BusinessSignUp} props={childProps} />
+    <AuthenticatedRoute path="/ConfirmReviewRequest" exact component = {ConfirmReviewRequest} props = {childProps} />
     <AuthenticatedRoute path="/UploadPage" exact component={UploadPage} props={childProps} />
     <AuthenticatedRoute path="/ArtInfo" exact component={ArtInfo} props={childProps} />
     <AuthenticatedRoute path="/ViewArt" exact component={ViewArt} props={childProps} />
