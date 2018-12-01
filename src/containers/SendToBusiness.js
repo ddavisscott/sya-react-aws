@@ -108,6 +108,13 @@ class SendToBusiness extends Component {
                         about = {tileData.businessEmail}                        //About section
                         theGood = {tileData.theGood}                            //The Good Section
                         addNotes = {tileData.addNotes}                          //Additional Notes section
+                        date = {this.props.date}
+                        sourceKey = {this.props.sourceKey}
+                        artistName = {this.props.artistName}
+                        artTitle = {this.props.artTitle}
+                        url = {this.props.url}
+                        descript = {this.props.descript}
+                        userSub = {this.props.userSub}
                       />
                       
                     ))}
