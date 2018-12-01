@@ -3,4 +3,5 @@ export const VIEW_IMAGE   = 'VIEW_IMAGE';
 export const REQUEST_REVIEW = 'REQUEST_REVIEW';
 export const GET_ART = 'GET_ART';
 export const ADD_ART = 'ADD_ART';
-export const VIEW_ART          = 'VIEW_ART';
+export const VIEW_ART= 'VIEW_ART';
+export const REQUEST_BUSINESS = 'REQUEST_BUSINESS';
