@@ -53,12 +53,17 @@ const styles = theme => ({
   */
   function BusinessMediaCard(props) {
     const handleSubmit =  event => {
-      //ibusinessName, ibusinessEmail,ibusinessID
+      //ibusinessName, ibusinessEmail,ibusinessID, 
+      //ibusinessSubheader,ibusinessTheGood,ibusinessIMG,ibusinessAddNotes
       console.log("submit");
       props.rba(
           props.title,
           props.about,
-          props.id
+          props.id,
+          props.subheader,
+          props.theGood,
+          props.img,
+          props.addNotes
       );
     };
 

@@ -1,6 +1,5 @@
 import {REQUEST_REVIEW} from '../actions/types';
-import {REQUEST_BUSINESS} from '../actions/types'
-import { CardActions } from '@material-ui/core';
+import {REQUEST_BUSINESS} from '../actions/types';
 
 const initialState = {
     date:'',
@@ -12,7 +11,11 @@ const initialState = {
     userSub:'',
     businessName:'',
     businessEmail:'',
-    businessID:''
+    businessID:'',
+    businessSubheader:'',
+    businessTheGood:'',
+    businessIMG:'',
+    businessAddNotes:'',
 }
 
 export default function(state = initialState, action) {
@@ -33,7 +36,11 @@ export default function(state = initialState, action) {
                 ...state,
                 businessName:action.businessName,
                 businessEmail:action.businessEmail,
-                businessID:action.businessID
+                businessID:action.businessID,
+                businessSubheader:action.businessSubheader,
+                businessTheGood:action.businessTheGood,
+                businessIMG:action.businessIMG,
+                businessAddNotes:action.businessAddNotes
             }
         default:
             return state;
