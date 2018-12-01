@@ -85,15 +85,12 @@ export default class ArtistSignUp extends Component {
                 this.state.name,
                 this.state.confirmationCode
             );
-            console.log("here");
             await Auth.signIn(this.state.name, this.state.password);
-            console.log("here");
             this.props.userHasAuthenticated(true);
-            console.log("here");
+            
             await Auth.currentAuthenticatedUser().then(user => {
                 this.setState({ sub: user.attributes.sub });
             });
-            console.log("here");
             const uploadFile = {
                 key: this.state.sub,
                 role: "artist",

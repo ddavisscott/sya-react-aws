@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import imageReducer from './imageReducer';
 import dashBoardReducer from './dashBoardReducer';
-import viewImageReducer from './viewImageReducer';
+import viewArtReducer from './viewArtReducer';
 export default combineReducers( {
     imageReducer,
     dashBoardReducer,
-    viewImageReducer,
+    viewArtReducer,
 });

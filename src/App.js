@@ -19,13 +19,15 @@ class App extends Component {
         this.state = {
             isAuthenticated: false,
             isAuthenticating: true,
-            clickedDrawer: false
+            clickedDrawer: false,
+            role: "",
         };
     }
 
     async componentDidMount() {
         try {
             await Auth.currentSession();
+
             this.userHasAuthenticated(true);
         } catch (e) {
             if (e !== "No current user") {
@@ -38,6 +40,11 @@ class App extends Component {
 
     userHasAuthenticated = authenticated => {
         this.setState({ isAuthenticated: authenticated });
+
+        Auth.currentAuthenticatedUser().then( user => {
+            console.log(user.attributes["custom:role"]);
+            this.setState({ role: user.attributes["custom:role"]})
+        });
     };
 
     handleLogout = async event => {
@@ -53,6 +60,50 @@ class App extends Component {
             clickedDrawer: this.state.clickedDrawer ? false : true
         });
     };
+
+    renderBusiness() {
+        return(
+            <List>
+            <LinkContainer to="/BusinessSubmissions">
+                <ListItem>
+                    <Button>
+                    <DashboardIcon /> Submissions 
+                    </Button>
+                </ListItem>
+            </LinkContainer>
+            <LinkContainer to="/MyAccount">
+                <ListItem>My Account</ListItem>
+            </LinkContainer>
+        </List>
+        );
+    }
+
+    renderArtist() {
+        return(
+            <List>
+            <LinkContainer to="/UploadPage">
+                <ListItem>
+                <Button color="red">
+                    Upload Art 
+                    </Button>
+                </ListItem>
+            </LinkContainer>
+            <LinkContainer to="/Dashboard">
+                <ListItem>
+                    <Button>
+                    <DashboardIcon /> Dashboard 
+                    </Button>
+                </ListItem>
+            </LinkContainer>
+            <LinkContainer to="/MyAccount">
+                <ListItem>My Account</ListItem>
+            </LinkContainer>
+            <LinkContainer to="/ArtistReviews">
+                <ListItem>Reviews</ListItem>
+            </LinkContainer>
+        </List>
+        );
+    }
 
 
     render() {
@@ -122,28 +173,8 @@ class App extends Component {
                         onClick={this.handleDrawer}
                         width="200"
                     >
-                        <List>
-                            <LinkContainer to="/UploadPage">
-                                <ListItem>
-                                <Button color="red">
-                                    Upload Art 
-                                    </Button>
-                                </ListItem>
-                            </LinkContainer>
-                            <LinkContainer to="/Dashboard">
-                                <ListItem>
-                                    <Button>
-                                    <DashboardIcon /> Dashboard 
-                                    </Button>
-                                </ListItem>
-                            </LinkContainer>
-                            <LinkContainer to="/MyAccount">
-                                <ListItem>My Account</ListItem>
-                            </LinkContainer>
-                            <LinkContainer to="/ArtistReviews">
-                                <ListItem>Reviews</ListItem>
-                            </LinkContainer>
-                        </List>
+                    {this.state.role === "artist"? 
+                        this.renderArtist() : this.renderBusiness() }
                     </Drawer>
                     <Routes childProps={childProps} />
                 </div>
