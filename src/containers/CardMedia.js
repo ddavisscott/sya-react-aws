@@ -45,6 +45,7 @@ function MediaCard(props) {
             props.url,
             props.descript,
         );
+
     };
     const { classes } = props;
 
@@ -74,6 +75,11 @@ function MediaCard(props) {
                         SUBMIT THIS PIECE
                     </Button>
                 </ LinkContainer>
+                <LinkContainer to="/RemoveArt">
+                    <Button size="small" color="primary">
+                        Remove
+                    </Button>
+                </LinkContainer>
             </CardActions>
         </Card>
     );
@@ -84,6 +90,7 @@ MediaCard.propTypes = {
 };
 
 const mapDispatchToProps = {
+
     rra:     requestReviewAction,
     viewArt: viewArtAction,
     

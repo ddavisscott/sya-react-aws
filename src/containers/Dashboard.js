@@ -3,15 +3,14 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "./CardMedia";
 import { Auth } from "aws-amplify";
 import Axios from "axios";
-
-
+import { connect } from 'react-redux';
+import { getArtAction } from "../actions/getArtAction";
 class Dashboard extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            images: [],
             mySub: ""
         };
     }
@@ -26,7 +25,7 @@ class Dashboard extends Component {
                 "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
                     this.state.mySub
             )
-                .then(result => this.setState({ images: result.data.Items }))
+                .then(result => this.props.getArt (result.data.Items ))
                 .catch(err => console.log(err));
         } catch (e) {
             alert(e);
@@ -35,10 +34,11 @@ class Dashboard extends Component {
 
     render() {
         return (
+            console.log(this.props.images[1]),
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
-                    {this.state.images.map(imageInfo => (
-            
+                    {this.props.images.map(imageInfo => (
+
                         <Grid key={imageInfo.key} item>
                             <CardMedia
                                 date={imageInfo.date}
@@ -57,4 +57,14 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+
+const mapStateToProps = state => ({
+    images: state.dashBoardReducer.images
+})
+
+const mapDispatchToProps = {
+    getArt: getArtAction
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

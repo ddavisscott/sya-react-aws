@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import BusinessCardMedia from './BusinessCardMedia';
+import { connect } from "react-redux";
 import Axios from "axios";
 
-export default class SendToBusiness extends Component {
+
+class SendToBusiness extends Component {
   constructor(props) {
     super(props);
 
@@ -115,3 +117,14 @@ export default class SendToBusiness extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+    date:state.requestReviewReducer.date,
+    sourceKey:state.requestReviewReducer.sourceKey,
+    artistName:state.requestReviewReducer.artistName,
+    artTitle:state.requestReviewReducer.artTitle,
+    url:state.requestReviewReducer.url,
+    descript:state.requestReviewReducer.descript,
+    userSub:state.requestReviewReducer.userSub
+})
+
+export default connect(mapStateToProps)(SendToBusiness);
