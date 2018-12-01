@@ -3,20 +3,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
 import AddIcon from '@material-ui/icons/Add';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+//Styling
 const styles = theme => ({
   card: {
     Width: 'auto',
@@ -48,8 +42,12 @@ const styles = theme => ({
   }
 });
 
-let state = { expanded: false };
-
+  /*
+  //This Function will provide all the formatting neccessary for buisness cards to
+  //be displayed on the /BusinessChoice page
+  //This function is called in SendToBusiness.js and displays multiple cards
+  //using information from the database
+  */
   function BusinessMediaCard(props) {
     const { classes } = props;
     return (
@@ -89,14 +87,12 @@ let state = { expanded: false };
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            
-            
+
           </CardActions>
           
         </Card>
       );
   }
-
 
 BusinessMediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
