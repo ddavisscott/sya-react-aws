@@ -96,7 +96,6 @@ export default class ArtistSignUp extends Component {
                 role: "artist",
                 instragram: "instagramFamous"
             };
-            console.log("here");
             await fetch(
                 "https://b4l37v57w1.execute-api.us-east-1.amazonaws.com/prod/submit-request",
                 {
@@ -110,7 +109,6 @@ export default class ArtistSignUp extends Component {
             )
                 .then(result => console.log(result))
                 .catch(err => console.log(err));
-            console.log("here");
         } catch (e) {
             console.log(e.message);
             this.setState({ isLoading: false });

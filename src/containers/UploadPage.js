@@ -70,7 +70,7 @@ class UploadPage extends React.Component {
                 </Typography>
                 <Divider />
                 <MuiThemeProvider theme={theme}>
-                    <Grid container spacing={20}>
+                    <Grid container spacing={16}>
                         <Grid>
                             <form onSubmit={this.handleSubmit}>
                                 <Button variant="contained" color="secondary">
@@ -88,7 +88,7 @@ class UploadPage extends React.Component {
                                 <Button
                                     disabled={this.state.fileNotSelected}
                                     variant="contained"
-                                    color="Primary"
+                                    color="primary"
                                 >
                                     Next
                                 </Button>

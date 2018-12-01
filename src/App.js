@@ -83,7 +83,7 @@ class App extends Component {
             <List>
             <LinkContainer to="/UploadPage">
                 <ListItem>
-                <Button color="red">
+                <Button>
                     Upload Art 
                     </Button>
                 </ListItem>
