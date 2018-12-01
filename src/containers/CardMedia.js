@@ -90,10 +90,8 @@ MediaCard.propTypes = {
 };
 
 const mapDispatchToProps = {
-
     rra:     requestReviewAction,
-    viewArt: viewArtAction,
-    
+    viewArt: viewArtAction,  
 }
 
 export default connect( null ,mapDispatchToProps )(withStyles(styles)(MediaCard));

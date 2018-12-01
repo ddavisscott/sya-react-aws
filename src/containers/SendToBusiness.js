@@ -100,14 +100,15 @@ class SendToBusiness extends Component {
             <div>
                 <Grid container cellHeight={160} justify="space-evenly" spacing={16} cols={1}>
                     {this.state.info.map(tileData => (
-
                         <BusinessCardMedia
                         title={tileData.businessName}                           //Account name
                         img = {tileData.img}                                    //Avatar image
                         subheader = {"Joined: " + tileData.creationDate}        //Join date field
                         about = {tileData.businessEmail}                        //About section
                         theGood = {tileData.theGood}                            //The Good Section
-                        addNotes = {tileData.addNotes}                          //Additional Notes section
+                        addNotes = {tileData.addNotes}
+                        id = {tileData.userID}
+                        /*                       //Additional Notes section
                         date = {this.props.date}
                         sourceKey = {this.props.sourceKey}
                         artistName = {this.props.artistName}
@@ -115,6 +116,7 @@ class SendToBusiness extends Component {
                         url = {this.props.url}
                         descript = {this.props.descript}
                         userSub = {this.props.userSub}
+                        */
                       />
                       
                     ))}
