@@ -98,6 +98,7 @@ export default class SendToBusiness extends Component {
             <div>
                 <Grid container cellHeight={160} justify="space-evenly" spacing={16} cols={1}>
                     {this.state.info.map(tileData => (
+
                         <BusinessCardMedia
                         title={tileData.businessName}                           //Account name
                         img = {tileData.img}                                    //Avatar image
@@ -106,6 +107,7 @@ export default class SendToBusiness extends Component {
                         theGood = {tileData.theGood}                            //The Good Section
                         addNotes = {tileData.addNotes}                          //Additional Notes section
                       />
+                      
                     ))}
                 </Grid>
             </div>

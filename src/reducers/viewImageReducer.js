@@ -1,15 +1,15 @@
-import {SELECT_IMAGE} from '../actions/types';
+import {VIEW_IMAGE} from '../actions/types';
 
 const initialState = {
-    image: null
+    imageInfo: null
 }
 
 export default function(state = initialState, action) {
     switch(action.type) {
-        case SELECT_IMAGE:
+        case VIEW_IMAGE:
             return {
                 ...state,
-                image: action.payload
+                imageInfo: action.payload
             }
         default:
             return state;

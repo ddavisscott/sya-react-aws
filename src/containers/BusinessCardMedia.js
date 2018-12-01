@@ -13,7 +13,7 @@ import AddIcon from '@material-ui/icons/Add';
 //Styling
 const styles = theme => ({
   card: {
-    Width: 'auto',
+    width: 'auto',
     minWidth: 150
   },
   media: {

@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import "./App.css";
 
 class App extends Component {
+    
     constructor(props) {
         super(props);
 
@@ -101,9 +102,6 @@ class App extends Component {
                                 </Fragment>
                                 {this.state.isAuthenticated ? (
                                     <Fragment>
-                                        <LinkContainer to="/settings">
-                                            <NavItem>Settings</NavItem>
-                                        </LinkContainer>
                                         <NavItem onClick={this.handleLogout}>
                                             Sign Out
                                         </NavItem>
@@ -122,9 +120,10 @@ class App extends Component {
                         anchor="left"
                         open={this.state.clickedDrawer}
                         onClick={this.handleDrawer}
+                        width="200"
                     >
                         <List>
-                            <LinkContainer to="/UploadImage">
+                            <LinkContainer to="/UploadPage">
                                 <ListItem>
                                 <Button color="red">
                                     Upload Art 
@@ -137,9 +136,6 @@ class App extends Component {
                                     <DashboardIcon /> Dashboard 
                                     </Button>
                                 </ListItem>
-                            </LinkContainer>
-                            <LinkContainer to="/UploadPage">
-                                <ListItem> Upload Art </ListItem>
                             </LinkContainer>
                             <LinkContainer to="/MyAccount">
                                 <ListItem>My Account</ListItem>
