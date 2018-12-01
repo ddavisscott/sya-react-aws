@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
+import { LinkContainer } from "react-router-bootstrap";
 
 //Styling
 const styles = theme => ({
@@ -59,9 +60,12 @@ const styles = theme => ({
               </Avatar>
             }
             action={
-              <IconButton color="secondary">
-                <AddIcon />
-              </IconButton>
+              props.disabled? null :
+              <LinkContainer to="/ConfirmReviewRequest">
+                <IconButton color="secondary">
+                  <AddIcon />
+                </IconButton>
+              </LinkContainer>
             }
             title= {props.title}
             subheader= {props.subheader}
