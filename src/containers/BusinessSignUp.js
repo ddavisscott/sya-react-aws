@@ -7,7 +7,6 @@ import {
 } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
-import { Button } from "react-bootstrap";
 import "./BusinessSignUp.css";
 
 export default class BusinessSignUp extends Component {
@@ -21,7 +20,6 @@ export default class BusinessSignUp extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      logo: null,
       newUser: null
     };
   }
@@ -31,7 +29,6 @@ export default class BusinessSignUp extends Component {
       this.state.name.length > 0 &&
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
-      this.state.logo != null &&
       this.state.password === this.state.confirmPassword
     );
   }
@@ -83,7 +80,7 @@ export default class BusinessSignUp extends Component {
       await Auth.signIn(this.state.name, this.state.password);
 
       this.props.userHasAuthenticated(true);
-      this.props.history.push("/");
+      this.props.history.push("/Dashboard");
     } catch (e) {
       this.setState({ isLoading: false });
     }
@@ -152,15 +149,6 @@ export default class BusinessSignUp extends Component {
             type="password"
           />
         </FormGroup>
-        <FormGroup controlId="logo" bsSize="large">
-          <Button> 
-          <input
-              type="file"
-              accept="image/*"
-            />
-          </Button>
-        </FormGroup>
-
         <LoaderButton
           block
           bsSize="large"

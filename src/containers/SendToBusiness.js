@@ -1,17 +1,8 @@
 import React, { Component } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import CardMedia from "./CardMedia";
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import BusinessCardMedia from './BusinessCardMedia';
-//import { connect } from "net";
 import { connect } from "react-redux";
+import Axios from "axios";
 
 
 class SendToBusiness extends Component {
@@ -20,8 +11,10 @@ class SendToBusiness extends Component {
 
     this.state = {
       isLoading: true,
+      info: []
     };
 
+    //Debugging data for testing
     this.tileData = [
         {
             img: "https://i.imgur.com/5vIKxfR.png",
@@ -84,17 +77,18 @@ class SendToBusiness extends Component {
         },
     ];
   }
-
+  //Function gets business info and puts it into info[]
   async componentDidMount() {
-    if (!this.props.isAuthenticated) {
-      return;
+    try {
+        Axios.get(
+            "https://pr4ezxqjkh.execute-api.us-east-1.amazonaws.com/prod/"
+        )
+            .then(result => this.setState({info: result.data.Items}))
+            .catch(err => console.log(err));
+    } catch (e) {
+        alert(e);
     }
-    this.setState({ isLoading: false });
-  }
-  
-    ImageGridList(props) {
-        const { classes } = props;
-    }
+}
 
   render() {
     return (
@@ -105,15 +99,17 @@ class SendToBusiness extends Component {
             </div>
             <div>
                 <Grid container cellHeight={160} justify="space-evenly" spacing={16} cols={1}>
-                    {this.tileData.map(tileData => (
+                    {this.state.info.map(tileData => (
+
                         <BusinessCardMedia
-                        title={tileData.name}                           //Account name
-                        img = {tileData.img}                            //Avatar image
-                        subheader = {"Joined: " + tileData.joinDate}    //Join date field
-                        about = {tileData.about}                        //About section
-                        theGood = {tileData.theGood}                    //The Good Section
-                        addNotes = {tileData.addNotes}                  //Additional Notes section
+                        title={tileData.businessName}                           //Account name
+                        img = {tileData.img}                                    //Avatar image
+                        subheader = {"Joined: " + tileData.creationDate}        //Join date field
+                        about = {tileData.businessEmail}                        //About section
+                        theGood = {tileData.theGood}                            //The Good Section
+                        addNotes = {tileData.addNotes}                          //Additional Notes section
                       />
+                      
                     ))}
                 </Grid>
             </div>

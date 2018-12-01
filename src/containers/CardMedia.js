@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from 'react-redux';
 import { LinkContainer } from "react-router-bootstrap";
 import { requestReviewAction } from "../actions/requestReviewAction";
+import { viewArtAction } from "../actions/viewArtAction";
+
 const styles = {
     card: {
         maxWidth: 500,
@@ -33,6 +35,17 @@ function MediaCard(props) {
             props.descript,
             props.userSub 
         );
+
+    };
+
+    const handleViewSubmit =  event => {
+        props.viewArt(
+            props.artistName, 
+            props.artTitle, 
+            props.url,
+            props.descript,
+        );
+
     };
     const { classes } = props;
 
@@ -53,7 +66,7 @@ function MediaCard(props) {
             </CardActionArea>
             <CardActions align="center">
                 <LinkContainer to="/ViewArt">
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={handleViewSubmit}>
                         VIEW
                     </Button>
                 </LinkContainer>
@@ -77,7 +90,9 @@ MediaCard.propTypes = {
 };
 
 const mapDispatchToProps = {
-    rra: requestReviewAction,
+
+    rra:     requestReviewAction,
+    viewArt: viewArtAction,
     
 }
 

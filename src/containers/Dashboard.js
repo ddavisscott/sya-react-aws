@@ -38,6 +38,7 @@ class Dashboard extends Component {
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
                     {this.props.images.map(imageInfo => (
+
                         <Grid key={imageInfo.key} item>
                             <CardMedia
                                 date={imageInfo.date}
@@ -55,6 +56,7 @@ class Dashboard extends Component {
         );
     }
 }
+
 
 const mapStateToProps = state => ({
     images: state.dashBoardReducer.images

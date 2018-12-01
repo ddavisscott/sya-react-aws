@@ -6,8 +6,8 @@ import "./ArtInfo.css";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from 'react-redux';
 import { Auth, Storage } from "aws-amplify";
-import { Redirect } from 'react-router-dom';
 import { addArtAction } from "../actions/addArtAction"
+import { Redirect } from 'react-router';
 
 class ArtInfo extends Component {
   constructor(props) {
