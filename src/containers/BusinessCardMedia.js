@@ -12,6 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
 import { requestBusinessAction } from '../actions/requestBusinessAction';
 import { LinkContainer } from 'react-router-bootstrap';
+
 //Styling
 const styles = theme => ({
   card: {
@@ -71,10 +72,11 @@ const styles = theme => ({
               </Avatar>
             }
             action={
-              <LinkContainer to = "/ConfirmReviewRequest" onClick={handleSubmit}>
-              <IconButton color="secondary" onSubmit={handleSubmit}>
-                <AddIcon />
-              </IconButton>
+              props.disabled? null :
+              <LinkContainer to="/ConfirmReviewRequest"  onClick={handleSubmit}>
+                <IconButton color="secondary">
+                  <AddIcon />
+                </IconButton>
               </LinkContainer>
             }
             title= {props.title}
