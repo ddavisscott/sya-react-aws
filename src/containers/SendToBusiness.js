@@ -77,6 +77,7 @@ class SendToBusiness extends Component {
         },
     ];
   }
+
   //Function gets business info and puts it into info[]
   async componentDidMount() {
     try {
@@ -105,10 +106,10 @@ class SendToBusiness extends Component {
                         img = {tileData.img}                                    //Avatar image
                         subheader = {"Joined: " + tileData.creationDate}        //Join date field
                         about = {tileData.businessEmail}                        //About section
-                        theGood = {tileData.theGood}                            //The Good Section
-                        addNotes = {tileData.addNotes}
+                        worthKnowing = {tileData.worthKnowing}                  //Worth Knowing Section
+                        addNotes = {tileData.addNotes}                          //Additional Notes section
                         id = {tileData.userID}
-                        /*                       //Additional Notes section
+                        /*                       
                         date = {this.props.date}
                         sourceKey = {this.props.sourceKey}
                         artistName = {this.props.artistName}

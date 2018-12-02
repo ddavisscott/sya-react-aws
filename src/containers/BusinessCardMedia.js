@@ -95,9 +95,9 @@ const styles = theme => ({
             
             </Typography>
             <Typography component="h2" variant="h4" align="left" gutterBottom>
-              The Good:
+              Worth Knowing:
             </Typography>
-            <Typography variant="p" align="left" children={props.theGood} gutterBottom>
+            <Typography variant="p" align="left" children={props.worthKnowing} gutterBottom>
             
             </Typography>
             <Typography component="h2" variant="h4" align="left" gutterBottom>

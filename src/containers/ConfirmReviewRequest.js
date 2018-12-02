@@ -71,7 +71,7 @@ class ConfirmReviewRequest extends Component {
                         img = {this.props.img}                                    //Avatar image
                         subheader = {"Joined: " + this.props.creationDate}        //Join date field
                         about = {this.props.businessEmail}                        //About section
-                        theGood = {this.props.theGood}                            //The Good Section
+                        worthKnowing = {this.props.theGood}                       //Worth Knowing Section
                         addNotes = {this.props.addNotes}                          //Additional Notes section
                         date = {this.props.date}
                         sourceKey = {this.props.sourceKey}
@@ -91,7 +91,7 @@ class ConfirmReviewRequest extends Component {
                 </form>
                 <br></br>
 
-                <img src={this.props.url} alt={this.props.artTitle}/>
+                <img src={this.props.url} alt={this.props.artTitle} height = {600}/>
                 
             </div>
         );
