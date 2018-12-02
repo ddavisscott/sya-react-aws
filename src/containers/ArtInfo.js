@@ -59,6 +59,15 @@ class ArtInfo extends Component {
       .then(result => console.log(result))
       .catch(err => console.log(err));
 
+      console.log(this.state.image_key)
+      console.log(this.props.image)
+
+      Storage.configure({
+        bucket: "myapp-20181030214040-deployment",
+        region: "us-east-1",
+        identiyPoolId: "us-east-1_xV0YnvLFq",
+      });
+
       Storage.put(this.state.image_key, this.props.image, {
           contentType: 'image',
           bucket:'myapp-20181030214040-deployment'
