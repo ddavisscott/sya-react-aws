@@ -20,46 +20,38 @@ exports.handler = (event, context, callback) =>{
   var twitterLink = 'https://www.twitter.com/';
 
   //format for updating values in a table
-  var exprString = "set ";
-  var params = {
-    TableName: role,
-    Key: key,
-    UpdateExpression: exprString,
-    ExpressionAttributeValues:{
+  
 
-    }
-  }
-
-  if(input.instagram !== null || input.instagram !== undefined){
+  if(input.instagram !== null && input.instagram !== undefined){
     instagramLink = instagramLink + input.instagram;
-    exprString = exprString + "info.instagram = :i, ";
+    exprString = exprString + "instagram = :i, ";
     params.ExpressionAttributeValues[":i"] = instagramLink;
   }
 
-  if(input.facebook !== null || input.facebook !== undefined){
+  if(input.facebook !== null && input.facebook !== undefined){
     facebookLink = facebookLink + input.facebook;
     //exprString = exprString + "info.facebookLink = :f, ";
     params.ExpressionAttributeValues["facebookLink"] = facebookLink;
   }
 
-  if(input.tumblr !== null || input.tumblr !== undefined){
+  if(input.tumblr !== null && input.tumblr !== undefined){
     tumblrLink = tumblrLink + input.tumblr;
     //exprString = exprString + "info.tumblrLink = :t, ";
     params.ExpressionAttributeValues["tumblrLink"] = tumblrLink;
   }
 
-  if(input.twitter !== null || input.twitter !== undefined){
+  if(input.twitter !== null && input.twitter !== undefined){
     twitterLink = twitterLink + input.twitter;
     //exprString = exprString + "info.twitterLink = :w, ";
     params.ExpressionAttributeValues["twitterLink"] = twitterLink;
   }
 
-  if(input.about !== null || input.about !== undefined){
+  if(input.about !== null && input.about !== undefined){
     //exprString = exprString + "info.about = :a, ";
     params.ExpressionAttributeValues["about"] = input.about;
   }
 
-  if(input.additionalNotes !== null || input.addtionalNotes !== undefined){
+  if(input.additionalNotes !== null && input.addtionalNotes !== undefined){
     //exprString = exprString + "info.additionalNotes = :n, ";
     params.ExpressionAttributeValues["additonalNotes"] = input.additionalNotes;
   }

@@ -5,7 +5,7 @@ const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 Update the reviewRequest Database with the response given by the business,
 along with the following fields:
 
-NewFields: response, radios, repliedDate,
+NewFields: reply, radios, repliedDate,
 UpdateFields: replied, 
 */
 exports.handler = (event, context, callback) => {
@@ -13,14 +13,35 @@ exports.handler = (event, context, callback) => {
   var requestID = event.queryStringParameters.requestID;
 
   var input = JSON.parse(event.body);
-
-  var exprString = 'set ';
-  var parse = {
+  var repliedDate = new Date().toUTCString;
+  var params = {
     TableName: 'reviewRequest',
-    Key: primaryKey, requestID, //not sure if this is the right syntax
+    Key: {
+      "businessID": primaryKey,
+      "reviewID": requestID
+    },
+    UpdateExpression: "set #Reply = :a, #Radios = :b, #RDate = :c, #Replied = :d", 
+    ExpressionAttributeNames: {
+      "#Reply": 'reply',
+      "#Radios": 'radios',
+      "#RDate": 'repliedDate',
+      "#Replied": 'replied'
+    },
     ExpressionAttributeValues:{
-
+      ":a": input.reply, 
+      ":b": input.radios,
+      ":c": repliedDate,
+      ":d": input.replied
     }
-  }
+  };
+
+  docClient.update(params, function(err, data){
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(data);
+    }
+  });
 
 }
