@@ -74,13 +74,4 @@ class Dashboard extends Component {
 }
 
 
-const mapStateToProps = state => ({
-    images: state.dashBoardReducer.images
-})
-
-const mapDispatchToProps = {
-    getArt: getArtAction
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;

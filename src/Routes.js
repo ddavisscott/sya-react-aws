@@ -17,7 +17,7 @@ import SendToBusiness from "./containers/SendToBusiness";
 import BusinessSubmissions from "./containers/BusinessSubmissions";
 
 import ReplySubmission from "./containers/ReplySubmission";
-import ConfirmReviewRequest from "./containers/ConfirmReviewRequest";]
+import ConfirmReviewRequest from "./containers/ConfirmReviewRequest";
 
 export default ({childProps}) =>
   <Switch>
