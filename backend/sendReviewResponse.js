@@ -9,16 +9,17 @@ NewFields: reply, radios, repliedDate,
 UpdateFields: replied, 
 */
 exports.handler = (event, context, callback) => {
-  var primaryKey = event.queryStringParameters.businessID;
-  var requestID = event.queryStringParameters.requestID;
   
   var input = JSON.parse(event.body);
+  var primaryKey = input.businessID;
+  var reviewID = input.reviewID;
+  
   var repliedDate = new Date().toUTCString;
   var params = {
     TableName: 'reviewRequest',
     Key: {
       "businessID": primaryKey,
-      "reviewID": requestID
+      "reviewID": reviewID
     },
     UpdateExpression: "set #Reply = :a, #Radios = :b, #RDate = :c, #Replied = :d", 
     ExpressionAttributeNames: {
@@ -31,7 +32,7 @@ exports.handler = (event, context, callback) => {
       ":a": input.reply,  //the response
       ":b": input.radios, //accepted or declined?
       ":c": repliedDate,  //date of response
-      ":d": "true" //true, since they've replied.
+      ":d": "true"        //true, since they've replied.
     }
   };
 

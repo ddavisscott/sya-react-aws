@@ -5,14 +5,11 @@ const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 exports.handler = (event, context, callback) =>{
   //data holds all values passed into the body of the http request
   var input = JSON.parse(event.body);
-  //key is the users sub value, which is unique and used as the primary key 
-  //to the user table.
+  
+  //user's sub value. this is the primary key to the respective user profile table.
+  var key = event.queryStringParameters.key;
 
-  var key = event.request.userAttributes.sub;
-  var role = event.request.userAttributes['custom:role'];
-
-  //var key = event.queryStringParameters.key;
-  //var role = event.queryStringParameters.role; //artist or business
+  var role = input.role;   //artist or business
 
   var instagramLink = 'https://www.instagram.com/';
   var facebookLink = 'https://www.facebook.com/';
@@ -20,40 +17,61 @@ exports.handler = (event, context, callback) =>{
   var twitterLink = 'https://www.twitter.com/';
 
   //format for updating values in a table
-  
+  var params = {
+    TableName: role,
+    Key:{
+      "userID": key,
+    },
+    UpdateExpression: "set #I = :a, #FB = :b, #T = :c, #TW = :d, #A = :e, #AN = :f",
+    ExpressionAttributeNames:{
 
-  if(input.instagram !== null && input.instagram !== undefined){
+    },
+    ExpressionAttributeValues:{
+
+    }
+  }
+
+  
+  //check each of the fields and only use the values in them if they aren't null, undefined, 
+  // or empty strings.
+  if(input.instagram !== null && input.instagram !== undefined ){
     instagramLink = instagramLink + input.instagram;
-    exprString = exprString + "instagram = :i, ";
-    params.ExpressionAttributeValues[":i"] = instagramLink;
+    //exprString = exprString + "instagram = :i, ";
+    params.ExpressionAttributeNames["#I"] = 'instagram';
+    params.ExpressionAttributeValues[":a"] = instagramLink;
   }
 
   if(input.facebook !== null && input.facebook !== undefined){
     facebookLink = facebookLink + input.facebook;
     //exprString = exprString + "info.facebookLink = :f, ";
-    params.ExpressionAttributeValues["facebookLink"] = facebookLink;
+    params.ExpressionAttributeNames["#FB"] = 'facebook';
+    params.ExpressionAttributeValues[":b"] = facebookLink;
   }
 
   if(input.tumblr !== null && input.tumblr !== undefined){
     tumblrLink = tumblrLink + input.tumblr;
     //exprString = exprString + "info.tumblrLink = :t, ";
-    params.ExpressionAttributeValues["tumblrLink"] = tumblrLink;
+    params.ExpressionAttributeNames['#T'] = 'tumblr';
+    params.ExpressionAttributeValues[":c"] = tumblrLink;
   }
 
   if(input.twitter !== null && input.twitter !== undefined){
     twitterLink = twitterLink + input.twitter;
     //exprString = exprString + "info.twitterLink = :w, ";
-    params.ExpressionAttributeValues["twitterLink"] = twitterLink;
+    params.ExpressionAttributeNames["#TW"] = 'twitter';
+    params.ExpressionAttributeValues[":d"] = twitterLink;
   }
 
   if(input.about !== null && input.about !== undefined){
     //exprString = exprString + "info.about = :a, ";
-    params.ExpressionAttributeValues["about"] = input.about;
+    params.ExpressionAttributeNames["#A"] = 'about';
+    params.ExpressionAttributeValues[":e"] = input.about;
   }
 
   if(input.additionalNotes !== null && input.addtionalNotes !== undefined){
     //exprString = exprString + "info.additionalNotes = :n, ";
-    params.ExpressionAttributeValues["additonalNotes"] = input.additionalNotes;
+    params.ExpressionAttributeNames["#AN"] = 'additionalNotes';
+    params.ExpressionAttributeValues[":f"] = input.additionalNotes;
   }
 
   docClient.update(params, function(err,data){
