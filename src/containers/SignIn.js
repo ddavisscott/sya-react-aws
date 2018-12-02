@@ -3,33 +3,53 @@ import { Auth } from "aws-amplify";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./SignIn.css";
+import TextField from '@material-ui/core/TextField';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 500,
+    height: 300,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+});
 
 export default class Login extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
+    state = {
       isLoading: false,
-      email: "",
+      username: "",
       password: ""
     };
-  }
+ 
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.username.length > 0 && this.state.password.length > 0;
   }
 
-  handleChange = event => {
+
+  handleChange = name => event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [name]: event.target.value
     });
   };
 
   handleSubmit = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
+    console.log(this.state.username)
     try {
-      await Auth.signIn(this.state.email, this.state.password);
+      await Auth.signIn(this.state.username, this.state.password);
       this.props.userHasAuthenticated(true);
       console.log(Auth.currentAuthenticatedUser());
     } catch (e) {
@@ -38,27 +58,36 @@ export default class Login extends Component {
     }
   };
 
+
   render() {
+    console.log(JSON.stringify(this.props.container));
     return (
       <div className="SignIn">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="text"
-              value={this.state.email}
-              onChange={this.handleChange}
+        <form className={styles.container} style={styles.container} onSubmit={this.handleSubmit}>
+          <TextField
+              required
+              id="standard-required"
+              label="username"
+              fullWidth
+              className={styles.textField}
+              margin="normal"
+              onChange={this.handleChange("username")}
+              value={this.state.username}
+              fontSize="100"
             />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
+            <hr/>
+          <TextField
+              required
+              id="standard-required"
+              label="password"
+              fullWidth
+              className={styles.textField}
               type="password"
-            />
-          </FormGroup>
+              margin="normal"
+            
+              onChange={this.handleChange("password")}
+              value={this.state.password}
+          />
           <LoaderButton
             block
             bsSize="large"

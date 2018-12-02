@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 class ViewArt extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {

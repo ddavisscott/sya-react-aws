@@ -15,7 +15,9 @@ import ViewArt from "./containers/ViewArt";
 import BusinessSignUp from "./containers/BusinessSignUp";
 import SendToBusiness from "./containers/SendToBusiness";
 import BusinessSubmissions from "./containers/BusinessSubmissions";
-import ConfirmReviewRequest from "./containers/ConfirmReviewRequest";
+
+import ReplySubmission from "./containers/ReplySubmission";
+import ConfirmReviewRequest from "./containers/ConfirmReviewRequest";]
 
 export default ({childProps}) =>
   <Switch>
@@ -32,6 +34,8 @@ export default ({childProps}) =>
     <AuthenticatedRoute path="/Dashboard" exact component={Dashboard} props={childProps} />
     <AuthenticatedRoute path="/BusinessChoice" exact component={SendToBusiness} props={childProps} />
     <AuthenticatedRoute path="/BusinessSubmissions" exact component={BusinessSubmissions} props={childProps} />
+
+    <AuthenticatedRoute path="/ReplySubmission" exact component={ReplySubmission} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;
