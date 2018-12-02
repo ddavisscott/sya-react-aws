@@ -65,22 +65,26 @@ class ArtInfo extends Component {
       })
       .then (result => console.log(result))
       .catch(err => console.log(err));
+
       this.setState({redirect: true});
+
       const image = {
-        artTitle: this.state.art_title,
-        userSub: this.state.sub,
+        artTitle:   this.state.art_title,
+        userSub:    this.state.sub,
         artistName: this.state.user_name,
-        descript: this.state.descript,
-        date: uploadFile.upload_date,
-        url: this.state.image_key
+        descript:   this.state.descript,
+        date:       uploadFile.upload_date,
+        url:        this.state.image_key
       };
+
       this.props.addArt(image);
+
     }    
   };
 
   Redirectrender = () => {
     if (this.state.redirect) {
-      return <Redirect to ="/Dashboard" />
+      return <Redirect to="/Dashboard" />
     }
   }
 

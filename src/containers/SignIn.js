@@ -47,11 +47,9 @@ export default class Login extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    console.log(this.state.username)
     try {
       await Auth.signIn(this.state.username, this.state.password);
       this.props.userHasAuthenticated(true);
-      console.log(Auth.currentAuthenticatedUser());
     } catch (e) {
       alert(e.message);
       this.setState({ isLoading: false });
@@ -60,7 +58,6 @@ export default class Login extends Component {
 
 
   render() {
-    console.log(JSON.stringify(this.props.container));
     return (
       <div className="SignIn">
         <form className={styles.container} style={styles.container} onSubmit={this.handleSubmit}>

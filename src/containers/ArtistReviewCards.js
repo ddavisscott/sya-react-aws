@@ -8,9 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { connect } from 'react-redux';
 import { LinkContainer } from "react-router-bootstrap";
-import { replySubmissionAction } from "../actions/replySubmissionAction";
 
 
 const styles = {
@@ -24,20 +22,7 @@ const styles = {
 };
 
 
-function BusinessSubmissionCards(props) {
-
-    const handleReplySubmission =  event => {
-        props.replySubmission(
-            props.date,
-            props.artistName, 
-            props.artTitle, 
-            props.url,
-            props.descript,
-            props.businessID,
-            props.reviewID,
-        );
-
-    };
+function AristReviewCards(props) {
 
     const { classes } = props;
 
@@ -53,7 +38,7 @@ function BusinessSubmissionCards(props) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2" align="left">
-                        {props.artTitle}
+                        Title: {props.artTitle}
                     </Typography>
                 </CardContent>
                 <CardContent style={{flex: 1, flexWrap: 'wrap', maxWidth: 500,}}>
@@ -67,29 +52,10 @@ function BusinessSubmissionCards(props) {
                      }
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-            { !props.replied?  
-                <LinkContainer to="/ReplySubmission">
-                    <Button size="small" color="primary" align="center" onClick={handleReplySubmission}>
-                        Reply
-                    </Button>
-                </LinkContainer> 
-                : 
-                null 
-            }
-            </CardActions>
         </Card>
         </div>
     );
 }
 
-BusinessSubmissionCards.propTypes = {
-    classes: PropTypes.object.isRequired
-};
 
-const mapDispatchToProps = {
-    replySubmission: replySubmissionAction,
-    
-}
-
-export default connect( null ,mapDispatchToProps )(withStyles(styles)(BusinessSubmissionCards));
+export default (withStyles(styles))(AristReviewCards);
