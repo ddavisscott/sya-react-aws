@@ -51,7 +51,7 @@ class EditArtistProfile extends Component {
         facebook: this.state.facebook,
       };
       fetch(
-        "https://h0cf9xpvb2.execute-api.us-east-1.amazonaws.com/prod/update-profile",
+        "https://rehhhhon7i.execute-api.us-east-1.amazonaws.com/prod/update-artist-profile",
         {
           method: "POST",
           headers: {

@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 import { connect } from 'react-redux';
 import BusinessCardMedia from './BusinessCardMedia';
 import { Redirect } from 'react-router';
+import Axios from 'axios';
 
 class ConfirmReviewRequest extends Component {
     constructor(props) {
@@ -12,14 +13,21 @@ class ConfirmReviewRequest extends Component {
 
         this.state = {
             reviewID: uuidv4(),
-            redirect: false
+            redirect: false,
+            artistCredit: 0,
         }
+
+        Axios.get("https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" + this.props.artistID)
+        .then(user => { this.setState({artistCredit: user.data.Items[0].credits + user.data.Items[0].freeCredits})})
+        .catch(e => {console.log(e.message)});
     }
 
     handleSubmit = async event => {
         event.preventDefault();
         if (this.props.url == null) { //If the page was reloaded and there is nothing to submit AKA file not displayed
           alert("File Not Chosen");
+        } else if (this.state.artistCredit <= 0) {
+          alert("You currently have (" + this.state.artistCredit + ") credits. You do not have enough credits to submit your art. Please purchase more credits.");
         } else {
           const uploadFile = {
             artTitle: this.props.artTitle,
@@ -33,11 +41,12 @@ class ConfirmReviewRequest extends Component {
             businessName: this.props.businessName,
             businessEmail: this.props.businessEmail,
             businessID: this.props.businessID,
-            submittedWithFreeCredit: true
+            submittedWithFreeCredit: true,
+            artistCredit: this.state.artistCredit,
           };
           
           fetch(
-            "https://88eja4paq2.execute-api.us-east-1.amazonaws.com/prod/submit-request",
+            "https://u0j29s9dlb.execute-api.us-east-1.amazonaws.com/prod/submit-review-requests-v2",
             {
               method: "POST",
               headers: {
@@ -50,7 +59,8 @@ class ConfirmReviewRequest extends Component {
           .then(result => console.log(result))
           .catch(err => console.log(err));
 
-        this.setState({redirect: true});
+          alert("Art submitted!");
+          this.setState({redirect: true});
         }    
       };
 

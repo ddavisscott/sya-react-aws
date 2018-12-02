@@ -25,7 +25,7 @@ class ArtistReviews extends Component {
             });
 
             await Axios.get(
-                "https://yivymvre9b.execute-api.us-east-1.amazonaws.com/prod/?key="+ this.state.mySub
+                "https://yivymvre9b.execute-api.us-east-1.amazonaws.com/prod/?key=" + this.state.mySub
             )
             .then(result => this.setState({reviewsArray: result.data.Items}))
             .catch(err => console.log(err));

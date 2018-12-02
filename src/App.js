@@ -8,7 +8,25 @@ import { Drawer, List, ListItem, IconButton, Input } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import Button from '@material-ui/core/Button';
-import "./App.css";
+import Axios from 'axios';
+
+import { withStyles } from "@material-ui/core/styles";
+import "./main.css";
+import Typography from "@material-ui/core/Typography";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
+import compose from 'recompose/compose';
+
+const theme = createMuiTheme({
+    palette: {
+      primary: { main: "#000000" },
+      secondary: { main: "#FF8F00", contrastText: "#FFFFFF" }
+    },
+    button: {
+      margin: 100,
+      font: "Roboto"
+    }
+});
 
 class App extends Component {
     
@@ -20,14 +38,27 @@ class App extends Component {
             isAuthenticating: true,
             clickedDrawer: false,
             role: "",
+            credits: 0,
+            sub: "",
         };
     }
 
     async componentDidMount() {
         try {
-            await Auth.currentSession();
+            Auth.currentSession();
 
-            this.userHasAuthenticated(true);
+            this.setState({ isAuthenticated: true });
+
+            await Auth.currentAuthenticatedUser().then( user => {
+                this.setState({ role: user.attributes["custom:role"]});
+                this.setState({ sub: user.attributes.sub});
+                console.log(user.attributes.sub)
+            });
+
+            Axios.get("https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" + this.state.sub)
+            .then(user => { this.setState({credits: user.data.Items[0].credits + user.data.Items[0].freeCredits})})
+            .catch(e => {console.log(e.message)});
+
         } catch (e) {
             if (e !== "No current user") {
                 alert(e);
@@ -37,13 +68,9 @@ class App extends Component {
         this.setState({ isAuthenticating: false });
     }
 
-    userHasAuthenticated = authenticated => {
-        this.setState({ isAuthenticated: authenticated });
-
-        Auth.currentAuthenticatedUser().then( user => {
-            this.setState({ role: user.attributes["custom:role"]})
-        });
-    };
+    userHasAuthenticated = authenticeate => {
+        this.setState({isAuthenticated: authenticeate});
+    }
 
     handleLogout = async event => {
         await Auth.signOut();
@@ -129,16 +156,31 @@ class App extends Component {
                                         <img
                                             src="https://i.imgur.com/5vIKxfR.png"
                                             alt=""
-                                            height="45"
-                                            width="45"
+                                            height="32"
+                                            width="32"
                                         />
                                     }
                                 </Link>
                             </Navbar.Brand>
                             <Navbar.Toggle />
+                            <MuiThemeProvider>
+                                <text
+                                    className="title"
+                                    fontFamily="Covered By Your Grace"
+                                    variant="title"
+                                    color="primary"
+                                >
+                                    Share Yourself Artists
+                                </text>
+                            </MuiThemeProvider>
                         </Navbar.Header>
                         <Navbar.Collapse>
                             <Nav pullRight>
+                                {this.state.isAuthenticated ? (
+                                    <Fragment>
+                                    <NavItem>Credits: {this.state.credits}</NavItem>
+                                    </Fragment>
+                                ) : null }
                                 <Fragment>
                                     <LinkContainer to="/Home">
                                         <NavItem>Home</NavItem>
@@ -181,4 +223,6 @@ class App extends Component {
     }
 }
 
-export default withRouter(App);
+export default compose(
+    withStyles(theme),
+ )(withRouter(App))

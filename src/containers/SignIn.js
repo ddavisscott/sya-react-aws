@@ -67,10 +67,9 @@ export default class Login extends Component {
               label="username"
               fullWidth
               className={styles.textField}
-              margin="normal"
               onChange={this.handleChange("username")}
               value={this.state.username}
-              fontSize="100"
+              style={{fontSize: 50}}
             />
             <hr/>
           <TextField
@@ -80,8 +79,6 @@ export default class Login extends Component {
               fullWidth
               className={styles.textField}
               type="password"
-              margin="normal"
-            
               onChange={this.handleChange("password")}
               value={this.state.password}
           />

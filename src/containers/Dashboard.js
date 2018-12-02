@@ -4,13 +4,9 @@ import CardMedia from "./CardMedia";
 import { Auth } from "aws-amplify";
 import Axios from "axios";
 import { LinkContainer } from "react-router-bootstrap";
-
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-
-
 import { getArtAction } from "../actions/getArtAction";
-
 import { dashBoardImageAction } from "../actions/dashBoardImageAction";
 
 class Dashboard extends Component {

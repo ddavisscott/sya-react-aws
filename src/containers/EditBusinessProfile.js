@@ -13,6 +13,7 @@ class EditBusinessProfile extends Component {
   constructor(props) {
     const uuidv4 = require("uuid/v4");
     super(props);
+
     this.state = {
       image: "",
       info: [],
@@ -26,7 +27,7 @@ class EditBusinessProfile extends Component {
       facebook: "n/a",
       redirect: false,
       fileNotSelected: true,
-      image_key: uuidv4() + "-avatar"
+      imageKey: uuidv4() + "-avatar"
     };
 
     Auth.currentAuthenticatedUser().then(user => {
@@ -39,25 +40,25 @@ class EditBusinessProfile extends Component {
     if (this.state.fileNotSelected) {
       alert("File Not Chosen");
     }
-    else if (this.state.about == "") {
+    else if (this.state.about === "") {
       alert("About field cannot be left blank.");
     }
-    else if (this.state.worthKnowing == "") {
+    else if (this.state.worthKnowing === "") {
       alert("Worth Knowing field cannot be left blank.");
     } 
-    else if (this.state.addNotes == "") {
+    else if (this.state.addNotes === "") {
       alert("Additional Notes field cannot be left blank.");
     } 
-    else if (this.state.instagram == "") {
+    else if (this.state.instagram === "") {
       alert("Instagram field cannot be left blank.");
     }
-    else if (this.state.twitter == "") {
+    else if (this.state.twitter === "") {
       alert("Twitter field cannot be left blank.");
     } 
-    else if (this.state.tumblr == "") {
+    else if (this.state.tumblr === "") {
       alert("Tumblr field cannot be left blank.");
     } 
-    else if (this.state.facebook == "") {
+    else if (this.state.facebook === "") {
       alert("Facebook field cannot be left blank.");
     } 
     else {
@@ -71,7 +72,16 @@ class EditBusinessProfile extends Component {
         twitter: this.state.twitter,
         tumblr: this.state.tumblr,
         facebook: this.state.facebook,
+        url: "https://s3.amazonaws.com/myapp-20181030214040-deployment/public/" + this.state.imageKey
       };
+
+      Storage.put(this.state.imageKey, this.state.image, {
+        contentType: 'image',
+        bucket:'myapp-20181030214040-deployment'
+      })
+      .then (result => console.log(result))
+      .catch(err => console.log(err));
+
       fetch(
         "https://h0cf9xpvb2.execute-api.us-east-1.amazonaws.com/prod/update-profile",
         {
@@ -86,12 +96,6 @@ class EditBusinessProfile extends Component {
       .then(result => console.log(result))
       .catch(err => console.log(err));
 
-      Storage.put(this.state.image_key, this.state.image, {
-          contentType: 'image',
-          bucket:'myapp-20181030214040-deployment'
-      })
-      .then (result => console.log(result))
-      .catch(err => console.log(err));
       this.setState({redirect: true});
     }    
   };

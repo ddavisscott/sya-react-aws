@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import "./Home.css";
 import { Button } from "@material-ui/core";
 
 export default class Home extends Component {
@@ -21,7 +20,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="Home">
+      <div className="Home" align='center'>
       <h1>Your Art, Our Way </h1>
       <h2>Share Yourself Artists is the easiest way to share your artwork 
         to millions of art lovers AROUND THE WORLD!
