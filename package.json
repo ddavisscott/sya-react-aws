@@ -5,9 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^3.6.0",
     "@material-ui/icons": "^3.0.1",
-    "aws-amplify": "^1.1.8",
-    "aws-amplify-react": "^2.1.2",
-    "aws-sdk": "^2.362.0",
+    "aws-amplify": "^1.1.10",
+    "aws-amplify-react": "^2.1.4",
     "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
