@@ -42,7 +42,6 @@ class App extends Component {
         this.setState({ isAuthenticated: authenticated });
 
         Auth.currentAuthenticatedUser().then( user => {
-            console.log(user.attributes["custom:role"]);
             this.setState({ role: user.attributes["custom:role"]})
         });
     };

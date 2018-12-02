@@ -10,25 +10,45 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { connect } from 'react-redux';
 import { LinkContainer } from "react-router-bootstrap";
-import { viewArtAction } from "../actions/viewArtAction";
+import { replySubmissionAction } from "../actions/replySubmissionAction";
+
 
 const styles = {
     card: {
         maxWidth: 500,
     },
     media: {
-        height: 300,
-        width: 300
+        height: 500,
+        width: 500
     }
+};
+
+let toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open,
+    });
 };
 
 
 function BusinessSubmissionCards(props) {
 
+    const handleReplySubmission =  event => {
+        props.replySubmission(
+            props.date,
+            props.artistName, 
+            props.artTitle, 
+            props.url,
+            props.descript,
+            props.businessID,
+            props.reviewID,
+        );
+
+    };
 
     const { classes } = props;
 
     return (
+        <div>
         <Card className={classes.card}>
             <CardActionArea>
                 <CardMedia
@@ -42,8 +62,8 @@ function BusinessSubmissionCards(props) {
                         {props.artTitle}
                     </Typography>
                 </CardContent>
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2" align="left">
+                <CardContent style={{flex: 1, flexWrap: 'wrap', maxWidth: 500,}}>
+                    <Typography gutterBottom variant="h5" component="h2" align="left"> 
                         Description: {props.descript}
                     </Typography>
                     {props.replied?  
@@ -55,14 +75,17 @@ function BusinessSubmissionCards(props) {
             </CardActionArea>
             <CardActions>
             { !props.replied?  
-                <LinkContainer to="/ViewArt">
-                <Button size="small" color="primary" align="center">
-                    Reply
-                </Button>
-            </LinkContainer> : null
-                     }
+                <LinkContainer to="/ReplySubmission">
+                    <Button size="small" color="primary" align="center" onClick={handleReplySubmission}>
+                        Reply
+                    </Button>
+                </LinkContainer> 
+                : 
+                null 
+            }
             </CardActions>
         </Card>
+        </div>
     );
 }
 
@@ -71,7 +94,7 @@ BusinessSubmissionCards.propTypes = {
 };
 
 const mapDispatchToProps = {
-    viewArt: viewArtAction,
+    replySubmission: replySubmissionAction,
     
 }
 

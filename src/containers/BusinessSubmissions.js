@@ -12,13 +12,8 @@ class BusinessSubmissions extends Component {
         super(props);
 
         this.state = {
-            submissionArray: [
-                {artwork: "chris", replied: true, },
-                {artwork: "brandon", replied: false, },
-                {artwork: "gavin", replied: true, },
-                {artwork: "kevan", replied: false, },
-            ],
-            choice: "all"
+            submissionArray: [],
+            choice: "all",
         };
     }
 
@@ -34,7 +29,6 @@ class BusinessSubmissions extends Component {
             .then(result => this.setState({submissionArray: result.data.Items}))
             .catch(err => console.log(err));
 
-            console.log(this.state.submissionArray);
         } catch (e) {
             alert(e);
         }
@@ -72,6 +66,7 @@ class BusinessSubmissions extends Component {
                 <hr/>
                 <Grid container justify="space-evenly" spacing={16}>
                     { this.state.submissionArray.map(subs => {
+                        console.log(subs);
                         if (this.state.choice === "replied" && subs.replied) {
                             return ( <BusinessSubmissionCards
                                 date={subs.artwork.uploadDate}
@@ -79,6 +74,9 @@ class BusinessSubmissions extends Component {
                                 artTitle={subs.artwork.artTitle}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
+                                reply={subs.reply}
+                                businessID={subs.businessID}
+                                reviewID={subs.reviewID}
                                 replied={subs.replied}
                             />) 
                         }                         
@@ -89,6 +87,10 @@ class BusinessSubmissions extends Component {
                                 artTitle={subs.artwork.artTitle}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
+                                reply={subs.reply}
+                                businessID={subs.businessID}
+                                reviewID={subs.reviewID}
+                                replied={subs.replied}
                             />) 
                         } 
                         else if (this.state.choice === "all") {
@@ -98,6 +100,10 @@ class BusinessSubmissions extends Component {
                                 artTitle={subs.artwork.artTitle}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
+                                reply={subs.reply}
+                                businessID={subs.businessID}
+                                reviewID={subs.reviewID}
+                                replied={subs.replied}
                             />) 
                         }
                     })}
