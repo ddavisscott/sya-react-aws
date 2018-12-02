@@ -1,55 +1,77 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "./CardMedia";
-import { Storage } from "aws-amplify";
+import { Auth } from "aws-amplify";
+import Axios from "axios";
+import { LinkContainer } from "react-router-bootstrap";
+
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { getArtAction } from "../actions/getArtAction";
 
 class Dashboard extends Component {
-  state = {
-    keys: []
-  };
 
-  componentWillMount() {
-    Storage.list("", {
-      bucket: "myapp-20181030214040-deployment"
-    })
-      .then(result => this.setState({ keys: result }))
-      .catch(err => console.log(err));
+    constructor(props) {
+        super(props);
 
-    fetch(
-      "https://ckz78jlmb1.execute-api.us-east-1.amazonaws.com/prod/upload-image",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "text/plain"
-        },
-        mode: "no-cors"
-      }
-    )
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
-  }
+        this.state = {
+            images: [],
+            mySub: "",
+        };
+    }
 
-  render() {
-    return (
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Grid container justify="flex-start" spacing={Number(16)}>
-            {this.state.keys.map(value => (
-              <Grid key={value.key} item>
-                <CardMedia
-                  title={value.key}
-                  src={
-                    "https://s3.amazonaws.com/myapp-20181030214040-deployment/public/" +
-                    value.key
-                  }
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-      </Grid>
-    );
-  }
+    async componentDidMount() {
+        try {
+            await Auth.currentAuthenticatedUser().then(user => {
+                this.setState({ mySub: user.attributes.sub });
+            });
+
+            await Axios.get(
+                "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
+                    this.state.mySub
+            )
+            .then(result => this.setState({ images: result.data.Items }))
+            .catch(err => console.log(err));
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <Grid container justify="space-evenly" spacing={16}>
+                    { this.state.images.length === 0? 
+                        
+                        <div>
+                        <h1>No Art Uploaded Yet!</h1> 
+                        <div>Upload Art by pressing the button below!</div> 
+                        <LinkContainer to="/UploadPage">
+                        <Button>
+                            Upload Art
+                        </Button>
+                        </LinkContainer>
+                        </div>
+                    : 
+                        this.state.images.map(imageInfo => (
+                            <Grid key={imageInfo.sourceKey} item>
+                                <CardMedia
+                                    date={imageInfo.date}
+                                    sourceKey={imageInfo.sourceKey}
+                                    artistName={imageInfo.artistName}
+                                    artTitle={imageInfo.artTitle}
+                                    url={imageInfo.url}
+                                    descript={imageInfo.description}
+                                    userSub={imageInfo.userSub}
+                                />
+                            </Grid>
+                        ))
+                    }
+                </Grid>
+            </div>
+        );
+    }
 }
+
 
 export default Dashboard;

@@ -6,137 +6,103 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import { LinkContainer } from "react-router-bootstrap";
-import { BrowserRouter as Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { selectImage } from "../actions/imageActions";
 
 const theme = createMuiTheme({
-  palette: {
-    primary: { main: "#FFFFFF" },
-    secondary: { main: "#FF8F00", contrastText: "#FFFFFF" }
-  },
-  button: {
-    margin: 600
-  },
-  typography: {
-    fontFamily: ["Roboto"]
-  }
+    palette: {
+        primary: { main: "#FFFFFF" },
+        secondary: { main: "#FF8F00", contrastText: "#FFFFFF" }
+    },
+    button: {
+        margin: 600
+    },
+    typography: {
+        fontFamily: ["Roboto"]
+    }
 });
 
-
-
-
 class UploadPage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        file:null,
-        name: '',
-        description: '',
-        fileNotSelected: true
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChangeName = this.handleChangeName.bind(this)
-    this.handleChangeDes = this.handleChangeDes.bind(this)
-    this.BasicExample = this.BasicExample.bind(this)
-    this.handleOnClick = this.handleOnClick.bind(this)
-}
-
-BasicExample = () => {
-}
-
-handleOnClick = (event) => {
-  return(
-    <Route
-        
-        render={() => <Redirect to="/artInfo" />}
-      />
-  );
-
-  
-}
-
-handleChange = (event) => {
-    if ( event.target.files[0]) {
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            this.setState({image: e.target.result});
+    constructor() {
+        super();
+        this.state = {
+            name: "",
+            description: "",
+            fileNotSelected: true
         };
-        reader.readAsDataURL(event.target.files[0]);
-        this.setState({fileNotSelected: false});
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleOnClick = this.handleOnClick.bind(this)
     }
-    this.setState({file: event.target.files[0]})
-}
 
-handleChangeName = (event) => {
-    this.setState({name: event.target.value});
-}
+    handleChange = event => {
+        if (event.target.files[0]) {
+            this.setState({ fileNotSelected: false });
+        }
+        this.props.selectImage(event.target.files[0]);
+    };
 
-handleChangeDes = (event) => {
-    this.setState({description: event.target.value})
-}
+    handleSubmit = event => {
+        event.preventDefault();
+        if (this.props.image == null) {
+            alert("File Not Chosen");
+        }
+    };
 
-handleSubmit = (event) => {
-    event.preventDefault();
-    if (this.state.file == null) {
-        alert("File Not Chosen")
+    render() {
+        return (
+            <div className="page" style={{ padding: 40 }}>
+                {this.props.name}
+                <Typography variant="h3" component="h3" gutterBottom>
+                    Great, Let's Get Started
+                </Typography>
+                <Typography variant="h5" gutterBottom>
+                    Blogs and labels typically reply within hours.
+                </Typography>
+                <Typography component="p" gutterBottom>
+                    If a blog decides that they like your piece, they'll let you
+                    know when and how they plan to share it. You'll be able to
+                    chat with them, and share any information you think they
+                    might need for their coverage.
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                    Let's Upload your art Piece!
+                </Typography>
+                <Divider />
+                <MuiThemeProvider theme={theme}>
+                    <Grid container spacing={16}>
+                        <Grid>
+                            <form onSubmit={this.handleSubmit}>
+                                <Button variant="contained" color="secondary">
+                                    <input
+                                        type="file"
+                                        onChange={this.handleChange}
+                                        accept="image/*"
+                                    />
+                                    Upload Your Art
+                                </Button>
+                            </form>
+                        </Grid>
+                        <Grid>
+                            <LinkContainer to="/ArtInfo">
+                                <Button
+                                    disabled={this.state.fileNotSelected}
+                                    variant="contained"
+                                    color="primary"
+                                >
+                                    Next
+                                </Button>
+                            </LinkContainer>
+                        </Grid>
+                    </Grid>
+                </MuiThemeProvider>
+            </div>
+        );
     }
-    else {     
-    const file = this.state.file;
-    Storage.put(this.state.name, file, {
-        contentType: 'image',
-        bucket:'myapp-20181030214040-deployment'
-    })
-    .then (result => console.log(result))
-    .catch(err => console.log(err));
-    }
 }
 
+const mapStateToProps = state => ({
+    image: state.imageReducer.image
+});
 
-  render() {
-    return (
-      <div className="page" style={{ padding: 40 }}>
-        {this.props.name}
-        <Typography variant="h3" component="h3" gutterBottom>
-          Great, Let's Get Started
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          Blogs and labels typically reply within hours.
-        </Typography>
-        <Typography component="p" gutterBottom>
-          If a blog decides that they like your piece, they'll let you know when
-          and how they plan to share it. You'll be able to chat with them, and
-          share any information you think they might need for their coverage.
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Let's Upload your art Piece!
-        </Typography>
-        <Divider />
-        <MuiThemeProvider theme={theme}>
-          <Grid container spacing={20}>
-            <Grid>
-              <form onSubmit = {this.handleSubmit}>
-              <Button variant="contained" color="secondary">
-                <input
-                  type = 'file' 
-                  onChange = {this.handleChange} 
-                  accept = "image/*"
-                />
-                Upload Your Art
-              </Button>
-              </form>
-            </Grid>
-            <Grid>
-            <LinkContainer to="/ArtInfo">
-               <Button disabled={this.state.fileNotSelected} variant="contained" color="Primary">
-                Next
-              </Button>
-            </LinkContainer>
-            </Grid>
-          </Grid>
-        </MuiThemeProvider>
-      </div>
-    );
-  }
-}
-
-export default withStyles(theme)(UploadPage);
+export default connect(mapStateToProps,{ selectImage })(withStyles(theme)(UploadPage));
