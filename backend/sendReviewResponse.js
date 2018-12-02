@@ -28,10 +28,10 @@ exports.handler = (event, context, callback) => {
       "#Replied": 'replied'
     },
     ExpressionAttributeValues:{
-      ":a": input.reply, 
-      ":b": input.radios,
-      ":c": repliedDate,
-      ":d": input.replied
+      ":a": input.reply,  //the response
+      ":b": input.radios, //accepted or declined?
+      ":c": repliedDate,  //date of response
+      ":d": "true" //true, since they've replied.
     }
   };
 
