@@ -94,7 +94,7 @@ class App extends Component {
                     </Button>
                 </ListItem>
             </LinkContainer>
-            <LinkContainer to="/MyBusinessAccount">
+            <LinkContainer to="/MyArtistAccount">
                 <ListItem>My Account</ListItem>
             </LinkContainer>
             <LinkContainer to="/ArtistReviews">
