@@ -208,7 +208,7 @@ class EditBusinessProfile extends Component {
             />
           </FormGroup>
           </FormGroup>
-          <LinkContainer to="/Dashboard">
+          <LinkContainer to="/BusinessDashboard">
             <Button>Cancel</Button>
           </LinkContainer>
           <Button type="submit">Update Profile Information</Button>

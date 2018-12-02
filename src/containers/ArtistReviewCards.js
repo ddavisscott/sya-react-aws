@@ -47,7 +47,7 @@ function AristReviewCards(props) {
                     </Typography>
                     {props.replied?  
                         <Typography gutterBottom variant="h5" component="h2" align="left">
-                            Reply: {props.reply}
+                            Replied by : {props.businessInfo}
                         </Typography>: null
                      }
                 </CardContent>

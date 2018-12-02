@@ -14,6 +14,7 @@ class ArtistReviews extends Component {
         this.state = {
             reviewsArray: [],
             choice: "all",
+            bInfo: [],
         };
     }
 
@@ -53,7 +54,6 @@ class ArtistReviews extends Component {
     };
 
 
-
     render() {
         return (
             <div>
@@ -74,9 +74,10 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
-                                businessID={subs.businessID}
+                                businessInfo={""}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
+        
                             />) 
                         }                         
                         else if (this.state.choice === "unreplied" && !subs.replied) {
@@ -87,7 +88,7 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
-                                businessID={subs.businessID}
+                                businessInfo={""}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
                             />) 
@@ -100,7 +101,7 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
-                                businessID={subs.businessID}
+                                businessInfo={""}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
                             />) 

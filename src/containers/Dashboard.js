@@ -7,7 +7,11 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+
+
 import { getArtAction } from "../actions/getArtAction";
+
+import { dashBoardImageAction } from "../actions/dashBoardImageAction";
 
 class Dashboard extends Component {
 
@@ -15,7 +19,6 @@ class Dashboard extends Component {
         super(props);
 
         this.state = {
-            images: [],
             mySub: "",
         };
     }
@@ -30,7 +33,7 @@ class Dashboard extends Component {
                 "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
                     this.state.mySub
             )
-            .then(result => this.setState({ images: result.data.Items }))
+            .then(result => this.props.getImages(result.data.Items ))
             .catch(err => console.log(err));
         } catch (e) {
             alert(e);
@@ -41,7 +44,7 @@ class Dashboard extends Component {
         return (
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
-                    { this.state.images.length === 0? 
+                    { this.props.images.length === 0? 
                         <div>
                         <h1>No Art Uploaded Yet!</h1> 
                         <div>Upload Art by pressing the button below!</div> 
@@ -52,7 +55,7 @@ class Dashboard extends Component {
                         </LinkContainer>
                         </div>
                     : 
-                        this.state.images.map(imageInfo => (
+                        this.props.images.map(imageInfo => (
                             <Grid key={imageInfo.sourceKey} item>
                                 <CardMedia
                                     date={imageInfo.date}
@@ -73,4 +76,15 @@ class Dashboard extends Component {
 }
 
 
-export default Dashboard;
+
+const mapStateToProps = state => ({
+    images: state.dashBoardReducer.images
+})
+
+const mapDispatchToProps = {
+    getArt: getArtAction,
+    getImages: dashBoardImageAction
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
