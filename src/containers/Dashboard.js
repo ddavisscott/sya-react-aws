@@ -42,7 +42,6 @@ class Dashboard extends Component {
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
                     { this.state.images.length === 0? 
-                        
                         <div>
                         <h1>No Art Uploaded Yet!</h1> 
                         <div>Upload Art by pressing the button below!</div> 

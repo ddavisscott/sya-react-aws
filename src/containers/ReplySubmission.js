@@ -119,6 +119,7 @@ class ReplySubmission extends Component {
                                 />
                                 Will submit art piece
                             </td>
+                            <text>    </text>
                             <br />
                             <td>
                                 <input
