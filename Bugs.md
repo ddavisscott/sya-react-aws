@@ -2,7 +2,7 @@
 The following is an ongoing list of known bugs/unintended behavior of the application.
 
 ### Multiple Review Requests (Unintended Behavior)
-**Description:** An artist can make multiple review requests to the same business with the same image multiple times.
+* **Description:** An artist can make multiple review requests to the same business with the same image multiple times.
 
 **Reason:** This is because each review is made with a uuid 
 which the database treats as two seperate requests, even
