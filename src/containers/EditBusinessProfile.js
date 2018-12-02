@@ -75,14 +75,14 @@ class EditBusinessProfile extends Component {
         url: "https://s3.amazonaws.com/myapp-20181030214040-deployment/public/" + this.state.imageKey
       };
 
-      Storage.put(this.state.imageKey, this.state.image, {
+      await Storage.put(this.state.imageKey, this.state.image, {
         contentType: 'image',
         bucket:'myapp-20181030214040-deployment'
       })
       .then (result => console.log(result))
       .catch(err => console.log(err));
 
-      fetch(
+      await fetch(
         "https://h0cf9xpvb2.execute-api.us-east-1.amazonaws.com/prod/update-profile",
         {
           method: "POST",
@@ -103,7 +103,7 @@ class EditBusinessProfile extends Component {
   //Handles redirect when page is submitted
   Redirectrender = () => {
     if (this.state.redirect) {
-      return <Redirect to ="/Dashboard" />
+      return <Redirect to ="/BusinessSubmissions" />
     }
   }
   //Function for handling change within render function, by setting states in constructor

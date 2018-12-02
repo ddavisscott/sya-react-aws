@@ -123,6 +123,9 @@ class App extends Component {
             <LinkContainer to="/MyArtistAccount">
                 <ListItem>My Account</ListItem>
             </LinkContainer>
+            <LinkContainer to="/MyBusinessAccount">
+                <ListItem>Business Account</ListItem>
+            </LinkContainer>
             <LinkContainer to="/ArtistReviews">
                 <ListItem>Reviews</ListItem>
             </LinkContainer>
