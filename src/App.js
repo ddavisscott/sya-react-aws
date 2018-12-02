@@ -7,7 +7,6 @@ import Routes from "./Routes";
 import { Drawer, List, ListItem, IconButton, Input } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-
 import Button from '@material-ui/core/Button';
 import "./App.css";
 
@@ -70,7 +69,7 @@ class App extends Component {
                     </Button>
                 </ListItem>
             </LinkContainer>
-            <LinkContainer to="/MyAccount">
+            <LinkContainer to="/MyBusinessAccount">
                 <ListItem>My Account</ListItem>
             </LinkContainer>
         </List>
@@ -94,7 +93,7 @@ class App extends Component {
                     </Button>
                 </ListItem>
             </LinkContainer>
-            <LinkContainer to="/MyAccount">
+            <LinkContainer to="/MyArtistAccount">
                 <ListItem>My Account</ListItem>
             </LinkContainer>
             <LinkContainer to="/ArtistReviews">
