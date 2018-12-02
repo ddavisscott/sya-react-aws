@@ -6,7 +6,8 @@ import Axios from "axios";
 import { LinkContainer } from "react-router-bootstrap";
 
 import Button from '@material-ui/core/Button';
-
+import { connect } from 'react-redux';
+import { getArtAction } from "../actions/getArtAction";
 
 class Dashboard extends Component {
 
@@ -31,8 +32,6 @@ class Dashboard extends Component {
             )
             .then(result => this.setState({ images: result.data.Items }))
             .catch(err => console.log(err));
-
-            console.log(this.state.images)
         } catch (e) {
             alert(e);
         }
@@ -74,4 +73,14 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+
+const mapStateToProps = state => ({
+    images: state.dashBoardReducer.images
+})
+
+const mapDispatchToProps = {
+    getArt: getArtAction
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

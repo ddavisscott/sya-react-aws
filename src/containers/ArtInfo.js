@@ -6,6 +6,7 @@ import "./ArtInfo.css";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from 'react-redux';
 import { Auth, Storage } from "aws-amplify";
+import { addArtAction } from "../actions/addArtAction"
 import { Redirect } from 'react-router';
 
 class ArtInfo extends Component {
@@ -65,6 +66,15 @@ class ArtInfo extends Component {
       .then (result => console.log(result))
       .catch(err => console.log(err));
       this.setState({redirect: true});
+      const image = {
+        artTitle: this.state.art_title,
+        userSub: this.state.sub,
+        artistName: this.state.user_name,
+        descript: this.state.descript,
+        date: uploadFile.upload_date,
+        url: this.state.image_key
+      };
+      this.props.addArt(image);
     }    
   };
 
@@ -129,4 +139,8 @@ const mapStateToProps = state => ({
   image:state.imageReducer.image
 })
 
-export default connect (mapStateToProps)(ArtInfo);
+const mapDispatchToProps =  {
+  addArt: addArtAction
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(ArtInfo);

@@ -39,6 +39,14 @@ export default class AboutUs extends Component {
                         <br></br>
                         Scott handles much of our development work and other stuff. As our Chief Creative/Developer, he's responsible for the overall work product of the company, overseeing our Design & Development. In the rare event that he's not working, he spends as much time as possible with his wife and his daughter. While he does occasionally get some sleep, it's usually when he passes out in his chair while working through the middle of the night.
                     </p>
+
+                <h1><strong>SYA React Team</strong></h1>
+                    <br></br>
+                    <p>
+                        <em>(Software Development Team Fall 2018)</em>
+                        <br></br>
+                        Team Members: Brandon Zwier, Gavin Moy, Kevin Samra, Christian Ortiz, Eric Yup, Sophie Ku. This valiant team of aspiring software engineers constructed the website you see before you during Fall of 2018. We toiled tirelessly in order to provide artists and businesses with a stable platform in which to communicate and share art. We all hope you enjoy this platform and share your art with the world!
+                    </p>
             </div>
         </div>
     );

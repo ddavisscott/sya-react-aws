@@ -12,13 +12,13 @@ class ViewArt extends Component {
     render() {
         return (
             <div className="Home">
-                <h1>Art goes here</h1>
-                <img src={this.props.url} alt={this.props.artTitle}/>
-                <h2>{this.props.artTitle}</h2>
-                <h2>{this.props.descript}</h2>
-                <LinkContainer to="/Dashboard">
-                    <Button>Back</Button>
+                <h2><strong>Title: </strong>{this.props.artTitle}</h2>
+                <h2><strong>Description: </strong>{this.props.descript}</h2>
+                <LinkContainer color = "secondary" to="/Dashboard">
+                    <Button size = "medium" variant = "outlined">Back</Button>
                 </LinkContainer>
+                <br></br>
+                <img src={this.props.url} alt={this.props.artTitle} height = {600}/>
             </div>
         );
     }

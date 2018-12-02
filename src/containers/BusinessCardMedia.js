@@ -9,6 +9,9 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
+import { connect } from 'react-redux';
+import { requestBusinessAction } from '../actions/requestBusinessAction';
+import { LinkContainer } from 'react-router-bootstrap';
 
 //Styling
 const styles = theme => ({
@@ -49,6 +52,21 @@ const styles = theme => ({
   //using information from the database
   */
   function BusinessMediaCard(props) {
+    const handleSubmit =  event => {
+      //ibusinessName, ibusinessEmail,ibusinessID, 
+      //ibusinessSubheader,ibusinessTheGood,ibusinessIMG,ibusinessAddNotes
+      console.log("submit");
+      props.rba(
+          props.title,
+          props.about,
+          props.id,
+          props.subheader,
+          props.theGood,
+          props.img,
+          props.addNotes
+      );
+    };
+
     const { classes } = props;
     return (
         <Card className={classes.card}>
@@ -59,9 +77,12 @@ const styles = theme => ({
               </Avatar>
             }
             action={
-              <IconButton color="secondary">
-                <AddIcon />
-              </IconButton>
+              props.disabled? null :
+              <LinkContainer to="/ConfirmReviewRequest"  onClick={handleSubmit}>
+                <IconButton color="secondary">
+                  <AddIcon />
+                </IconButton>
+              </LinkContainer>
             }
             title= {props.title}
             subheader= {props.subheader}
@@ -98,4 +119,8 @@ BusinessMediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BusinessMediaCard);
+const mapDispatchToProps = {
+  rba: requestBusinessAction
+}
+
+export default connect(null,mapDispatchToProps)(withStyles(styles)(BusinessMediaCard));

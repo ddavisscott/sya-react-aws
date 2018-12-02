@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import BusinessCardMedia from './BusinessCardMedia';
+import { connect } from "react-redux";
 import Axios from "axios";
 
-export default class SendToBusiness extends Component {
+
+class SendToBusiness extends Component {
   constructor(props) {
     super(props);
 
@@ -98,14 +100,23 @@ export default class SendToBusiness extends Component {
             <div>
                 <Grid container cellHeight={160} justify="space-evenly" spacing={16} cols={1}>
                     {this.state.info.map(tileData => (
-
                         <BusinessCardMedia
                         title={tileData.businessName}                           //Account name
                         img = {tileData.img}                                    //Avatar image
                         subheader = {"Joined: " + tileData.creationDate}        //Join date field
                         about = {tileData.businessEmail}                        //About section
                         theGood = {tileData.theGood}                            //The Good Section
-                        addNotes = {tileData.addNotes}                          //Additional Notes section
+                        addNotes = {tileData.addNotes}
+                        id = {tileData.userID}
+                        /*                       //Additional Notes section
+                        date = {this.props.date}
+                        sourceKey = {this.props.sourceKey}
+                        artistName = {this.props.artistName}
+                        artTitle = {this.props.artTitle}
+                        url = {this.props.url}
+                        descript = {this.props.descript}
+                        userSub = {this.props.userSub}
+                        */
                       />
                       
                     ))}
@@ -115,3 +126,14 @@ export default class SendToBusiness extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+    date:state.requestReviewReducer.date,
+    sourceKey:state.requestReviewReducer.sourceKey,
+    artistName:state.requestReviewReducer.artistName,
+    artTitle:state.requestReviewReducer.artTitle,
+    url:state.requestReviewReducer.url,
+    descript:state.requestReviewReducer.descript,
+    userSub:state.requestReviewReducer.userSub
+})
+
+export default connect(mapStateToProps)(SendToBusiness);
