@@ -6,7 +6,7 @@ exports.handler = (event, context, callback) => {
   var requestDate = new Date().toUTCString();
 
   //reviewID = uuid of review request
-  var reviewID = data.reviewId;
+  var reviewID = data.reviewID;
   
   //artist related data
   var artTitle = data.artTitle;
@@ -35,6 +35,7 @@ exports.handler = (event, context, callback) => {
       Item:{
         'businessID': businessID, //primary key
         'reviewID': reviewID,    //sort key
+        'artistID': artistID,
         'artwork':{
           'artTitle': artTitle,
           'artistID': artistID,
