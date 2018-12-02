@@ -64,7 +64,7 @@ function MediaCard(props) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions align="center">
+            <CardActions style={{align: "center"}}>
                 <LinkContainer to="/ViewArt">
                     <Button size="small" color="primary" onClick={handleViewSubmit}>
                         VIEW
@@ -75,11 +75,6 @@ function MediaCard(props) {
                         SUBMIT THIS PIECE
                     </Button>
                 </ LinkContainer>
-                <LinkContainer to="/RemoveArt">
-                    <Button size="small" color="primary">
-                        Remove
-                    </Button>
-                </LinkContainer>
             </CardActions>
         </Card>
     );

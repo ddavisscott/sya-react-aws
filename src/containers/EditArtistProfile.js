@@ -29,16 +29,16 @@ class EditArtistProfile extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    if (this.state.instagram == "") {
+    if (this.state.instagram === "") {
       alert("Instagram field cannot be left blank.");
     }
-    else if (this.state.twitter == "") {
+    else if (this.state.twitter === "") {
       alert("Twitter field cannot be left blank.");
     } 
-    else if (this.state.tumblr == "") {
+    else if (this.state.tumblr === "") {
       alert("Tumblr field cannot be left blank.");
     } 
-    else if (this.state.facebook == "") {
+    else if (this.state.facebook === "") {
       alert("Facebook field cannot be left blank.");
     } 
     else {
@@ -49,6 +49,9 @@ class EditArtistProfile extends Component {
         twitter: this.state.twitter,
         tumblr: this.state.tumblr,
         facebook: this.state.facebook,
+        worthKnowing: "n/a",
+        additionalNotes: "n/a",
+        about: "n/a",
       };
       fetch(
         "https://h0cf9xpvb2.execute-api.us-east-1.amazonaws.com/prod/update-profile",

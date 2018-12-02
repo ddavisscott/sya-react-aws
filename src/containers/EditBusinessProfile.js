@@ -39,25 +39,25 @@ class EditBusinessProfile extends Component {
     if (this.state.fileNotSelected) {
       alert("File Not Chosen");
     }
-    else if (this.state.about == "") {
+    else if (this.state.about === "") {
       alert("About field cannot be left blank.");
     }
-    else if (this.state.worthKnowing == "") {
+    else if (this.state.worthKnowing === "") {
       alert("Worth Knowing field cannot be left blank.");
     } 
-    else if (this.state.addNotes == "") {
+    else if (this.state.addNotes === "") {
       alert("Additional Notes field cannot be left blank.");
     } 
-    else if (this.state.instagram == "") {
+    else if (this.state.instagram === "") {
       alert("Instagram field cannot be left blank.");
     }
-    else if (this.state.twitter == "") {
+    else if (this.state.twitter === "") {
       alert("Twitter field cannot be left blank.");
     } 
-    else if (this.state.tumblr == "") {
+    else if (this.state.tumblr === "") {
       alert("Tumblr field cannot be left blank.");
     } 
-    else if (this.state.facebook == "") {
+    else if (this.state.facebook === "") {
       alert("Facebook field cannot be left blank.");
     } 
     else {
@@ -72,6 +72,7 @@ class EditBusinessProfile extends Component {
         tumblr: this.state.tumblr,
         facebook: this.state.facebook,
       };
+
       fetch(
         "https://h0cf9xpvb2.execute-api.us-east-1.amazonaws.com/prod/update-profile",
         {

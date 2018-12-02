@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useImperativeMethods } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { LinkContainer } from "react-router-bootstrap";
+import {Axios} from 'axios';
 
 
 const styles = {
@@ -21,10 +22,28 @@ const styles = {
     }
 };
 
+function getBusinessInfo(info) {
+    let array = [];
+    try {
+        Axios.get(
+            "https://kdmro1ide5.execute-api.us-east-1.amazonaws.com/prod/?key=" + this.state.mySub
+        )
+        .then(result => array = result.data.Items)
+        .catch(err => console.log(err));
+
+    } catch (e) {
+        alert(e);
+    }
+
+    return array;
+}
+
 
 function AristReviewCards(props) {
 
     const { classes } = props;
+
+    //const businessInfo = this.getBusinessInfo(props.business)
 
     return (
         <div>
