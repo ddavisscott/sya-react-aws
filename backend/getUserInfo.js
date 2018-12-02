@@ -1,8 +1,9 @@
 const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
+//AWS Lambda code that querys a single users info from DynamoDB
 exports.handler = (event, context, callback) => {
-    // AWS Lambda code that querys a single users info from DynamoDB
+    
     var params = {
         TableName: event.userRole,
         KeyConditionExpression: "userID = :ID",

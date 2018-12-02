@@ -1,8 +1,9 @@
 const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
+//AWS Lambda code that querys all of an artist users artwork from DynamoDB
 exports.handler = (event, context, callback) => {
-    // AWS Lambda code that querys all of an artist users artwork from DynamoDB
+    
     var params = {
         TableName: "artworkTable",
         KeyConditionExpression: "userSub = :u",
