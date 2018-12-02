@@ -117,7 +117,7 @@ function subtractCredit(userID, currentCredit){
       callback(err);
     }
     else{
-      // callback("artists credit amount has been updated");
+      callback("artists credit amount has been updated");
     }
   });
 }

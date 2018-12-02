@@ -11,7 +11,7 @@ UpdateFields: replied,
 exports.handler = (event, context, callback) => {
   var primaryKey = event.queryStringParameters.businessID;
   var requestID = event.queryStringParameters.requestID;
-
+  
   var input = JSON.parse(event.body);
   var repliedDate = new Date().toUTCString;
   var params = {
@@ -38,9 +38,11 @@ exports.handler = (event, context, callback) => {
   docClient.update(params, function(err, data){
     if(err){
       console.log(err);
+      callback(err);
     }
     else{
       console.log(data);
+      callback(null, data);
     }
   });
 
