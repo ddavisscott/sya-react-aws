@@ -48,7 +48,6 @@ class App extends Component {
             await Auth.currentAuthenticatedUser().then( user => {
                 this.setState({ role: user.attributes["custom:role"]});
                 this.setState({ sub: user.attributes.sub});
-                console.log(user.attributes.sub)
             });
 
             Axios.get("https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" + this.state.sub)

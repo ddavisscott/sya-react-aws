@@ -65,12 +65,12 @@ class BusinessSubmissions extends Component {
                 <hr/>
                 <Grid container justify="space-evenly" spacing={16}>
                     { this.state.submissionArray.map(subs => {
-                        console.log(subs);
                         if (this.state.choice === "replied" && subs.replied) {
                             return ( <BusinessSubmissionCards
                                 date={subs.artwork.uploadDate}
                                 artistName={subs.artwork.artistName}
                                 artTitle={subs.artwork.artTitle}
+                                artistID={subs.artwork.artistID}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
@@ -84,6 +84,7 @@ class BusinessSubmissions extends Component {
                                 date={subs.artwork.uploadDate}
                                 artistName={subs.artwork.artistName}
                                 artTitle={subs.artwork.artTitle}
+                                artistID={subs.artwork.artistID}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
@@ -97,6 +98,7 @@ class BusinessSubmissions extends Component {
                                 date={subs.artwork.uploadDate}
                                 artistName={subs.artwork.artistName}
                                 artTitle={subs.artwork.artTitle}
+                                artistID={subs.artwork.artistID}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}

@@ -73,9 +73,10 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
-                                businessInfo={""}
+                                businessName={subs.business.businessName}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
+                                radios={subs.radios}
         
                             />) 
                         }                         
@@ -87,9 +88,10 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
-                                businessInfo={""}
+                                businessName={subs.business.businessName}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
+                                radios={subs.radios}
                             />) 
                         } 
                         else if (this.state.choice === "all") {
@@ -100,9 +102,11 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
+                                businessName={subs.business.businessName}
                                 businessInfo={""}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
+                                radios={subs.radios}
                             />) 
                         }
                     })}

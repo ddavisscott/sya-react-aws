@@ -75,11 +75,6 @@ function MediaCard(props) {
                         SUBMIT THIS PIECE
                     </Button>
                 </ LinkContainer>
-                <LinkContainer to="/RemoveArt">
-                    <Button size="small" color="primary">
-                        Remove
-                    </Button>
-                </LinkContainer>
             </CardActions>
         </Card>
     );

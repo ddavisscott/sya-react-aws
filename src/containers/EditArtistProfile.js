@@ -32,7 +32,6 @@ class EditArtistProfile extends Component {
       this.setState({mySub: user.attributes.sub})
     });
     try {
-        console.log("reee" + this.state.mySub);
         await Axios.get(
             "https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" + this.state.mySub
         )
@@ -49,16 +48,16 @@ class EditArtistProfile extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    if (this.state.instagram == "") {
+    if (this.state.instagram === "") {
       alert("Instagram field cannot be left blank.");
     }
-    else if (this.state.twitter == "") {
+    else if (this.state.twitter === "") {
       alert("Twitter field cannot be left blank.");
     } 
-    else if (this.state.tumblr == "") {
+    else if (this.state.tumblr === "") {
       alert("Tumblr field cannot be left blank.");
     } 
-    else if (this.state.facebook == "") {
+    else if (this.state.facebook === "") {
       alert("Facebook field cannot be left blank.");
     } 
     else {

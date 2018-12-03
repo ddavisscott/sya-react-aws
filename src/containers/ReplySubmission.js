@@ -42,8 +42,6 @@ class ReplySubmission extends Component {
                 replied:    this.state.willSubmit ? "true" : "false",
             };
 
-            console.log(review);
-
             fetch(
                 "https://j739rb6mb6.execute-api.us-east-1.amazonaws.com/prod/submit-review-response",
                 {
@@ -67,7 +65,7 @@ class ReplySubmission extends Component {
         return (
             <div className="Home">
                 <h1>Submit your reponse</h1>
-                <img style={{ maxWidth: '700', margin: '0 auto', resize: 'both' }} fullWidth src={this.props.url} alt={this.props.artTitle} maxWidth={500} maxHeight={500}/>
+                <img width="700" fullWidth src={this.props.url} alt={this.props.artTitle} maxWidth={500} maxHeight={500}/>
                 <div align="left">
                     <h2>Art title: {this.props.artTitle}</h2>
                     <h2>Artist name: {this.props.artistName}</h2>
@@ -88,7 +86,7 @@ class ReplySubmission extends Component {
                         value={this.state.reply}
                         onChange={this.handleChange("reply")}
                     />
-                    <text>Minimum 50 Characters.</text>
+                    <body>Minimum 50 Characters.</body>
                     <tbody>
                         <tr>
                             <td>
@@ -101,7 +99,6 @@ class ReplySubmission extends Component {
                                 />
                                 Will submit art piece
                             </td>
-                            <text>    </text>
                             <br />
                             <td>
                                 <input
