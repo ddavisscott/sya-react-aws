@@ -4,17 +4,13 @@ import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Routes from "./Routes";
-import { Drawer, List, ListItem, IconButton, Input } from "@material-ui/core";
+import { Drawer, List, ListItem, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import DashboardIcon from "@material-ui/icons/Dashboard";
 import Button from '@material-ui/core/Button';
 import Axios from 'axios';
-
 import { withStyles } from "@material-ui/core/styles";
 import "./main.css";
-import Typography from "@material-ui/core/Typography";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-
 import compose from 'recompose/compose';
 
 const theme = createMuiTheme({
@@ -61,23 +57,28 @@ class App extends Component {
 
         } catch (e) {
             if (e !== "No current user") {
-                alert(e);
+                console.log(e.message);
             }
         }
 
         this.setState({ isAuthenticating: false });
     }
 
-    userHasAuthenticated = authenticeate => {
-        this.setState({isAuthenticated: authenticeate});
-    }
+
+    userHasAuthenticated = authenticated => {
+        this.setState({ isAuthenticated: authenticated });
+
+        Auth.currentAuthenticatedUser().then( user => {
+            this.setState({ role: user.attributes["custom:role"]})
+        });
+    };
 
     handleLogout = async event => {
         await Auth.signOut();
 
         this.userHasAuthenticated(false);
 
-        this.props.history.push("/SignIn");
+        this.props.history.push("/Home");
     };
 
     handleDrawer = event => {
@@ -92,12 +93,16 @@ class App extends Component {
             <LinkContainer to="/BusinessSubmissions">
                 <ListItem>
                     <Button>
-                    <DashboardIcon /> Submissions 
+                    Submissions 
                     </Button>
                 </ListItem>
             </LinkContainer>
             <LinkContainer to="/MyBusinessAccount">
-                <ListItem>My Account</ListItem>
+            <ListItem>
+                    <Button>
+                    My Account 
+                    </Button>
+                </ListItem>
             </LinkContainer>
         </List>
         );
@@ -116,18 +121,28 @@ class App extends Component {
             <LinkContainer to="/Dashboard">
                 <ListItem>
                     <Button>
-                    <DashboardIcon /> Dashboard 
+                    Dashboard 
                     </Button>
                 </ListItem>
             </LinkContainer>
-            <LinkContainer to="/MyArtistAccount">
-                <ListItem>My Account</ListItem>
-            </LinkContainer>
-            <LinkContainer to="/MyBusinessAccount">
-                <ListItem>Business Account</ListItem>
-            </LinkContainer>
+            { this.state.role === "artist"? 
+                <LinkContainer to="/MyArtistAccount">
+                <ListItem>
+                        <Button>
+                        My Account 
+                        </Button>
+                    </ListItem>
+                </LinkContainer>
+                :
+                <LinkContainer to="/MyBusinessAccount">
+                <ListItem>
+                        <Button>
+                        My Account 
+                        </Button>
+                    </ListItem>
+                </LinkContainer> }
             <LinkContainer to="/ArtistReviews">
-                <ListItem>Reviews</ListItem>
+                <ListItem><Button>Reviews</Button></ListItem>
             </LinkContainer>
         </List>
         );
@@ -179,7 +194,7 @@ class App extends Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                             <Nav pullRight>
-                                {this.state.isAuthenticated ? (
+                                {this.state.isAuthenticated && this.state.role === "artist"? (
                                     <Fragment>
                                     <NavItem>Credits: {this.state.credits}</NavItem>
                                     </Fragment>

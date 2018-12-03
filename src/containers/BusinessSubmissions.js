@@ -5,7 +5,6 @@ import BusinessSubmissionCards from "./BusinessSubmissionCards";
 import { Auth } from "aws-amplify";
 import Axios from "axios";
 
-
 class BusinessSubmissions extends Component {
 
     constructor(props) {

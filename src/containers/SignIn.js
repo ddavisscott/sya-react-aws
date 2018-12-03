@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./SignIn.css";
 import TextField from '@material-ui/core/TextField';
@@ -24,6 +23,11 @@ const styles = theme => ({
   },
 });
 
+/*
+ * The Login component signs in users using amazon cognito. Login checks if
+ * the username and the password and attempts to sign in the user. If the 
+ * username and password return a valid user the user is signed in.
+ */
 export default class Login extends Component {
 
     state = {
@@ -51,7 +55,7 @@ export default class Login extends Component {
       await Auth.signIn(this.state.username, this.state.password);
       this.props.userHasAuthenticated(true);
     } catch (e) {
-      alert(e.message);
+      //alert(e.message);
       this.setState({ isLoading: false });
     }
   };

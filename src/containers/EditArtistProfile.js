@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import InputLabel from "@material-ui/core/InputLabel";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl } from "react-bootstrap";
 import "./ArtInfo.css";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from 'react-redux';
-import { Auth, Storage } from "aws-amplify";
+import { Auth } from "aws-amplify";
 import { addArtAction } from "../actions/addArtAction"
 import { Redirect } from 'react-router';
 

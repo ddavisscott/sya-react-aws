@@ -6,7 +6,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
-
 const styles = {
     card: {
         maxWidth: 500,
@@ -16,7 +15,6 @@ const styles = {
         width: 500
     }
 };
-
 
 function AristReviewCards(props) {
 
@@ -41,14 +39,14 @@ function AristReviewCards(props) {
                     <Typography gutterBottom variant="h5" component="h2" align="left"> 
                         Description: {props.descript}
                     </Typography>
+                    <Typography gutterBottom variant="h5" component="h2" align="left"> 
+                        Artist: {props.artistName}
+                    </Typography>
                     {props.replied?  
                         <div>
                         <Typography gutterBottom variant="h5" component="h2" align="left">
-                            Replied by : {props.businessInfo},
+                            Reply : {props.reply}
                         </Typography>
-                        <Typography gutterBottom variant="h5" component="h2" align="left">
-                            {props.reply},
-                        </Typography> 
                         </div> : null
                      }
                 </CardContent>
