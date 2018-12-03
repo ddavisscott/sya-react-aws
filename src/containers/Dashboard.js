@@ -9,6 +9,11 @@ import { connect } from 'react-redux';
 import { getArtAction } from "../actions/getArtAction";
 import { dashBoardImageAction } from "../actions/dashBoardImageAction";
 
+/*
+ * Dashboard is the name for the artist dashboard. This component holds all
+ * of the artist's uploaded art work in a card. 
+ */
+
 class Dashboard extends Component {
 
     constructor(props) {
@@ -19,12 +24,17 @@ class Dashboard extends Component {
         };
     }
 
+    /* 
+     * componentDidMount gets the artist information from the URL.
+     */
     async componentDidMount() {
         try {
+            // Gets the user sub from cognito.
             await Auth.currentAuthenticatedUser().then(user => {
                 this.setState({ mySub: user.attributes.sub });
             });
 
+            // Gets the image array using Axios and stores it in redux using getImages
             await Axios.get(
                 "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
                     this.state.mySub
@@ -72,7 +82,7 @@ class Dashboard extends Component {
 }
 
 
-
+// Maps the current state to props using redux
 const mapStateToProps = state => ({
     images: state.dashBoardReducer.images
 })

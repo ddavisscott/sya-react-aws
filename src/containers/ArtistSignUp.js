@@ -145,7 +145,7 @@ export default class ArtistSignUp extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormGroup controlId="name" bsSize="large">
-                    <ControlLabel>Name</ControlLabel>
+                    <ControlLabel>Username</ControlLabel>
                     <FormControl
                         autoFocus
                         type="text"

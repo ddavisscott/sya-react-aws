@@ -51,7 +51,7 @@ export default class Login extends Component {
       await Auth.signIn(this.state.username, this.state.password);
       this.props.userHasAuthenticated(true);
     } catch (e) {
-      alert(e.message);
+      //alert(e.message);
       this.setState({ isLoading: false });
     }
   };

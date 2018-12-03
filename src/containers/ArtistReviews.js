@@ -57,12 +57,12 @@ class ArtistReviews extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div align='center'>
                     <h1>Art Reviews</h1>
                     <Button id="all" onClick={this.handleAll}>All Reviews</Button>
                     <Button id="unreplied" onClick={this.handleUnreplied}>Unreplied Art</Button>
                     <Button id="replied" onClick={this.handleReplied}>Reviewed Art</Button>
-                    </div>
+                </div>
                 <hr/>
                 <Grid container justify="space-evenly" spacing={16}>
                     { this.state.reviewsArray.map(subs => {
