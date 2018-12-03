@@ -8,24 +8,44 @@ import { connect } from 'react-redux';
 import { Auth, Storage } from "aws-amplify";
 import { addArtAction } from "../actions/addArtAction"
 import { Redirect } from 'react-router';
+import Axios from "axios";
+
 
 class EditArtistProfile extends Component {
   constructor(props) {
     const uuidv4 = require("uuid/v4");
     super(props);
     this.state = {
+      info: null,
       mySub: "",
-      instagram: "n/a",
-      twitter: "n/a",
-      tumblr: "n/a",
-      facebook: "n/a",
+      instagram: "https://instagram.com/",
+      twitter: "https://twitter.com/",
+      tumblr: "https://tumblr.com/",
+      facebook: "https://facebook.com/",
       redirect: false,
     };
 
-    Auth.currentAuthenticatedUser().then(user => {
+  }
+
+  async componentDidMount() {
+    await Auth.currentAuthenticatedUser().then(user => {
       this.setState({mySub: user.attributes.sub})
     });
-  }
+    try {
+        console.log("reee" + this.state.mySub);
+        await Axios.get(
+            "https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" + this.state.mySub
+        )
+            .then(result => this.setState({info: result.data.Items}))
+            .catch(err => console.log(err));
+            this.setState({instagram: this.state.info[0].instagram})
+            this.setState({twitter: this.state.info[0].twitter})
+            this.setState({tumblr: this.state.info[0].tumblr})
+            this.setState({facebook: this.state.info[0].facebook})
+    } catch (e) {
+        alert(e);
+    }
+}
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -81,61 +101,78 @@ class EditArtistProfile extends Component {
 
   /*
   //Render displays all info for the update information page
+  //The first if() prevents accessing the info[] if it is null
+  //This way it will display artist info from the database only when we've 
+  //sucessfully pulled it.
   */
   render() {
-    return (     
-      <div className="ArtInfo">
-        {this.Redirectrender()}
-        <h1>Update Artist Profile Information:</h1>
-        <form onSubmit={this.handleSubmit}>
-          <h2>Contact Handles: </h2>
-          <FormGroup bsSize="large">
-            <InputLabel>Instagram Handle*</InputLabel>
-            <FormControl
-              autofocus
-              type="text"
-              name="instagram"
-              value={this.state.instagram}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup bsSize="large">
-            <InputLabel>Twitter Handle*</InputLabel>
-            <FormControl
-              autofocus
-              type="text"
-              name="twitter"
-              value={this.state.twitter}
-              onChange={this.handleChange}
-            />
-          <FormGroup bsSize="large">
-            <InputLabel>Tumblr*</InputLabel>
-            <FormControl
-              autofocus
-              type="text"
-              name="tumblr"
-              value={this.state.tumblr}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup bsSize="large">
-            <InputLabel>FaceBook*</InputLabel>
-            <FormControl
-              autofocus
-              type="text"
-              name="facebook"
-              value={this.state.facebook}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          </FormGroup>
-          <LinkContainer to="/Dashboard">
-            <Button>Cancel</Button>
-          </LinkContainer>
-          <Button type="submit">Update Profile Information</Button>
-        </form>
-      </div>
-    );
+    {
+      if(this.state.info == null){
+        return(
+          <div>
+            <h1>loading</h1>
+          </div>
+        )
+      }
+      else{
+        return (     
+          <div className="ArtInfo">
+            {this.Redirectrender()}
+            <h1>Update Artist Profile Information:</h1>
+            <form onSubmit={this.handleSubmit}>
+              <h2>Contact Handles: </h2>
+              <FormGroup bsSize="large">
+                <InputLabel>Instagram Handle*</InputLabel>
+                <FormControl
+                  autofocus
+                  type="text"
+                  name="instagram"
+                  value={this.state.instagram}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup bsSize="large">
+                <InputLabel>Twitter Handle*</InputLabel>
+                <FormControl
+                  autofocus
+                  type="text"
+                  name="twitter"
+                  value={this.state.twitter}
+                  onChange={this.handleChange}
+                />
+              <FormGroup bsSize="large">
+                <InputLabel>Tumblr*</InputLabel>
+                <FormControl
+                  autofocus
+                  type="text"
+                  name="tumblr"
+                  value={this.state.tumblr}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup bsSize="large">
+                <InputLabel>FaceBook*</InputLabel>
+                <FormControl
+                  autofocus
+                  type="text"
+                  name="facebook"
+                  value={this.state.facebook}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              </FormGroup>
+              <LinkContainer to="/Dashboard">
+                <Button>Cancel</Button>
+              </LinkContainer>
+              <Button type="submit">Update Profile Information</Button>
+            </form>
+          </div>
+        );
+
+      }
+
+    }
+    
   }
 }
 const mapStateToProps = state => ({
