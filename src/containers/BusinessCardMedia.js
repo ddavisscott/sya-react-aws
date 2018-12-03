@@ -16,7 +16,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 //Styling
 const styles = theme => ({
   card: {
-    width: '80%',
+    width: '90%',
     //minWidth: 1000
   },
   media: {
