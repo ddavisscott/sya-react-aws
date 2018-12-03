@@ -9,6 +9,7 @@ import { Auth } from "aws-amplify";
 import { addArtAction } from "../actions/addArtAction"
 import { Redirect } from 'react-router';
 import Axios from "axios";
+import TextField from '@material-ui/core/TextField';
 
 
 class EditArtistProfile extends Component {
@@ -94,9 +95,9 @@ class EditArtistProfile extends Component {
     }
   }
   //Function for handling change within render function, by setting states in constructor
-  handleChange = event => {
+  handleChange = name => event => {
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: event.target.value
     });
   };
 
@@ -122,46 +123,42 @@ class EditArtistProfile extends Component {
             <h1>Update Artist Profile Information:</h1>
             <form onSubmit={this.handleSubmit}>
               <h2>Contact Handles: </h2>
-              <FormGroup bsSize="large">
-                <InputLabel>Instagram Handle*</InputLabel>
-                <FormControl
-                  autofocus
-                  type="text"
-                  name="instagram"
-                  value={this.state.instagram}
-                  onChange={this.handleChange}
+              <TextField
+                    required
+                    id="standard-required"
+                    label="Instagram Handle"
+                    fullWidth
+                    className="instagram"
+                    onChange={this.handleChange("instagram")}
+                    value={this.state.instagram}
+              />
+              <TextField
+                    required
+                    id="standard-required"
+                    label="Twitter Handle"
+                    fullWidth
+                    className="twitter"
+                    onChange={this.handleChange("twitter")}
+                    value={this.state.twitter}
                 />
-              </FormGroup>
-              <FormGroup bsSize="large">
-                <InputLabel>Twitter Handle*</InputLabel>
-                <FormControl
-                  autofocus
-                  type="text"
-                  name="twitter"
-                  value={this.state.twitter}
-                  onChange={this.handleChange}
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Tumblr"
+                    fullWidth
+                    className="tumblr"
+                    onChange={this.handleChange("tumblr")}
+                    value={this.state.tumblr}
                 />
-              <FormGroup bsSize="large">
-                <InputLabel>Tumblr*</InputLabel>
-                <FormControl
-                  autofocus
-                  type="text"
-                  name="tumblr"
-                  value={this.state.tumblr}
-                  onChange={this.handleChange}
+                <TextField
+                    required
+                    id="standard-required"
+                    label="FaceBook"
+                    fullWidth
+                    className="facebook"
+                    onChange={this.handleChange("facebook")}
+                    value={this.state.facebook}
                 />
-              </FormGroup>
-              <FormGroup bsSize="large">
-                <InputLabel>FaceBook*</InputLabel>
-                <FormControl
-                  autofocus
-                  type="text"
-                  name="facebook"
-                  value={this.state.facebook}
-                  onChange={this.handleChange}
-                />
-              </FormGroup>
-              </FormGroup>
               <LinkContainer to="/Dashboard">
                 <Button>Cancel</Button>
               </LinkContainer>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import {HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import "./ArtistSignUp.css";
+import TextField from '@material-ui/core/TextField';
 /*
  * The ArtistSignUp component allows a new user to create new user that 
  * is an artist. The fields to input include a username, email, password, 
@@ -11,6 +11,7 @@ import "./ArtistSignUp.css";
  * A new input field will request the confirmation to confirm an artist sign
  * in. 
  */
+
 export default class ArtistSignUp extends Component {
     constructor(props) {
         super(props);
@@ -41,9 +42,9 @@ export default class ArtistSignUp extends Component {
         return this.state.confirmationCode.length > 0;
     }
 
-    handleChange = event => {
+    handleChange = name => event => {
         this.setState({
-            [event.target.id]: event.target.value
+          [name]: event.target.value
         });
     };
 
@@ -67,6 +68,7 @@ export default class ArtistSignUp extends Component {
             });
         } catch (e) {
             console.log(e.message);
+            alert(e.message)
         }
 
         this.setState({ isLoading: false });
@@ -111,16 +113,15 @@ export default class ArtistSignUp extends Component {
     renderConfirmationForm() {
         return (
             <form onSubmit={this.handleConfirmationSubmit}>
-                <FormGroup controlId="confirmationCode" bsSize="large">
-                    <ControlLabel>Confirmation Code</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="tel"
-                        value={this.state.confirmationCode}
-                        onChange={this.handleChange}
-                    />
-                    <HelpBlock>Please check your email for the code.</HelpBlock>
-                </FormGroup>
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Confirmation Code"
+                    fullWidth
+                    className="confirmationCode"
+                    onChange={this.handleChange("confirmationCode")}
+                    value={this.state.confirmationCode}
+                />
                 <LoaderButton
                     block
                     bsSize="large"
@@ -137,40 +138,45 @@ export default class ArtistSignUp extends Component {
     renderForm() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <FormGroup controlId="name" bsSize="large">
-                    <ControlLabel>Username</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="text"
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup controlId="email" bsSize="large">
-                    <ControlLabel>Email</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        type="password"
-                    />
-                </FormGroup>
-                <FormGroup controlId="confirmPassword" bsSize="large">
-                    <ControlLabel>Confirm Password</ControlLabel>
-                    <FormControl
-                        value={this.state.confirmPassword}
-                        onChange={this.handleChange}
-                        type="password"
-                    />
-                </FormGroup>
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Username"
+                    className="name"
+                    onChange={this.handleChange("name")}
+                    value={this.state.name}
+                    fullWidth
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Email"
+                    className="email"
+                    type="email"
+                    onChange={this.handleChange("email")}
+                    value={this.state.email}
+                    fullWidth
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Password"
+                    className="password"
+                    type="password"
+                    onChange={this.handleChange("password")}
+                    value={this.state.password}
+                    fullWidth
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Confirm Password"
+                    className="confirmPassword"
+                    type="password"
+                    onChange={this.handleChange("confirmPassword")}
+                    value={this.state.confirmPassword}
+                    fullWidth
+                />
                 <LoaderButton
                     block
                     bsSize="large"

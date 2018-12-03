@@ -7,6 +7,7 @@ import {
 } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
+import TextField from '@material-ui/core/TextField';
 import "./BusinessSignUp.css";
 
 export default class BusinessSignUp extends Component {
@@ -37,11 +38,12 @@ export default class BusinessSignUp extends Component {
         return this.state.confirmationCode.length > 0;
     }
 
-    handleChange = event => {
+    handleChange = name => event => {
         this.setState({
-            [event.target.id]: event.target.value
+          [name]: event.target.value
         });
     };
+
 
     handleSubmit = async event => {
         event.preventDefault();
@@ -95,16 +97,15 @@ export default class BusinessSignUp extends Component {
     renderConfirmationForm() {
         return (
             <form onSubmit={this.handleConfirmationSubmit}>
-                <FormGroup controlId="confirmationCode" bsSize="large">
-                    <ControlLabel>Confirmation Code</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="tel"
-                        value={this.state.confirmationCode}
-                        onChange={this.handleChange}
-                    />
-                    <HelpBlock>Please check your email for the code.</HelpBlock>
-                </FormGroup>
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Confirmation Code"
+                    fullWidth
+                    className="confirmationCode"
+                    onChange={this.handleChange("confirmationCode")}
+                    value={this.state.confirmationCode}
+                />
                 <LoaderButton
                     block
                     bsSize="large"
@@ -121,40 +122,44 @@ export default class BusinessSignUp extends Component {
     renderForm() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <FormGroup controlId="name" bsSize="large">
-                    <ControlLabel>Business Name*</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="text"
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup controlId="email" bsSize="large">
-                    <ControlLabel>Email*</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Password*</ControlLabel>
-                    <FormControl
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        type="password"
-                    />
-                </FormGroup>
-                <FormGroup controlId="confirmPassword" bsSize="large">
-                    <ControlLabel>Confirm Password*</ControlLabel>
-                    <FormControl
-                        value={this.state.confirmPassword}
-                        onChange={this.handleChange}
-                        type="password"
-                    />
-                </FormGroup>
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Business Name"
+                    fullWidth
+                    className="name"
+                    onChange={this.handleChange("name")}
+                    value={this.state.name}
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Email"
+                    fullWidth
+                    className="email"
+                    onChange={this.handleChange("email")}
+                    value={this.state.email}
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Password"
+                    fullWidth
+                    className="password"
+                    onChange={this.handleChange("password")}
+                    value={this.state.password}
+                    type="password"
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Confirm Password"
+                    fullWidth
+                    className="confirmPassword"
+                    onChange={this.handleChange("confirmPassword")}
+                    value={this.state.confirmPassword}
+                    type="password"
+                />
                 <LoaderButton
                     block
                     bsSize="large"

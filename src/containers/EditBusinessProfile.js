@@ -143,9 +143,9 @@ class EditBusinessProfile extends Component {
     }
   }
   //Function for handling change within render function, by setting states in constructor
-  handleChange = event => {
+  handleChange = name => event => {
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: event.target.value
     });
   };
 
@@ -155,13 +155,7 @@ class EditBusinessProfile extends Component {
     }
     this.setState({image: event.target.files[0]});
   };
-
-  handleChangeName = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
-  };
-
+  
   /*
   //Render displays all info for the update information page
   //Render also displays a business card, which is found in BusinessCardMedia.js
@@ -239,46 +233,42 @@ class EditBusinessProfile extends Component {
                 value={this.state.addNotes}
             />
             <h2>Contact Handles: </h2>
-            <FormGroup bsSize="large">
-              <InputLabel>Instagram Handle*</InputLabel>
-              <FormControl
-                autofocus
-                type="text"
-                name="instagram"
-                value={this.state.instagram}
-                onChange={this.handleChange}
+            <TextField
+                    required
+                    id="standard-required"
+                    label="Instagram Handle"
+                    fullWidth
+                    className="instagram"
+                    onChange={this.handleChange("instagram")}
+                    value={this.state.instagram}
               />
-            </FormGroup>
-            <FormGroup bsSize="large">
-              <InputLabel>Twitter Handle*</InputLabel>
-              <FormControl
-                autofocus
-                type="text"
-                name="twitter"
-                value={this.state.twitter}
-                onChange={this.handleChange}
-              />
-            <FormGroup bsSize="large">
-              <InputLabel>Tumblr*</InputLabel>
-              <FormControl
-                autofocus
-                type="text"
-                name="tumblr"
-                value={this.state.tumblr}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup bsSize="large">
-              <InputLabel>FaceBook*</InputLabel>
-              <FormControl
-                autofocus
-                type="text"
-                name="facebook"
-                value={this.state.facebook}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            </FormGroup>
+              <TextField
+                    required
+                    id="standard-required"
+                    label="Twitter Handle"
+                    fullWidth
+                    className="twitter"
+                    onChange={this.handleChange("twitter")}
+                    value={this.state.twitter}
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="Tumblr"
+                    fullWidth
+                    className="tumblr"
+                    onChange={this.handleChange("tumblr")}
+                    value={this.state.tumblr}
+                />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="FaceBook"
+                    fullWidth
+                    className="facebook"
+                    onChange={this.handleChange("facebook")}
+                    value={this.state.facebook}
+                />
             <LinkContainer to="/BusinessDashboard">
               <Button>Cancel</Button>
             </LinkContainer>
