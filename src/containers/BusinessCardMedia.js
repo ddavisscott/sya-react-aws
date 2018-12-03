@@ -61,7 +61,7 @@ const styles = theme => ({
           props.about,
           props.id,
           props.subheader,
-          props.theGood,
+          props.worthKnowing,
           props.img,
           props.addNotes
       );
