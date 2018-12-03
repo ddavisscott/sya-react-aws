@@ -71,6 +71,7 @@ class BusinessSubmissions extends Component {
                                 date={subs.artwork.uploadDate}
                                 artistName={subs.artwork.artistName}
                                 artTitle={subs.artwork.artTitle}
+                                artistID={subs.artwork.artistID}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
@@ -84,6 +85,7 @@ class BusinessSubmissions extends Component {
                                 date={subs.artwork.uploadDate}
                                 artistName={subs.artwork.artistName}
                                 artTitle={subs.artwork.artTitle}
+                                artistID={subs.artwork.artistID}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
@@ -97,6 +99,7 @@ class BusinessSubmissions extends Component {
                                 date={subs.artwork.uploadDate}
                                 artistName={subs.artwork.artistName}
                                 artTitle={subs.artwork.artTitle}
+                                artistID={subs.artwork.artistID}
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}

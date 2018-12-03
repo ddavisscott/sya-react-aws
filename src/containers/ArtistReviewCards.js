@@ -37,15 +37,23 @@ function AristReviewCards(props) {
                 </CardContent>
                 <CardContent style={{flex: 1, flexWrap: 'wrap', maxWidth: 500,}}>
                     <Typography gutterBottom variant="h5" component="h2" align="left"> 
-                        Description: {props.descript}
+                        Artist Name: {props.artistName}
                     </Typography>
                     <Typography gutterBottom variant="h5" component="h2" align="left"> 
-                        Artist: {props.artistName}
+                        Description: {props.descript}
                     </Typography>
                     {props.replied?  
                         <div>
                         <Typography gutterBottom variant="h5" component="h2" align="left">
+                            Replied by : {props.businessName}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h2" align="left">
                             Reply : {props.reply}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h2" align="left">
+                            <focus>{props.businessName}
+                            {props.radios === "accepted"? " has agreed to post your artwork!" : " will not post your artwork."}
+                            </focus>
                         </Typography>
                         </div> : null
                      }

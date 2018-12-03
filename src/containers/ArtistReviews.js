@@ -65,6 +65,7 @@ class ArtistReviews extends Component {
                 <hr/>
                 <Grid container justify="space-evenly" spacing={16}>
                     { this.state.reviewsArray.map(subs => {
+                        console.log(subs);
                         if (this.state.choice === "replied" && subs.replied) {
                             return ( <ArtistReviewCards
                                 date={subs.artwork.uploadDate}
@@ -73,9 +74,10 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
-                                businessInfo={""}
+                                businessName={subs.business.businessName}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
+                                radios={subs.radios}
         
                             />) 
                         }                         
@@ -87,9 +89,10 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
-                                businessInfo={""}
+                                businessName={subs.business.businessName}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
+                                radios={subs.radios}
                             />) 
                         } 
                         else if (this.state.choice === "all") {
@@ -100,9 +103,11 @@ class ArtistReviews extends Component {
                                 url={subs.artwork.url}
                                 descript={subs.artwork.description}
                                 reply={subs.reply}
+                                businessName={subs.business.businessName}
                                 businessInfo={""}
                                 reviewID={subs.reviewID}
                                 replied={subs.replied}
+                                radios={subs.radios}
                             />) 
                         }
                     })}
