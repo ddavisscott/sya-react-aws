@@ -87,9 +87,6 @@ export default class ArtistSignUp extends Component {
 
             // Try to sign the artist in
             await Auth.signIn(this.state.name, this.state.password);
-
-            // Pass the boolean true to the prop authenticadedUser 
-            this.props.userHasAuthenticated(true);
             
             // Get the user sub and set the state
             await Auth.currentAuthenticatedUser().then(user => {
@@ -116,6 +113,12 @@ export default class ArtistSignUp extends Component {
             )
             .then(result => console.log(result))
             .catch(err => console.log(err));
+
+            // Pass the boolean true to the prop authenticadedUser 
+            this.props.userHasAuthenticated(true);
+
+            this.props.history.push("/Home");
+
             
         } catch (e) {
             console.log(e.message);
