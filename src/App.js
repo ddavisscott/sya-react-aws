@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Routes from "./Routes";
-import { Drawer, List, ListItem, IconButton, Input } from "@material-ui/core";
+import { Drawer, List, ListItem, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import Button from '@material-ui/core/Button';

@@ -5,7 +5,6 @@ import ArtistReviewCards from "./ArtistReviewCards";
 import { Auth } from "aws-amplify";
 import Axios from "axios";
 
-
 class ArtistReviews extends Component {
 
     constructor(props) {
