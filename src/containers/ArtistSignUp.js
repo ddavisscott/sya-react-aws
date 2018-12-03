@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import {
-    HelpBlock,
-    FormGroup,
-    FormControl,
-    ControlLabel
-} from "react-bootstrap";
+import {HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import "./ArtistSignUp.css";
-
+/*
+ * The ArtistSignUp component allows a new user to create new user that 
+ * is an artist. The fields to input include a username, email, password, 
+ * and a password confirmation. Once those fields are entered, an email
+ * will be sent to the specified email that contains a confirmation code.
+ * A new input field will request the confirmation to confirm an artist sign
+ * in. 
+ */
 export default class ArtistSignUp extends Component {
     constructor(props) {
         super(props);
@@ -71,31 +73,37 @@ export default class ArtistSignUp extends Component {
         this.setState({ isLoading: false });
     };
 
-    /*
-
-    */
-
     handleConfirmationSubmit = async event => {
         event.preventDefault();
 
         this.setState({ isLoading: true });
 
         try {
+
+            // Try to confirm sign up
             await Auth.confirmSignUp(
                 this.state.name,
                 this.state.confirmationCode
             );
+
+            // Try to sign the artist in
             await Auth.signIn(this.state.name, this.state.password);
+
+            // Pass the boolean true to the prop authenticadedUser 
             this.props.userHasAuthenticated(true);
             
+            // Get the user sub and set the state
             await Auth.currentAuthenticatedUser().then(user => {
                 this.setState({ sub: user.attributes.sub });
             });
-            const uploadFile = {
+            
+            // Create a JSON object that contains the artist sub, and role
+            const artistInfo = {
                 key: this.state.sub,
                 role: "artist",
-                instragram: "instagramFamous"
             };
+
+            // Send the artist information to the aws to set the role to artst
             await fetch(
                 "https://b4l37v57w1.execute-api.us-east-1.amazonaws.com/prod/submit-request",
                 {
@@ -104,11 +112,12 @@ export default class ArtistSignUp extends Component {
                         "Content-Type": "text/plain"
                     },
                     mode: "no-cors",
-                    body: JSON.stringify(uploadFile)
+                    body: JSON.stringify(artistInfo)
                 }
             )
-                .then(result => console.log(result))
-                .catch(err => console.log(err));
+            .then(result => console.log(result))
+            .catch(err => console.log(err));
+            
         } catch (e) {
             console.log(e.message);
             this.setState({ isLoading: false });
