@@ -58,12 +58,13 @@ export default class BusinessSignUp extends Component {
         }
       }
       );
+
       this.setState({
         newUser
       });
+
     } catch (e) {
       console.log(e);
-      alert(e.message);
     }
 
     this.setState({ isLoading: false });
@@ -74,14 +75,21 @@ export default class BusinessSignUp extends Component {
 
     this.setState({ isLoading: true });
 
-    try {
-      await Auth.confirmSignUp(this.state.name, this.state.confirmationCode);
+    console.log(this.state)
 
-      await Auth.signIn(this.state.name, this.state.password);
+    try {
+      await Auth.confirmSignUp(this.state.name, this.state.confirmationCode)
+      .catch(err => console.log(err.message));
+
+      await Auth.signIn(this.state.name, this.state.password)
+      .catch(err => console.log(err.message));
 
       this.props.userHasAuthenticated(true);
-      this.props.history.push("/Dashboard");
+
+      this.props.history.push("/");
+
     } catch (e) {
+
       this.setState({ isLoading: false });
     }
   }

@@ -82,42 +82,24 @@ export default class ArtistSignUp extends Component {
             // Try to confirm sign up
             await Auth.confirmSignUp(
                 this.state.name,
-                this.state.confirmationCode
-            );
+                this.state.confirmationCode)
+            .catch(err => { console.log(err) });
 
             // Try to sign the artist in
-            await Auth.signIn(this.state.name, this.state.password);
+            await Auth.signIn(this.state.name, this.state.password)
+            .catch(err => { console.log(err) });
             
             // Get the user sub and set the state
             await Auth.currentAuthenticatedUser().then(user => {
+                console.log(user);
                 this.setState({ sub: user.attributes.sub });
-            });
-            
-            // Create a JSON object that contains the artist sub, and role
-            const artistInfo = {
-                key: this.state.sub,
-                role: "artist",
-            };
-
-            // Send the artist information to the aws to set the role to artst
-            await fetch(
-                "https://b4l37v57w1.execute-api.us-east-1.amazonaws.com/prod/submit-request",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "text/plain"
-                    },
-                    mode: "no-cors",
-                    body: JSON.stringify(artistInfo)
-                }
-            )
-            .then(result => console.log(result))
-            .catch(err => console.log(err));
+            })
+            .catch(err => { console.log(err) });
 
             // Pass the boolean true to the prop authenticadedUser 
             this.props.userHasAuthenticated(true);
 
-            this.props.history.push("/Home");
+            this.props.history.push("/");
 
             
         } catch (e) {

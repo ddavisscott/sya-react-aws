@@ -157,7 +157,7 @@ class App extends Component {
         return (
             !this.state.isAuthenticating && (
                 <div className="App container">
-                    <Navbar fluid collapseOnSelect>
+                    <Navbar fluid collapseOnSelect style={{whiteSpace: "nowrap"}}>
                         <Navbar.Header>
                             {this.state.isAuthenticated ? (
                                 <Navbar.Brand>
@@ -189,6 +189,7 @@ class App extends Component {
                                 >
                                     Share Yourself Artists
                                 </text>
+                                <br/>
                             </MuiThemeProvider>
                         </Navbar.Header>
                         <Navbar.Collapse>
