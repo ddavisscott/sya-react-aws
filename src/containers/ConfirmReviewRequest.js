@@ -78,11 +78,11 @@ class ConfirmReviewRequest extends Component {
                 <h2>Submitting to: <strong>{this.props.businessName}</strong></h2>
                 <BusinessCardMedia
                         title={this.props.businessName}                           //Account name
-                        img = {this.props.img}                                    //Avatar image
-                        subheader = {"Joined: " + this.props.creationDate}        //Join date field
-                        about = {this.props.businessEmail}                        //About section
-                        worthKnowing = {this.props.theGood}                       //Worth Knowing Section
-                        addNotes = {this.props.addNotes}                          //Additional Notes section
+                        img = {this.props.businessAvatar}                         //Avatar image
+                        subheader = {"Joined: " + this.props.businessCreationDate}        //Join date field
+                        about = {this.props.businessAbout}                        //About section
+                        worthKnowing = {this.props.businessWorthKnowing}          //Worth Knowing Section
+                        addNotes = {this.props.businessAdditionalNotes}           //Additional Notes section
                         date = {this.props.date}
                         sourceKey = {this.props.sourceKey}
                         artistName = {this.props.artistName}
@@ -90,7 +90,7 @@ class ConfirmReviewRequest extends Component {
                         url = {this.props.url}
                         descript = {this.props.descript}
                         userSub = {this.props.userSub}
-                        disabled = {true}                                         //Disabled so + button dissapears
+                        disabled = {true}                                          //Disabled so + button dissapears
                       />
                 <h2><strong>Title: </strong>{this.props.artTitle} | <strong>Description: </strong>{this.props.artDescription}</h2>
                 <LinkContainer color = "secondary" to="/BusinessChoice">
@@ -121,6 +121,12 @@ const mapStateToProps = state => ({
     businessName:   state.requestReviewReducer.businessName,
     businessEmail:  state.requestReviewReducer.businessEmail,
     businessID:     state.requestReviewReducer.businessID,
+
+    businessAbout:            state.requestReviewReducer.businessEmail,
+    businessWorthKnowing:     state.requestReviewReducer.businessTheGood,
+    businessAdditionalNotes:  state.requestReviewReducer.businessAddNotes,
+    businessCreationDate:     state.requestReviewReducer.businessSubheader,
+    businessAvatar:           state.requestReviewReducer.businessIMG
 })
 
 export default connect(mapStateToProps)(ConfirmReviewRequest);
