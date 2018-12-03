@@ -28,7 +28,7 @@ class ViewArt extends Component {
                     <Button size = "medium" variant = "outlined">Back</Button>
                 </LinkContainer>
                 <br></br>
-                <img src={this.props.url} alt={this.props.artTitle} height = {600} width={600} />
+                <img src={this.props.url} alt={this.props.artTitle} height = {'100%'} width={'100%'} />
             </div>
         );
     }

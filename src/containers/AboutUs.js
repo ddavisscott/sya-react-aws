@@ -8,8 +8,8 @@ export default class AboutUs extends Component {
             {<img
                   src= "https://i.imgur.com/qJaG6pe.jpg"
                   alt=""
-                  height="400"
-                  width="1100"
+                  height="100%"
+                  width="100%"
             />}
             <div className="mainHead">
                 <h1>About Us </h1>

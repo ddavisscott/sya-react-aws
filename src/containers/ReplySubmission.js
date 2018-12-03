@@ -65,7 +65,7 @@ class ReplySubmission extends Component {
         return (
             <div className="Home">
                 <h1>Submit your reponse</h1>
-                <img width="700" fullWidth src={this.props.url} alt={this.props.artTitle} maxWidth={500} maxHeight={500}/>
+                <img fullWidth src={this.props.url} alt={this.props.artTitle} width={'100%'} height={'100%'}/>
                 <div align="left">
                     <h2>Art title: {this.props.artTitle}</h2>
                     <h2>Artist name: {this.props.artistName}</h2>
