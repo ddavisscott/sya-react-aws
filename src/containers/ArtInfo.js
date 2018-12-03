@@ -24,7 +24,6 @@ class ArtInfo extends Component {
     };
 
     Auth.currentAuthenticatedUser().then(user => {
-      console.log(user)
       this.setState({ userName: user.username });
       this.setState({ sub: user.attributes.sub });
       this.setState({ token: user.signInUserSession.idToken.jwtToken });
@@ -46,13 +45,10 @@ class ArtInfo extends Component {
         image_key: this.state.imageKey
       };
 
-      console.log(this.props.image)
-
       await Storage.put(this.state.imageKey, this.props.image, {
           contentType: 'image',
           bucket:'myapp-20181030214040-deployment'
       })
-      .then (result => console.log(result))
       .catch(err => console.log(err));
 
       await fetch(

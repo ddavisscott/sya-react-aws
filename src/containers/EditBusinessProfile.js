@@ -58,7 +58,7 @@ class EditBusinessProfile extends Component {
             this.setState({businessName: this.state.info[0].businessName})
             this.setState({creationDate: this.state.info[0].creationDate})
             this.setState({avatar: this.state.info[0].avatar})
-            if(this.state.info[0].avatar != ""){
+            if(this.state.info[0].avatar !== ""){
               this.setState({fileNotSelected: false})
             }
     } catch (e) {
@@ -106,7 +106,7 @@ class EditBusinessProfile extends Component {
         url: "https://s3.amazonaws.com/myapp-20181030214040-deployment/public/" + this.state.imageKey
       };
 
-      if (this.state.image == "") {
+      if (this.state.image === "") {
         uploadFile.url = (this.state.avatar)
       }
       else {

@@ -86,7 +86,7 @@ class ReplySubmission extends Component {
                         value={this.state.reply}
                         onChange={this.handleChange("reply")}
                     />
-                    <text>Minimum 50 Characters.</text>
+                    <body>Minimum 50 Characters.</body>
                     <tbody>
                         <tr>
                             <td>
@@ -99,7 +99,6 @@ class ReplySubmission extends Component {
                                 />
                                 Will submit art piece
                             </td>
-                            <text>    </text>
                             <br />
                             <td>
                                 <input
