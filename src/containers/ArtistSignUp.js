@@ -66,8 +66,7 @@ export default class ArtistSignUp extends Component {
                 newUser
             });
         } catch (e) {
-            console.log(e);
-            alert(e.message);
+            console.log(e.message);
         }
 
         this.setState({ isLoading: false });

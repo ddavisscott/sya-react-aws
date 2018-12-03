@@ -32,28 +32,28 @@ function AristReviewCards(props) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2" align="left">
-                        Title: {props.artTitle}
+                    <strong>Title: </strong> {props.artTitle}
                     </Typography>
                 </CardContent>
                 <CardContent style={{flex: 1, flexWrap: 'wrap', maxWidth: 500,}}>
                     <Typography gutterBottom variant="h5" component="h2" align="left"> 
-                        Artist Name: {props.artistName}
+                        <strong>Artist Name:</strong> {props.artistName}
                     </Typography>
                     <Typography gutterBottom variant="h5" component="h2" align="left"> 
-                        Description: {props.descript}
+                    <strong>Description:</strong> {props.descript}
                     </Typography>
                     {props.replied?  
                         <div>
                         <Typography gutterBottom variant="h5" component="h2" align="left">
-                            Replied by : {props.businessName}
+                        <strong>Replied by: </strong>{props.businessName}
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h2" align="left">
-                            Reply : {props.reply}
+                        <strong>Reply:</strong> {props.reply}
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h2" align="left">
-                            <focus>{props.businessName}
+                            <strong>{props.businessName}
                             {props.radios === "accepted"? " has agreed to post your artwork!" : " will not post your artwork."}
-                            </focus>
+                            </strong>
                         </Typography>
                         </div> : null
                      }

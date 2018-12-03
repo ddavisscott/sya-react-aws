@@ -42,8 +42,6 @@ class ReplySubmission extends Component {
                 replied:    this.state.willSubmit ? "true" : "false",
             };
 
-            console.log(review);
-
             fetch(
                 "https://j739rb6mb6.execute-api.us-east-1.amazonaws.com/prod/submit-review-response",
                 {

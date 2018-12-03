@@ -65,7 +65,6 @@ class ArtistReviews extends Component {
                 <hr/>
                 <Grid container justify="space-evenly" spacing={16}>
                     { this.state.reviewsArray.map(subs => {
-                        console.log(subs);
                         if (this.state.choice === "replied" && subs.replied) {
                             return ( <ArtistReviewCards
                                 date={subs.artwork.uploadDate}

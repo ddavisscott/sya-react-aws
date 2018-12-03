@@ -65,7 +65,6 @@ class BusinessSubmissions extends Component {
                 <hr/>
                 <Grid container justify="space-evenly" spacing={16}>
                     { this.state.submissionArray.map(subs => {
-                        console.log(subs);
                         if (this.state.choice === "replied" && subs.replied) {
                             return ( <BusinessSubmissionCards
                                 date={subs.artwork.uploadDate}

@@ -32,7 +32,6 @@ class EditArtistProfile extends Component {
       this.setState({mySub: user.attributes.sub})
     });
     try {
-        console.log("reee" + this.state.mySub);
         await Axios.get(
             "https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" + this.state.mySub
         )
