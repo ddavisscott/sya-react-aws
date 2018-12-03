@@ -56,8 +56,10 @@ class App extends Component {
 
         } catch (e) {
             if (e !== "No current user") {
-                console.log(e.message);
+                console.log(e);
             }
+
+            this.setState({ isAuthenticated: false });
         }
 
         this.setState({ isAuthenticating: false });
@@ -67,17 +69,23 @@ class App extends Component {
     userHasAuthenticated = authenticated => {
         this.setState({ isAuthenticated: authenticated });
 
-        Auth.currentAuthenticatedUser().then( user => {
+        if(authenticated) {
+          Auth.currentAuthenticatedUser().then( user => {
             this.setState({ role: user.attributes["custom:role"]})
-        });
+          });
+        } else {
+          this.setState({isAuthenticating: false});
+        }
+
     };
 
     handleLogout = async event => {
         await Auth.signOut();
 
-        this.userHasAuthenticated(false);
+        await this.setState({isAuthenticated: false});
 
-        this.props.history.push("/Home");
+
+        this.props.history.push("/");
     };
 
     handleDrawer = event => {
@@ -147,7 +155,6 @@ class App extends Component {
         );
     }
 
-
     render() {
         const childProps = {
             isAuthenticated: this.state.isAuthenticated,
@@ -157,6 +164,8 @@ class App extends Component {
         return (
             !this.state.isAuthenticating && (
                 <div className="App container">
+
+              {console.log(this.state)}
                     <Navbar fluid collapseOnSelect style={{whiteSpace: "nowrap"}}>
                         <Navbar.Header>
                             {this.state.isAuthenticated ? (
@@ -232,7 +241,9 @@ class App extends Component {
                         width="200"
                     >
                     {this.state.role === "artist"? 
-                        this.renderArtist() : this.renderBusiness() }
+                        this.renderArtist() : 
+                      this.state.role === "business" ? 
+                        this.renderBusiness() : null}
                     </Drawer>
                     <Routes childProps={childProps} />
                 </div>
