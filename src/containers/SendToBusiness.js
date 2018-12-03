@@ -36,7 +36,6 @@ class SendToBusiness extends Component {
                 <h2>Choose a business to send your art to!</h2>
             </div>
             <div>
-                {console.log("die")}
                 <Grid container cellHeight={160} justify="space-evenly" spacing={16} cols={1}>
                     {this.state.info.map(tileData => (
                         <BusinessCardMedia
