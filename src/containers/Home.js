@@ -25,16 +25,28 @@ export default class Home extends Component {
       <h2>Share Yourself Artists is the easiest way to share your artwork 
         to millions of art lovers AROUND THE WORLD!
       </h2>
+      <img
+      src = "https://i.imgur.com/y6Bn06P.png"
+      alt = "banner"
+      width = '100%'
+      />
+      
+
       { this.props.isAuthenticated? (null) : (
         <div>
           <LinkContainer to="/BusinessSignUp">
-              <Button>Busniess Sign Up</Button>
+              <Button variant = "outlined">Business Sign Up</Button>
           </LinkContainer>
           <LinkContainer to="/ArtistSignUp">
-              <Button>Artist Sign Up</Button>
+              <Button variant = "outlined">Artist Sign Up</Button>
           </LinkContainer>
         </div>
       )}
+      <img
+      src = "https://i.imgur.com/yuSOiQf.png"
+      alt = "bannerinstructions"
+      width = '100%'
+      />
       </div>
     );
   }
