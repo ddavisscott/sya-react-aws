@@ -4,6 +4,11 @@ import BusinessCardMedia from "./BusinessCardMedia";
 import { connect } from "react-redux";
 import Axios from "axios";
 
+/*
+//Class is the page where an artist can choose business to send art to
+//Business's are displayed on Business Cards from BusinessCardMedia.js
+//Business info is pulled from database
+*/
 class SendToBusiness extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +20,7 @@ class SendToBusiness extends Component {
   }
 
   //Function gets business info and puts it into info[]
+  //Objects are placed into info[] within class state
   async componentDidMount() {
     try {
       await Axios.get(
@@ -27,6 +33,11 @@ class SendToBusiness extends Component {
     }
   }
 
+  /*
+  //Render displays all the business cards and data is mapped into card from info[]
+  //Button in card routes to ConfirmReviewRequest.js
+  //Pertinent business information is stored in redux methods at bottom of class
+  */
   render() {
     return (
       <div>
@@ -37,21 +48,21 @@ class SendToBusiness extends Component {
         <div>
           <Grid
             container
-            cellHeight={160}
-            justify="space-evenly"
-            spacing={16}
-            cols={1}
+            cellHeight = {160}
+            justify = "space-evenly"
+            spacing = {16}
+            cols = {1}
           >
             {this.state.info.map(tileData => (
               <BusinessCardMedia
-                title={tileData.businessName} //Account name
-                img={tileData.avatar} //Avatar image
-                subheader={"Joined: " + tileData.creationDate} //Join date field
-                about={tileData.about} //About section
-                worthKnowing={tileData.worthKnowing} //Worth Knowing Section
-                addNotes={tileData.additionalNotes} //Additional Notes section
-                id={tileData.userID}
-                /*                       
+                title = {tileData.businessName} //Account name
+                img = {tileData.avatar} //Avatar image
+                subheader = {"Joined: " + tileData.creationDate} //Join date field
+                about = {tileData.about} //About section
+                worthKnowing = {tileData.worthKnowing} //Worth Knowing Section
+                addNotes = {tileData.additionalNotes} //Additional Notes section
+                id = {tileData.userID}
+                /*  REDUX MAPPING INFO                     
                     date = {this.props.date}
                     sourceKey = {this.props.sourceKey}
                     artistName = {this.props.artistName}
@@ -68,6 +79,7 @@ class SendToBusiness extends Component {
     );
   }
 }
+//Redux parameters
 const mapStateToProps = state => ({
   date: state.requestReviewReducer.date,
   sourceKey: state.requestReviewReducer.sourceKey,
