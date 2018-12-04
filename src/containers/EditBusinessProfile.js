@@ -183,7 +183,7 @@ class EditBusinessProfile extends Component {
         );
       } else {
         return (
-          <div className = "ArtInfo">
+          <div align = "center" className = "ArtInfo">
             {this.Redirectrender()}
             <BusinessCardMedia
               title = {this.state.businessName}                   //Account name
@@ -219,7 +219,7 @@ class EditBusinessProfile extends Component {
                 multiline
                 rowsMax = {10}
                 className = "about"
-                onChange = {this.handleChangeName("about")}
+                onChange = {this.handleChange("about")}
                 value = {this.state.about}
               />
               <h3>
@@ -234,7 +234,7 @@ class EditBusinessProfile extends Component {
                 multiline
                 rowsMax = {10}
                 className = "worthKnowing"
-                onChange = {this.handleChangeName("worthKnowing")}
+                onChange = {this.handleChange("worthKnowing")}
                 value = {this.state.worthKnowing}
               />
               <h3>
@@ -250,7 +250,7 @@ class EditBusinessProfile extends Component {
                 multiline
                 rowsMax = {10}
                 className = "addNotes"
-                onChange = {this.handleChangeName("addNotes")}
+                onChange = {this.handleChange("addNotes")}
                 value = {this.state.addNotes}
               />
               <h2>Contact Handles: </h2>
@@ -290,7 +290,7 @@ class EditBusinessProfile extends Component {
                 onChange = {this.handleChange("facebook")}
                 value = {this.state.facebook}
               />
-              <LinkContainer to = "/BusinessDashboard">
+              <LinkContainer to = "/BusinessSubmissions">
                 <Button>Cancel</Button>
               </LinkContainer>
               <Button type = "submit">Update Profile Information</Button>
