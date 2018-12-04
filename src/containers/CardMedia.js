@@ -24,6 +24,7 @@ const styles = {
 };
 
 function MediaCard(props) {
+  
   const handleReviewSubmit = event => {
     props.rra(
       props.date,
