@@ -22,6 +22,9 @@ const styles = {
   }
 };
 
+/** The function returns a card that holds all the artist information that 
+ * sent art to the business.
+ */
 function BusinessSubmissionCards(props) {
   const handleReplySubmission = event => {
     props.replySubmission(

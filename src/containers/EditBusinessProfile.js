@@ -219,7 +219,7 @@ class EditBusinessProfile extends Component {
                 multiline
                 rowsMax = {10}
                 className = "about"
-                onChange = {this.handleChangeName("about")}
+                onChange = {this.handleChange("about")}
                 value = {this.state.about}
               />
               <h3>
@@ -234,7 +234,7 @@ class EditBusinessProfile extends Component {
                 multiline
                 rowsMax = {10}
                 className = "worthKnowing"
-                onChange = {this.handleChangeName("worthKnowing")}
+                onChange = {this.handleChange("worthKnowing")}
                 value = {this.state.worthKnowing}
               />
               <h3>
@@ -250,7 +250,7 @@ class EditBusinessProfile extends Component {
                 multiline
                 rowsMax = {10}
                 className = "addNotes"
-                onChange = {this.handleChangeName("addNotes")}
+                onChange = {this.handleChange("addNotes")}
                 value = {this.state.addNotes}
               />
               <h2>Contact Handles: </h2>
