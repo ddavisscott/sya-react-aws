@@ -49,16 +49,19 @@ function BusinessSubmissionCards(props) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" align="left">
-              {props.artTitle}
+              <strong>Title: </strong>{props.artTitle}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2" align="left">
+              <strong>Artist: </strong>{props.artistName}
             </Typography>
           </CardContent>
           <CardContent style={{ flex: 1, flexWrap: "wrap", maxWidth: 500 }}>
             <Typography gutterBottom variant="h5" component="h2" align="left">
-              Description: {props.descript}
+              <strong>Description: </strong>{props.descript}
             </Typography>
             {props.replied ? (
               <Typography gutterBottom variant="h5" component="h2" align="left">
-                Reply: {props.reply}
+                <strong>Reply: </strong>{props.reply}
               </Typography>
             ) : null}
           </CardContent>
@@ -67,12 +70,12 @@ function BusinessSubmissionCards(props) {
           {!props.replied ? (
             <LinkContainer to="/ReplySubmission">
               <Button
-                size="small"
-                color="primary"
+                size="large"
                 align="center"
+                fullWidth
                 onClick={handleReplySubmission}
               >
-                Reply
+                <strong>REPLY</strong>
               </Button>
             </LinkContainer>
           ) : null}
