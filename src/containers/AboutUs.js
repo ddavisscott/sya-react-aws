@@ -9,7 +9,7 @@ export default class AboutUs extends Component {
           <img
             src="https://i.imgur.com/qJaG6pe.jpg"
             alt=""
-            height="100%"
+            height= "350"
             width="100%"
           />
         }
