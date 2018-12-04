@@ -44,15 +44,18 @@ class Dashboard extends Component {
     }
   }
 
+  /*
+  //Render displays dashboard, if no images uploaded shows the no art uploaded page
+  */
   render() {
     return (
       <div>
-        <Grid container justify="space-evenly" spacing={16}>
+        <Grid container justify = "space-evenly" spacing={16}>
           {this.props.images.length === 0 ? (
             <div>
               <h1>No Art Uploaded Yet!</h1>
               <div>Upload Art by pressing the button below!</div>
-              <LinkContainer to="/UploadPage">
+              <LinkContainer to = "/UploadPage">
                 <Button>Upload Art</Button>
               </LinkContainer>
             </div>
@@ -60,13 +63,13 @@ class Dashboard extends Component {
             this.props.images.map(imageInfo => (
               <Grid key={imageInfo.sourceKey} item>
                 <CardMedia
-                  date={imageInfo.date}
-                  sourceKey={imageInfo.sourceKey}
-                  artistName={imageInfo.artistName}
-                  artTitle={imageInfo.artTitle}
-                  url={imageInfo.url}
-                  descript={imageInfo.description}
-                  userSub={imageInfo.userSub}
+                  date = {imageInfo.date}
+                  sourceKey = {imageInfo.sourceKey}
+                  artistName = {imageInfo.artistName}
+                  artTitle = {imageInfo.artTitle}
+                  url = {imageInfo.url}
+                  descript = {imageInfo.description}
+                  userSub = {imageInfo.userSub}
                 />
               </Grid>
             ))
@@ -82,6 +85,7 @@ const mapStateToProps = state => ({
   images: state.dashBoardReducer.images
 });
 
+//Redux function
 const mapDispatchToProps = {
   getArt: getArtAction,
   getImages: dashBoardImageAction

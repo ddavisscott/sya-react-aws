@@ -42,28 +42,28 @@ function MediaCard(props) {
   const { classes } = props;
 
   return (
-    <Card className={classes.card}>
+    <Card className = {classes.card}>
       <CardActionArea>
         <CardMedia
-          className={classes.media}
-          image={props.url}
-          title={props.artTitle}
-          style={styles.media}
+          className = {classes.media}
+          image = {props.url}
+          title = {props.artTitle}
+          style = {styles.media}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant = "h5" component = "h2">
             {props.artTitle}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions align="center">
-        <LinkContainer to="/ViewArt">
-          <Button size="small" color="primary" onClick={handleViewSubmit}>
+      <CardActions align = "center">
+        <LinkContainer to = "/ViewArt">
+          <Button size = "small" color = "primary" onClick = {handleViewSubmit}>
             VIEW
           </Button>
         </LinkContainer>
-        <LinkContainer to="/BusinessChoice">
-          <Button size="small" color="primary" onClick={handleReviewSubmit}>
+        <LinkContainer to = "/BusinessChoice">
+          <Button size = "small" color = "primary" onClick = {handleReviewSubmit}>
             SUBMIT THIS PIECE
           </Button>
         </LinkContainer>

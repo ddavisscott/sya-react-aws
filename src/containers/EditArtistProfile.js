@@ -11,6 +11,10 @@ import { Redirect } from "react-router";
 import Axios from "axios";
 import TextField from "@material-ui/core/TextField";
 
+/*
+//Class is the page where a artist user can edit profile information
+//Class gets information from database to fill user entry fields
+*/
 class EditArtistProfile extends Component {
   constructor(props) {
     const uuidv4 = require("uuid/v4");
@@ -26,6 +30,12 @@ class EditArtistProfile extends Component {
     };
   }
 
+  /*
+  //Function collects user Sub and puts it into state using Auth.curr....    mySub
+  //Axios gets individual business information by appending key from user Sub to URL
+  //Function sets states of class to information from database
+  //this way the user can see previously entered information when they try and update profile
+  */
   async componentDidMount() {
     await Auth.currentAuthenticatedUser().then(user => {
       this.setState({ mySub: user.attributes.sub });
@@ -45,7 +55,12 @@ class EditArtistProfile extends Component {
       alert(e);
     }
   }
-
+  
+  /*
+  //Handles when user tries to submit form
+  //Checks to make sure user cant leave fields blank
+  //POSTs to database using fetch
+  */
   handleSubmit = async event => {
     event.preventDefault();
     if (this.state.instagram === "") {
@@ -114,7 +129,7 @@ class EditArtistProfile extends Component {
         return (
           <div className="ArtInfo">
             {this.Redirectrender()}
-            <h1 align={'center'}>Update Artist Profile Information:</h1>
+            <h1 align = "center">Update Artist Profile Information:</h1>
             <form onSubmit={this.handleSubmit}>
               <h2>Contact Handles: </h2>
               <TextField
@@ -164,10 +179,13 @@ class EditArtistProfile extends Component {
     }
   }
 }
+
+//Redux mapping function
 const mapStateToProps = state => ({
   image: state.imageReducer.image
 });
 
+//Redux function
 const mapDispatchToProps = {
   addArt: addArtAction
 };

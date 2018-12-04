@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button } from "@material-ui/core";
 
+//Displays homepage on front of site
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,7 @@ export default class Home extends Component {
     };
   }
 
+  //Handles user authentication
   async componentDidMount() {
     if (!this.props.isAuthenticated) {
       return;
@@ -18,6 +20,8 @@ export default class Home extends Component {
     this.setState({ isLoading: false });
   }
 
+  //Displays homepage and scales properly
+  //If signed in, the signup buttons dissapear
   render() {
     return (
       <div className="Home" align="center">

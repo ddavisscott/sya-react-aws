@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { selectImage } from "../actions/imageActions";
 import "./UploadPage.css";
 
-// Styles for the UploadPage component
+//Styles for the UploadPage component
 const theme = createMuiTheme({
   palette: {
     primary: { main: "#FFFFFF" },
@@ -25,6 +25,7 @@ const theme = createMuiTheme({
   }
 });
 
+//Upload page for artist uploading of images
 class UploadPage extends React.Component {
   constructor() {
     super();
@@ -37,6 +38,7 @@ class UploadPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //Changes state to hold image before posting
   handleChange = event => {
     if (event.target.files[0]) {
       this.setState({ fileNotSelected: false });
@@ -44,6 +46,7 @@ class UploadPage extends React.Component {
     this.props.selectImage(event.target.files[0]);
   };
 
+  //Handles submit form and thorws error if no image selected
   handleSubmit = event => {
     event.preventDefault();
     if (this.props.image == null) {
@@ -51,35 +54,36 @@ class UploadPage extends React.Component {
     }
   };
 
+  //Renders the upload page and contains the buttons neccessary for upoad
   render() {
     return (
-      <div className="page" style={{ padding: 40, fontSize: 25 }}>
+      <div className = "page" style = {{padding: 40, fontSize: 25}}>
         <div>
-          <Typography variant="h1" component="h1" gutterBottom>
+          <Typography variant = "h1" component = "h1" gutterBottom>
             Great, Let's Get Started
           </Typography>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant = "h3" gutterBottom>
             Blogs and labels typically reply within hours.
           </Typography>
-          <Typography variant="h5" component="p" gutterBottom>
+          <Typography variant = "h5" component = "p" gutterBottom>
             If a blog decides that they like your piece, they'll let you know
             when and how they plan to share it. You'll be able to chat with
             them, and share any information you think they might need for their
             coverage.
           </Typography>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant = "h5" gutterBottom>
             Let's Upload your art Piece!
           </Typography>
         </div>
-        <MuiThemeProvider theme={theme}>
-          <Grid container spacing={16}>
+        <MuiThemeProvider theme = {theme}>
+          <Grid container spacing = {16}>
             <Grid>
-              <form onSubmit={this.handleSubmit}>
-                <Button variant="contained" color="secondary">
+              <form onSubmit = {this.handleSubmit}>
+                <Button variant = "contained" color = "secondary">
                   <input
-                    type="file"
-                    onChange={this.handleChange}
-                    accept="image/*"
+                    type = "file"
+                    onChange = {this.handleChange}
+                    accept = "image/*"
                     //className="inputfile"
                   />
                   Upload Your Art
@@ -87,11 +91,11 @@ class UploadPage extends React.Component {
               </form>
             </Grid>
             <Grid>
-              <LinkContainer to="/ArtInfo">
+              <LinkContainer to = "/ArtInfo">
                 <Button
-                  disabled={this.state.fileNotSelected}
-                  variant="contained"
-                  color="primary"
+                  disabled = {this.state.fileNotSelected}
+                  variant = "contained"
+                  color = "primary"
                 >
                   Next
                 </Button>
@@ -104,6 +108,7 @@ class UploadPage extends React.Component {
   }
 }
 
+//Redux function
 const mapStateToProps = state => ({
   image: state.imageReducer.image
 });
