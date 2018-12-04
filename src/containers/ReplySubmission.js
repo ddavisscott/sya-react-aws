@@ -32,14 +32,13 @@ class ReplySubmission extends Component {
 
     handleSubmit = () => {
         if (this.validateString()) {
-
             const review = {
                 businessID: this.props.businessID,
-                reviewID:   this.props.reviewID,
-                reply:      this.state.reply,
-                radios:     this.state.willSubmit ? "accepted" : "declined",
-                repliedDate:new Date(),
-                replied:    this.state.willSubmit ? "true" : "false",
+                reviewID: this.props.reviewID,
+                reply: this.state.reply,
+                radios: this.state.willSubmit ? "accepted" : "declined",
+                repliedDate: new Date(),
+                replied: this.state.willSubmit ? "true" : "false"
             };
 
             fetch(
@@ -53,8 +52,8 @@ class ReplySubmission extends Component {
                     body: JSON.stringify(review)
                 }
             )
-            .then(result => console.log(result))
-            .catch(err => console.log(err));
+                .then(result => console.log(result))
+                .catch(err => console.log(err));
 
             alert("Review Sent!");
         } else {
@@ -65,7 +64,13 @@ class ReplySubmission extends Component {
         return (
             <div className="Home">
                 <h1>Submit your reponse</h1>
-                <img fullWidth src={this.props.url} alt={this.props.artTitle} width={'100%'} height={'100%'}/>
+                <img
+                    fullWidth
+                    src={this.props.url}
+                    alt={this.props.artTitle}
+                    width={"100%"}
+                    height={"100%"}
+                />
                 <div align="left">
                     <h2>Art title: {this.props.artTitle}</h2>
                     <h2>Artist name: {this.props.artistName}</h2>
@@ -137,8 +142,8 @@ const mapStateToProps = state => ({
     date: state.replySubmissionReducer.date,
     businessID: state.replySubmissionReducer.businessID,
     reviewID: state.replySubmissionReducer.reviewID,
-    reply:    state.replySubmissionReducer.reply,
-    reviewd: state.replySubmissionReducer.reviwed,
+    reply: state.replySubmissionReducer.reply,
+    reviewd: state.replySubmissionReducer.reviwed
 });
 
 export default connect(mapStateToProps)(ReplySubmission);

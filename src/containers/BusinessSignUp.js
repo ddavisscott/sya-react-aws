@@ -1,10 +1,4 @@
 import React, { Component } from "react";
-import {
-    HelpBlock,
-    FormGroup,
-    FormControl,
-    ControlLabel
-} from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import TextField from '@material-ui/core/TextField';

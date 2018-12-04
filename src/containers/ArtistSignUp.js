@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import "./ArtistSignUp.css";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 /*
- * The ArtistSignUp component allows a new user to create new user that 
- * is an artist. The fields to input include a username, email, password, 
+ * The ArtistSignUp component allows a new user to create new user that
+ * is an artist. The fields to input include a username, email, password,
  * and a password confirmation. Once those fields are entered, an email
  * will be sent to the specified email that contains a confirmation code.
  * A new input field will request the confirmation to confirm an artist sign
- * in. 
+ * in.
  */
 
 export default class ArtistSignUp extends Component {
@@ -44,7 +44,7 @@ export default class ArtistSignUp extends Component {
 
     handleChange = name => event => {
         this.setState({
-          [name]: event.target.value
+            [name]: event.target.value
         });
     };
 
@@ -68,7 +68,7 @@ export default class ArtistSignUp extends Component {
             });
         } catch (e) {
             console.log(e.message);
-            alert(e.message)
+            alert(e.message);
         }
 
         this.setState({ isLoading: false });
@@ -80,30 +80,35 @@ export default class ArtistSignUp extends Component {
         this.setState({ isLoading: true });
 
         try {
-
             // Try to confirm sign up
             await Auth.confirmSignUp(
                 this.state.name,
-                this.state.confirmationCode)
-            .catch(err => { console.log(err) });
+                this.state.confirmationCode
+            ).catch(err => {
+                console.log(err);
+            });
 
             // Try to sign the artist in
-            await Auth.signIn(this.state.name, this.state.password)
-            .catch(err => { console.log(err) });
-            
-            // Get the user sub and set the state
-            await Auth.currentAuthenticatedUser().then(user => {
-                console.log(user);
-                this.setState({ sub: user.attributes.sub });
-            })
-            .catch(err => { console.log(err) });
+            await Auth.signIn(this.state.name, this.state.password).catch(
+                err => {
+                    console.log(err);
+                }
+            );
 
-            // Pass the boolean true to the prop authenticadedUser 
+            // Get the user sub and set the state
+            await Auth.currentAuthenticatedUser()
+                .then(user => {
+                    console.log(user);
+                    this.setState({ sub: user.attributes.sub });
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+
+            // Pass the boolean true to the prop authenticadedUser
             this.props.userHasAuthenticated(true);
 
             this.props.history.push("/");
-
-            
         } catch (e) {
             console.log(e.message);
             this.setState({ isLoading: false });

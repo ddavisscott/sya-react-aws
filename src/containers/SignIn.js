@@ -31,7 +31,6 @@ const styles = theme => ({
  * username and password return a valid user the user is signed in.
  */
 export default class Login extends Component {
-
     // State for the componenet includes a username and password along
     // with a boolean 'isLoading' to check for the submit button.
     state = {
@@ -40,13 +39,13 @@ export default class Login extends Component {
         password: ""
     };
 
-    // validateForm checks if the username and password are not empty before 
+    // validateForm checks if the username and password are not empty before
     // allowing the user to submit their information.
     validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0;
     }
 
-    // handleChange takes in a name as a parameter that describes the name 
+    // handleChange takes in a name as a parameter that describes the name
     // of the state and sets it the given value from the target
     handleChange = name => event => {
         this.setState({
@@ -58,11 +57,11 @@ export default class Login extends Component {
     // using cognito. If the user does not exit, Auth.signIn throws an error
     // that will be alerted to the user.
     handleSubmit = async event => {
-        event.preventDefault();               // Prevents the page from reloading
-        this.setState({ isLoading: true });   // Sets the button to loading
+        event.preventDefault(); // Prevents the page from reloading
+        this.setState({ isLoading: true }); // Sets the button to loading
 
         try {
-            // Sends the username and password form the state and try to sign 
+            // Sends the username and password form the state and try to sign
             // the user in.
             await Auth.signIn(this.state.username, this.state.password);
 
@@ -76,7 +75,7 @@ export default class Login extends Component {
     };
 
     /**
-     * Render the html which contains the form for the user to sign in. The 
+     * Render the html which contains the form for the user to sign in. The
      * input fields include the username and password. The LoaderButton is
      * used attempt to sign the user in.
      */

@@ -1,10 +1,10 @@
-import {GET_ART} from './types';
+import { GET_ART } from "./types";
 
 export function getArtAction(inputImages) {
-    return function(dispatch) {
-        dispatch({
-            type:GET_ART,
-            images: inputImages
-        })
-    }
+  return function(dispatch) {
+    dispatch({
+      type: GET_ART,
+      images: inputImages
+    });
+  };
 }

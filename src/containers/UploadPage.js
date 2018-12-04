@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
 import { selectImage } from "../actions/imageActions";
-import './UploadPage.css'
+import "./UploadPage.css";
 
 // Styles for the UploadPage component
 const theme = createMuiTheme({
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
     },
     typography: {
         fontFamily: ["Roboto"],
-        fontSize: 30,
+        fontSize: 30
     }
 });
 
@@ -55,27 +55,27 @@ class UploadPage extends React.Component {
         return (
             <div className="page" style={{ padding: 40, fontSize: 25 }}>
                 <div>
-                <Typography variant="h1" component="h1" gutterBottom>
-                    Great, Let's Get Started
-                </Typography>
-                <Typography variant="h3" gutterBottom>
-                    Blogs and labels typically reply within hours.
-                </Typography>
-                <Typography variant="h5" component="p" gutterBottom>
-                    If a blog decides that they like your piece, they'll let you
-                    know when and how they plan to share it. You'll be able to
-                    chat with them, and share any information you think they
-                    might need for their coverage.
-                </Typography>
-                <Typography variant="h5" gutterBottom>
-                    Let's Upload your art Piece!
-                </Typography>
+                    <Typography variant="h1" component="h1" gutterBottom>
+                        Great, Let's Get Started
+                    </Typography>
+                    <Typography variant="h3" gutterBottom>
+                        Blogs and labels typically reply within hours.
+                    </Typography>
+                    <Typography variant="h5" component="p" gutterBottom>
+                        If a blog decides that they like your piece, they'll let
+                        you know when and how they plan to share it. You'll be
+                        able to chat with them, and share any information you
+                        think they might need for their coverage.
+                    </Typography>
+                    <Typography variant="h5" gutterBottom>
+                        Let's Upload your art Piece!
+                    </Typography>
                 </div>
                 <MuiThemeProvider theme={theme}>
                     <Grid container spacing={16}>
                         <Grid>
                             <form onSubmit={this.handleSubmit}>
-                                <Button variant="contained" color="secondary" >
+                                <Button variant="contained" color="secondary">
                                     <input
                                         type="file"
                                         onChange={this.handleChange}
@@ -92,7 +92,6 @@ class UploadPage extends React.Component {
                                     disabled={this.state.fileNotSelected}
                                     variant="contained"
                                     color="primary"
-                                    
                                 >
                                     Next
                                 </Button>
@@ -109,4 +108,7 @@ const mapStateToProps = state => ({
     image: state.imageReducer.image
 });
 
-export default connect(mapStateToProps,{ selectImage })(withStyles(theme)(UploadPage));
+export default connect(
+    mapStateToProps,
+    { selectImage }
+)(withStyles(theme)(UploadPage));

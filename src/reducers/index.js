@@ -1,14 +1,14 @@
-import {combineReducers} from 'redux';
-import imageReducer from './imageReducer';
-import viewArtReducer from './viewArtReducer';
-import replySubmissionReducer from './replySubmissionReducer';
-import requestReviewReducer from './requestReviewReducer';
-import dashBoardReducer from './dashBoardReducer';
+import { combineReducers } from "redux";
+import imageReducer from "./imageReducer";
+import viewArtReducer from "./viewArtReducer";
+import replySubmissionReducer from "./replySubmissionReducer";
+import requestReviewReducer from "./requestReviewReducer";
+import dashBoardReducer from "./dashBoardReducer";
 
-export default combineReducers( {
+export default combineReducers({
     imageReducer,
     requestReviewReducer,
     viewArtReducer,
     replySubmissionReducer,
-    dashBoardReducer,
+    dashBoardReducer
 });

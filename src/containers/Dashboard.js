@@ -4,27 +4,25 @@ import CardMedia from "./CardMedia";
 import { Auth } from "aws-amplify";
 import Axios from "axios";
 import { LinkContainer } from "react-router-bootstrap";
-import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
+import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
 import { getArtAction } from "../actions/getArtAction";
 import { dashBoardImageAction } from "../actions/dashBoardImageAction";
 
 /*
  * Dashboard is the name for the artist dashboard. This component holds all
- * of the artist's uploaded art work in a card. 
+ * of the artist's uploaded art work in a card.
  */
-
 class Dashboard extends Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
-            mySub: "",
+            mySub: ""
         };
     }
 
-    /* 
+    /*
      * componentDidMount gets the artist information from the URL.
      */
     async componentDidMount() {
@@ -39,8 +37,8 @@ class Dashboard extends Component {
                 "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
                     this.state.mySub
             )
-            .then(result => this.props.getImages(result.data.Items ))
-            .catch(err => console.log(err));
+                .then(result => this.props.getImages(result.data.Items))
+                .catch(err => console.log(err));
         } catch (e) {
             alert(e);
         }
@@ -50,17 +48,15 @@ class Dashboard extends Component {
         return (
             <div>
                 <Grid container justify="space-evenly" spacing={16}>
-                    { this.props.images.length === 0? 
+                    {this.props.images.length === 0 ? (
                         <div>
-                        <h1>No Art Uploaded Yet!</h1> 
-                        <div>Upload Art by pressing the button below!</div> 
-                        <LinkContainer to="/UploadPage">
-                        <Button>
-                            Upload Art
-                        </Button>
-                        </LinkContainer>
+                            <h1>No Art Uploaded Yet!</h1>
+                            <div>Upload Art by pressing the button below!</div>
+                            <LinkContainer to="/UploadPage">
+                                <Button>Upload Art</Button>
+                            </LinkContainer>
                         </div>
-                    : 
+                    ) : (
                         this.props.images.map(imageInfo => (
                             <Grid key={imageInfo.sourceKey} item>
                                 <CardMedia
@@ -74,23 +70,24 @@ class Dashboard extends Component {
                                 />
                             </Grid>
                         ))
-                    }
+                    )}
                 </Grid>
             </div>
         );
     }
 }
 
-
 // Maps the current state to props using redux
 const mapStateToProps = state => ({
     images: state.dashBoardReducer.images
-})
+});
 
 const mapDispatchToProps = {
     getArt: getArtAction,
     getImages: dashBoardImageAction
-}
+};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Dashboard);
