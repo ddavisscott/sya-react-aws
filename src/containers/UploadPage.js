@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { selectImage } from "../actions/imageActions";
 import './UploadPage.css'
 
+// Styles for the UploadPage component
 const theme = createMuiTheme({
     palette: {
         primary: { main: "#FFFFFF" },
@@ -34,7 +35,6 @@ class UploadPage extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        //this.handleOnClick = this.handleOnClick.bind(this)
     }
 
     handleChange = event => {

@@ -30,12 +30,12 @@ class App extends Component {
         super(props);
 
         this.state = {
-            isAuthenticated: false,
+            isAuthenticated:  false, 
             isAuthenticating: true,
-            clickedDrawer: false,
-            role: "",
-            credits: 0,
-            sub: "",
+            clickedDrawer:    false,
+            role:             "",
+            credits:          0,
+            sub:              "",
         };
     }
 
