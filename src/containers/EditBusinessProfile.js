@@ -183,7 +183,7 @@ class EditBusinessProfile extends Component {
         );
       } else {
         return (
-          <div className = "ArtInfo">
+          <div align = "center" className = "ArtInfo">
             {this.Redirectrender()}
             <BusinessCardMedia
               title = {this.state.businessName}                   //Account name
@@ -290,7 +290,7 @@ class EditBusinessProfile extends Component {
                 onChange = {this.handleChange("facebook")}
                 value = {this.state.facebook}
               />
-              <LinkContainer to = "/BusinessDashboard">
+              <LinkContainer to = "/BusinessSubmissions">
                 <Button>Cancel</Button>
               </LinkContainer>
               <Button type = "submit">Update Profile Information</Button>
