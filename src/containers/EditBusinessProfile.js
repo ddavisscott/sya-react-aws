@@ -12,6 +12,10 @@ import Axios from "axios";
 import BusinessCardMedia from "./BusinessCardMedia";
 import TextField from "@material-ui/core/TextField";
 
+/*
+//Class is the page where a business user can edit profile information
+//Class gets information from database to fill user entry fields
+*/
 class EditBusinessProfile extends Component {
   constructor(props) {
     const uuidv4 = require("uuid/v4");
@@ -37,12 +41,17 @@ class EditBusinessProfile extends Component {
     };
   }
 
+  /*
+  //Function collects user Sub and puts it into state using Auth.curr....
+  //Axios gets individual business information by appending key from user Sub to URL
+  //Function sets states of class to information from database
+  //this way the user can see previously entered information when they try and update profile
+  */
   async componentDidMount() {
     await Auth.currentAuthenticatedUser().then(user => {
       this.setState({ mySub: user.attributes.sub });
     });
     try {
-      console.log("reee" + this.state.mySub);
       await Axios.get(
         "https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=business&key=" +
           this.state.mySub
@@ -67,6 +76,11 @@ class EditBusinessProfile extends Component {
     }
   }
 
+  /*
+  //Function handles when user submits form from the render method
+  //Checks that fields cannot be left blank if user tries to submit info
+  //Function POSTs to database
+  */
   handleSubmit = async event => {
     event.preventDefault();
     if (this.state.fileNotSelected) {
@@ -136,6 +150,7 @@ class EditBusinessProfile extends Component {
       return <Redirect to="/BusinessSubmissions" />;
     }
   };
+
   //Function for handling change within render function, by setting states in constructor
   handleChange = name => event => {
     this.setState({
@@ -143,11 +158,12 @@ class EditBusinessProfile extends Component {
     });
   };
 
+  //Function for handling changes when a user selects an image
   handleChangeImg = event => {
     if (event.target.files[0]) {
-      this.setState({ fileNotSelected: false });
+      this.setState({fileNotSelected: false});
     }
-    this.setState({ image: event.target.files[0] });
+    this.setState({image: event.target.files[0]});
   };
 
   /*
@@ -167,27 +183,27 @@ class EditBusinessProfile extends Component {
         );
       } else {
         return (
-          <div className="ArtInfo">
+          <div className = "ArtInfo">
             {this.Redirectrender()}
             <BusinessCardMedia
-              title={this.state.businessName} //Account name
-              img={this.state.avatar} //Avatar image
-              subheader={"Joined: " + this.state.creationDate} //Join date field
-              about={this.state.about} //About section
-              worthKnowing={this.state.worthKnowing} //Worth Knowing Section
-              addNotes={this.state.addNotes} //Additional Notes section
-              id={this.state.mySub}
-              disabled={true} //Disabled so + button dissapears
+              title = {this.state.businessName}                   //Account name
+              img = {this.state.avatar}                           //Avatar image
+              subheader = {"Joined: " + this.state.creationDate}  //Join date field
+              about = {this.state.about}                          //About section
+              worthKnowing = {this.state.worthKnowing}            //Worth Knowing Section
+              addNotes = {this.state.addNotes}                    //Additional Notes section
+              id = {this.state.mySub}
+              disabled = {true}                                   //Disabled so + button dissapears (So user cant route to a page they shouldnt go to)
             />
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit = {this.handleSubmit}>
               <h3>
                 Please upload an <strong>Avatar</strong>.
               </h3>
-              <Button variant="contained" color="secondary">
+              <Button variant = "contained" color = "secondary">
                 <input
-                  type="file"
-                  onChange={this.handleChangeImg}
-                  accept="image/*"
+                  type = "file"
+                  onChange = {this.handleChangeImg}
+                  accept = "image/*"
                 />
                 Upload an Avatar
               </Button>
@@ -197,14 +213,14 @@ class EditBusinessProfile extends Component {
               </h3>
               <TextField
                 required
-                id="standard-required"
-                label="About"
+                id = "standard-required"
+                label = "About"
                 fullWidth
                 multiline
-                rowsMax={10}
-                className="about"
-                onChange={this.handleChangeName("about")}
-                value={this.state.about}
+                rowsMax = {10}
+                className = "about"
+                onChange = {this.handleChangeName("about")}
+                value = {this.state.about}
               />
               <h3>
                 The <strong>Worth Knowing</strong> section is everything that
@@ -212,14 +228,14 @@ class EditBusinessProfile extends Component {
               </h3>
               <TextField
                 required
-                id="standard-required"
-                label="Worth Knowing"
+                id = "standard-required"
+                label = "Worth Knowing"
                 fullWidth
                 multiline
-                rowsMax={10}
-                className="worthKnowing"
-                onChange={this.handleChangeName("worthKnowing")}
-                value={this.state.worthKnowing}
+                rowsMax = {10}
+                className = "worthKnowing"
+                onChange = {this.handleChangeName("worthKnowing")}
+                value = {this.state.worthKnowing}
               />
               <h3>
                 The <strong>Additional Notes</strong> section is optional, but
@@ -228,56 +244,56 @@ class EditBusinessProfile extends Component {
               </h3>
               <TextField
                 required
-                id="standard-required"
-                label="Additional Notes"
+                id = "standard-required"
+                label = "Additional Notes"
                 fullWidth
                 multiline
-                rowsMax={10}
-                className="addNotes"
-                onChange={this.handleChangeName("addNotes")}
-                value={this.state.addNotes}
+                rowsMax = {10}
+                className = "addNotes"
+                onChange = {this.handleChangeName("addNotes")}
+                value = {this.state.addNotes}
               />
               <h2>Contact Handles: </h2>
               <TextField
                 required
-                id="standard-required"
-                label="Instagram Handle"
+                id = "standard-required"
+                label = "Instagram Handle"
                 fullWidth
-                className="instagram"
-                onChange={this.handleChange("instagram")}
-                value={this.state.instagram}
+                className = "instagram"
+                onChange = {this.handleChange("instagram")}
+                value = {this.state.instagram}
               />
               <TextField
                 required
-                id="standard-required"
-                label="Twitter Handle"
+                id = "standard-required"
+                label = "Twitter Handle"
                 fullWidth
-                className="twitter"
-                onChange={this.handleChange("twitter")}
-                value={this.state.twitter}
+                className = "twitter"
+                onChange = {this.handleChange("twitter")}
+                value = {this.state.twitter}
               />
               <TextField
                 required
-                id="standard-required"
-                label="Tumblr"
+                id = "standard-required"
+                label = "Tumblr"
                 fullWidth
-                className="tumblr"
-                onChange={this.handleChange("tumblr")}
-                value={this.state.tumblr}
+                className = "tumblr"
+                onChange = {this.handleChange("tumblr")}
+                value = {this.state.tumblr}
               />
               <TextField
                 required
-                id="standard-required"
-                label="FaceBook"
+                id = "standard-required"
+                label = "FaceBook"
                 fullWidth
-                className="facebook"
-                onChange={this.handleChange("facebook")}
-                value={this.state.facebook}
+                className = "facebook"
+                onChange = {this.handleChange("facebook")}
+                value = {this.state.facebook}
               />
-              <LinkContainer to="/BusinessDashboard">
+              <LinkContainer to = "/BusinessDashboard">
                 <Button>Cancel</Button>
               </LinkContainer>
-              <Button type="submit">Update Profile Information</Button>
+              <Button type = "submit">Update Profile Information</Button>
             </form>
           </div>
         );
@@ -285,10 +301,13 @@ class EditBusinessProfile extends Component {
     }
   }
 }
+
+//Redux mapping for image
 const mapStateToProps = state => ({
   image: state.imageReducer.image
 });
 
+//Redux function
 const mapDispatchToProps = {
   addArt: addArtAction
 };

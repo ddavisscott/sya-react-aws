@@ -55,12 +55,12 @@ class SendToBusiness extends Component {
           >
             {this.state.info.map(tileData => (
               <BusinessCardMedia
-                title = {tileData.businessName} //Account name
-                img = {tileData.avatar} //Avatar image
-                subheader = {"Joined: " + tileData.creationDate} //Join date field
-                about = {tileData.about} //About section
-                worthKnowing = {tileData.worthKnowing} //Worth Knowing Section
-                addNotes = {tileData.additionalNotes} //Additional Notes section
+                title = {tileData.businessName}                   //Account name
+                img = {tileData.avatar}                           //Avatar image
+                subheader = {"Joined: " + tileData.creationDate}  //Join date field
+                about = {tileData.about}                          //About section
+                worthKnowing = {tileData.worthKnowing}            //Worth Knowing Section
+                addNotes = {tileData.additionalNotes}             //Additional Notes section
                 id = {tileData.userID}
                 /*  REDUX MAPPING INFO                     
                     date = {this.props.date}
@@ -79,6 +79,7 @@ class SendToBusiness extends Component {
     );
   }
 }
+
 //Redux parameters
 const mapStateToProps = state => ({
   date: state.requestReviewReducer.date,

@@ -6,6 +6,12 @@ import BusinessCardMedia from "./BusinessCardMedia";
 import { Redirect } from "react-router";
 import Axios from "axios";
 
+/*
+//Class is the page where an artist confirms that they are sending art to a specific business
+//Business Card displays business info
+//Business is displayed on Business Card from BusinessCardMedia.js
+//Business info is pulled from database
+*/
 class ConfirmReviewRequest extends Component {
   constructor(props) {
     const uuidv4 = require("uuid/v4");
@@ -19,7 +25,7 @@ class ConfirmReviewRequest extends Component {
 
     Axios.get(
       "https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" +
-        this.props.artistID
+        this.props.artistID   //Gets Artist ID (userSub)
     )
       .then(user => {
         this.setState({
@@ -32,11 +38,14 @@ class ConfirmReviewRequest extends Component {
       });
   }
 
+  /*
+  //Function handles when user submits to send art to business
+  //POST info to Database
+  */
   handleSubmit = async event => {
     event.preventDefault();
     if (this.props.url == null) {
-      //If the page was reloaded and there is nothing to submit AKA file not displayed
-      alert("File Not Chosen");
+      alert("File Not Chosen"); //If the page was reloaded and there is nothing to submit AKA file not displayed
     } else if (this.state.artistCredit <= 0) {
       alert(
         "You currently have (" +
@@ -79,12 +88,17 @@ class ConfirmReviewRequest extends Component {
     }
   };
 
+  //Handles redirect of page by changing the (redirect: false) in the state being changed in handleSubmit
   Redirectrender = () => {
     if (this.state.redirect) {
       return <Redirect to="/Dashboard" />;
     }
   };
 
+  /*
+  //Render displays page to user
+  //Business card is displayed here
+  */
   render() {
     return (
       <div>
@@ -94,48 +108,49 @@ class ConfirmReviewRequest extends Component {
           Submitting to: <strong>{this.props.businessName}</strong>
         </h2>
         <BusinessCardMedia
-          title={this.props.businessName} //Account name
-          img={this.props.businessAvatar} //Avatar image
-          subheader={"Joined: " + this.props.businessCreationDate} //Join date field
-          about={this.props.businessAbout} //About section
-          worthKnowing={this.props.businessWorthKnowing} //Worth Knowing Section
-          addNotes={this.props.businessAdditionalNotes} //Additional Notes section
-          date={this.props.date}
-          sourceKey={this.props.sourceKey}
-          artistName={this.props.artistName}
-          artTitle={this.props.artTitle}
-          url={this.props.url}
-          descript={this.props.descript}
-          userSub={this.props.userSub}
-          disabled={true} //Disabled so + button dissapears
+          title = {this.props.businessName}                           //Account name
+          img = {this.props.businessAvatar}                           //Avatar image
+          subheader = {"Joined: " + this.props.businessCreationDate}  //Join date field
+          about = {this.props.businessAbout}                          //About section
+          worthKnowing = {this.props.businessWorthKnowing}            //Worth Knowing Section
+          addNotes = {this.props.businessAdditionalNotes}             //Additional Notes section
+          date = {this.props.date}
+          sourceKey = {this.props.sourceKey}
+          artistName = {this.props.artistName}
+          artTitle = {this.props.artTitle}
+          url = {this.props.url}
+          descript = {this.props.descript}
+          userSub = {this.props.userSub}
+          disabled = {true}                                           //Disabled so + button dissapears
         />
         <h2>
           <strong>Title: </strong>
           {this.props.artTitle} | <strong>Description: </strong>
           {this.props.artDescription}
         </h2>
-        <LinkContainer color="secondary" to="/BusinessChoice">
-          <Button variant="outlined" size="large">
+        <LinkContainer color = "secondary" to = "/BusinessChoice">
+          <Button variant = "outlined" size = "large">
             Back
           </Button>
         </LinkContainer>
-        <form onSubmit={this.handleSubmit}>
-          <Button color="primary" type="submit" variant="outlined" size="large">
+        <form onSubmit = {this.handleSubmit}>
+          <Button color = "primary" type = "submit" variant = "outlined" size = "large">
             SUBMIT
           </Button>
         </form>
         <br />
 
         <img
-          src={this.props.url}
-          alt={this.props.artTitle}
-          height={"100%"}
-          width={"100%"}
+          src = {this.props.url}
+          alt = {this.props.artTitle}
+          height = {"100%"}
+          width = {"100%"}
         />
       </div>
     );
   }
 }
+
 //Redux fields
 const mapStateToProps = state => ({
   //artist info:
@@ -150,7 +165,6 @@ const mapStateToProps = state => ({
   businessName: state.requestReviewReducer.businessName,
   businessEmail: state.requestReviewReducer.businessEmail,
   businessID: state.requestReviewReducer.businessID,
-
   businessAbout: state.requestReviewReducer.businessEmail,
   businessWorthKnowing: state.requestReviewReducer.businessTheGood,
   businessAdditionalNotes: state.requestReviewReducer.businessAddNotes,
