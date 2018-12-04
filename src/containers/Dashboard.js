@@ -14,80 +14,80 @@ import { dashBoardImageAction } from "../actions/dashBoardImageAction";
  * of the artist's uploaded art work in a card.
  */
 class Dashboard extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            mySub: ""
-        };
+    this.state = {
+      mySub: ""
+    };
+  }
+
+  /*
+   * componentDidMount gets the artist information from the URL.
+   */
+  async componentDidMount() {
+    try {
+      // Gets the user sub from cognito.
+      await Auth.currentAuthenticatedUser().then(user => {
+        this.setState({ mySub: user.attributes.sub });
+      });
+
+      // Gets the image array using Axios and stores it in redux using getImages
+      await Axios.get(
+        "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
+          this.state.mySub
+      )
+        .then(result => this.props.getImages(result.data.Items))
+        .catch(err => console.log(err));
+    } catch (e) {
+      alert(e);
     }
+  }
 
-    /*
-     * componentDidMount gets the artist information from the URL.
-     */
-    async componentDidMount() {
-        try {
-            // Gets the user sub from cognito.
-            await Auth.currentAuthenticatedUser().then(user => {
-                this.setState({ mySub: user.attributes.sub });
-            });
-
-            // Gets the image array using Axios and stores it in redux using getImages
-            await Axios.get(
-                "https://70tcdlzobd.execute-api.us-east-1.amazonaws.com/prod/user-images?key=" +
-                    this.state.mySub
-            )
-                .then(result => this.props.getImages(result.data.Items))
-                .catch(err => console.log(err));
-        } catch (e) {
-            alert(e);
-        }
-    }
-
-    render() {
-        return (
+  render() {
+    return (
+      <div>
+        <Grid container justify="space-evenly" spacing={16}>
+          {this.props.images.length === 0 ? (
             <div>
-                <Grid container justify="space-evenly" spacing={16}>
-                    {this.props.images.length === 0 ? (
-                        <div>
-                            <h1>No Art Uploaded Yet!</h1>
-                            <div>Upload Art by pressing the button below!</div>
-                            <LinkContainer to="/UploadPage">
-                                <Button>Upload Art</Button>
-                            </LinkContainer>
-                        </div>
-                    ) : (
-                        this.props.images.map(imageInfo => (
-                            <Grid key={imageInfo.sourceKey} item>
-                                <CardMedia
-                                    date={imageInfo.date}
-                                    sourceKey={imageInfo.sourceKey}
-                                    artistName={imageInfo.artistName}
-                                    artTitle={imageInfo.artTitle}
-                                    url={imageInfo.url}
-                                    descript={imageInfo.description}
-                                    userSub={imageInfo.userSub}
-                                />
-                            </Grid>
-                        ))
-                    )}
-                </Grid>
+              <h1>No Art Uploaded Yet!</h1>
+              <div>Upload Art by pressing the button below!</div>
+              <LinkContainer to="/UploadPage">
+                <Button>Upload Art</Button>
+              </LinkContainer>
             </div>
-        );
-    }
+          ) : (
+            this.props.images.map(imageInfo => (
+              <Grid key={imageInfo.sourceKey} item>
+                <CardMedia
+                  date={imageInfo.date}
+                  sourceKey={imageInfo.sourceKey}
+                  artistName={imageInfo.artistName}
+                  artTitle={imageInfo.artTitle}
+                  url={imageInfo.url}
+                  descript={imageInfo.description}
+                  userSub={imageInfo.userSub}
+                />
+              </Grid>
+            ))
+          )}
+        </Grid>
+      </div>
+    );
+  }
 }
 
 // Maps the current state to props using redux
 const mapStateToProps = state => ({
-    images: state.dashBoardReducer.images
+  images: state.dashBoardReducer.images
 });
 
 const mapDispatchToProps = {
-    getArt: getArtAction,
-    getImages: dashBoardImageAction
+  getArt: getArtAction,
+  getImages: dashBoardImageAction
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Dashboard);

@@ -15,34 +15,34 @@ import { LinkContainer } from "react-router-bootstrap";
 
 //Styling
 const styles = theme => ({
-    card: {
-        width: "90%"
-        //minWidth: 1000
-    },
-    media: {
-        height: 0,
-        paddingTop: "56.25%" // 16:9
-    },
-    actions: {
-        display: "flex"
-    },
-    expand: {
-        transform: "rotate(0deg)",
-        transition: theme.transitions.create("transform", {
-            duration: theme.transitions.duration.shortest
-        }),
-        marginLeft: "auto",
-        [theme.breakpoints.up("sm")]: {
-            marginRight: -8
-        }
-    },
-    expandOpen: {
-        transform: "rotate(180deg)"
-    },
-    title: {
-        textTransform: "capitalize",
-        textAlign: "left"
+  card: {
+    width: "90%"
+    //minWidth: 1000
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%" // 16:9
+  },
+  actions: {
+    display: "flex"
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    }),
+    marginLeft: "auto",
+    [theme.breakpoints.up("sm")]: {
+      marginRight: -8
     }
+  },
+  expandOpen: {
+    transform: "rotate(180deg)"
+  },
+  title: {
+    textTransform: "capitalize",
+    textAlign: "left"
+  }
 });
 
 /*
@@ -52,99 +52,81 @@ const styles = theme => ({
   //using information from the database
   */
 function BusinessMediaCard(props) {
-    const handleSubmit = event => {
-        //ibusinessName, ibusinessEmail,ibusinessID,
-        //ibusinessSubheader,ibusinessTheGood,ibusinessIMG,ibusinessAddNotes
-        console.log("submit");
-        props.rba(
-            props.title,
-            props.about,
-            props.id,
-            props.subheader,
-            props.worthKnowing,
-            props.img,
-            props.addNotes
-        );
-    };
-
-    const { classes } = props;
-    return (
-        <Card className={classes.card}>
-            <CardHeader
-                avatar={<Avatar src={props.img} className={classes.avatar} />}
-                action={
-                    props.disabled ? null : (
-                        <LinkContainer
-                            to="/ConfirmReviewRequest"
-                            onClick={handleSubmit}
-                        >
-                            <IconButton color="secondary">
-                                <AddIcon />
-                            </IconButton>
-                        </LinkContainer>
-                    )
-                }
-                title={props.title}
-                subheader={props.subheader}
-            />
-            <CardContent>
-                <Typography
-                    component="h2"
-                    variant="h4"
-                    align="left"
-                    gutterBottom
-                >
-                    About:
-                </Typography>
-                <Typography
-                    variant="p"
-                    align="left"
-                    children={props.about}
-                    gutterBottom
-                />
-                <Typography
-                    component="h2"
-                    variant="h4"
-                    align="left"
-                    gutterBottom
-                >
-                    Worth Knowing:
-                </Typography>
-                <Typography
-                    variant="p"
-                    align="left"
-                    children={props.worthKnowing}
-                    gutterBottom
-                />
-                <Typography
-                    component="h2"
-                    variant="h4"
-                    align="left"
-                    gutterBottom
-                >
-                    Additional Notes:
-                </Typography>
-                <Typography
-                    variant="p"
-                    align="left"
-                    children={props.addNotes}
-                    gutterBottom
-                />
-            </CardContent>
-            <CardActions className={classes.actions} disableActionSpacing />
-        </Card>
+  const handleSubmit = event => {
+    //ibusinessName, ibusinessEmail,ibusinessID,
+    //ibusinessSubheader,ibusinessTheGood,ibusinessIMG,ibusinessAddNotes
+    console.log("submit");
+    props.rba(
+      props.title,
+      props.about,
+      props.id,
+      props.subheader,
+      props.worthKnowing,
+      props.img,
+      props.addNotes
     );
+  };
+
+  const { classes } = props;
+  return (
+    <Card className={classes.card}>
+      <CardHeader
+        avatar={<Avatar src={props.img} className={classes.avatar} />}
+        action={
+          props.disabled ? null : (
+            <LinkContainer to="/ConfirmReviewRequest" onClick={handleSubmit}>
+              <IconButton color="secondary">
+                <AddIcon />
+              </IconButton>
+            </LinkContainer>
+          )
+        }
+        title={props.title}
+        subheader={props.subheader}
+      />
+      <CardContent>
+        <Typography component="h2" variant="h4" align="left" gutterBottom>
+          About:
+        </Typography>
+        <Typography
+          variant="p"
+          align="left"
+          children={props.about}
+          gutterBottom
+        />
+        <Typography component="h2" variant="h4" align="left" gutterBottom>
+          Worth Knowing:
+        </Typography>
+        <Typography
+          variant="p"
+          align="left"
+          children={props.worthKnowing}
+          gutterBottom
+        />
+        <Typography component="h2" variant="h4" align="left" gutterBottom>
+          Additional Notes:
+        </Typography>
+        <Typography
+          variant="p"
+          align="left"
+          children={props.addNotes}
+          gutterBottom
+        />
+      </CardContent>
+      <CardActions className={classes.actions} disableActionSpacing />
+    </Card>
+  );
 }
 
 BusinessMediaCard.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = {
-    rba: requestBusinessAction
+  rba: requestBusinessAction
 };
 
 export default connect(
-    null,
-    mapDispatchToProps
+  null,
+  mapDispatchToProps
 )(withStyles(styles)(BusinessMediaCard));
