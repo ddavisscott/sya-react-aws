@@ -24,7 +24,7 @@ export default class BusinessSignUp extends Component {
       this.state.name.length > 0 &&
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
-      this.state.password === this.state.confirmPassword
+      this.state.password.length > 0
     );
   }
 
@@ -44,20 +44,30 @@ export default class BusinessSignUp extends Component {
     this.setState({ isLoading: true });
 
     try {
-      const newUser = await Auth.signUp({
-        username: this.state.name,
-        password: this.state.password,
-        attributes: {
-          email: this.state.email,
-          "custom:role": "business"
-        }
-      });
+      if (this.state.password === this.state.confirmPassword) {
+        alert("Passwords must match. Please try again.");
+        this.setState({ password: "" });
+        this.setState({ confirmPassword: "" });
+      } else {
+        const newUser = await Auth.signUp({
+          username: this.state.name,
+          password: this.state.password,
+          attributes: {
+            email: this.state.email,
+            "custom:role": "business"
+          }
+        });
 
-      this.setState({
-        newUser
-      });
+        this.setState({
+          newUser
+        });
+      }
     } catch (e) {
+      alert(
+        "Username must not have any spaces. Password must be greater than six characters long and have at least one upper case letter and one special symbol."
+      );
       console.log(e);
+      this.setState({ isLoading: false });
     }
 
     this.setState({ isLoading: false });

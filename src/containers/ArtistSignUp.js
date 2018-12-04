@@ -24,8 +24,6 @@ export default class ArtistSignUp extends Component {
       confirmPassword: "",
       confirmationCode: "",
       newUser: null,
-      redirect: false,
-      sub: null
     };
   }
 
@@ -99,16 +97,6 @@ export default class ArtistSignUp extends Component {
       await Auth.signIn(this.state.name, this.state.password).catch(err => {
         console.log(err);
       });
-
-      // Get the user sub and set the state
-      await Auth.currentAuthenticatedUser()
-        .then(user => {
-          console.log(user);
-          this.setState({ sub: user.attributes.sub });
-        })
-        .catch(err => {
-          console.log(err);
-        });
 
       // Pass the boolean true to the prop authenticadedUser
       this.props.userHasAuthenticated(true);
