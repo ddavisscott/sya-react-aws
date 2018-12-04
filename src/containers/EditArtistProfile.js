@@ -129,7 +129,7 @@ class EditArtistProfile extends Component {
         return (
           <div className="ArtInfo">
             {this.Redirectrender()}
-            <h1>Update Artist Profile Information:</h1>
+            <h1 align = "center">Update Artist Profile Information:</h1>
             <form onSubmit={this.handleSubmit}>
               <h2>Contact Handles: </h2>
               <TextField
