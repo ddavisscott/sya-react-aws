@@ -1,5 +1,9 @@
 const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
+/*
+This function is triggered to run whenever an object is placed in the artwork S3 bucket.
+Goal: Write artwork metadata to the artWork table for later reference
+*/
 
 exports.handler = (event, context, callback) => {
   var data = JSON.parse(event.body);

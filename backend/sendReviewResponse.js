@@ -6,19 +6,17 @@ Update the reviewRequest Database with the response given by the business,
 along with the following fields:
 
 NewFields: reply, radios, repliedDate,
-UpdateFields: replied, 
+UpdateFields: replied
 */
 exports.handler = (event, context, callback) => {
-  
   var input = JSON.parse(event.body);
-  var primaryKey = input.businessID;
-  var reviewID = input.reviewID;
-  
-  var repliedDate = new Date().toUTCString;
+  var businessID = input.businessID; 
+  var reviewID = input.reviewID; 
+
   var params = {
     TableName: 'reviewRequest',
     Key: {
-      "businessID": primaryKey,
+      "businessID": businessID,
       "reviewID": reviewID
     },
     UpdateExpression: "set #Reply = :a, #Radios = :b, #RDate = :c, #Replied = :d", 
@@ -29,10 +27,10 @@ exports.handler = (event, context, callback) => {
       "#Replied": 'replied'
     },
     ExpressionAttributeValues:{
-      ":a": input.reply,  //the response
-      ":b": input.radios, //accepted or declined?
-      ":c": repliedDate,  //date of response
-      ":d": "true"        //true, since they've replied.
+      ":a": input.reply,       //the response
+      ":b": input.radios,      //accepted or declined?
+      ":c": input.repliedDate, //date response was made
+      ":d": input.replied       //true, since they've replied.
     }
   };
 
@@ -47,4 +45,4 @@ exports.handler = (event, context, callback) => {
     }
   });
 
-}
+};
