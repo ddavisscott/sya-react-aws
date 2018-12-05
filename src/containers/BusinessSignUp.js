@@ -63,10 +63,13 @@ export default class BusinessSignUp extends Component {
         });
       }
     } catch (e) {
-      alert(
-        "Username must not have any spaces. Password must be greater than six characters long and have at least one upper case letter and one special symbol."
-      );
-      console.log(e);
+      if (e.message === 'User already exists') {
+        alert(e.message);
+      } else {
+        alert(
+          "Username must not have any spaces. Password must be greater than six characters long and have at least one upper case letter and one special symbol."
+        );
+      }
       this.setState({ isLoading: false });
     }
 

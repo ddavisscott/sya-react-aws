@@ -70,7 +70,6 @@ function BusinessMediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
-      {console.log(props)}
       <CardHeader
         avatar={<Avatar src={props.img} className={classes.avatar} />}
         action={
