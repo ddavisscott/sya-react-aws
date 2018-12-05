@@ -113,10 +113,10 @@ function BusinessMediaCard(props) {
           children={props.addNotes}
           gutterBottom
         />
-        <SocialIcon url={props.twitter} network="twitter" style={{ height: 25, width: 25 }}/>
-        <SocialIcon url={props.facebook}network="facebook" style={{ height: 25, width: 25 }}/>
-        <SocialIcon url={props.instagram} network="instagram" style={{ height: 25, width: 25 }}/>
-        <SocialIcon url={props.tumblr} network="tumblr" style={{ height: 25, width: 25 }}/>
+        <SocialIcon url={props.twitter} network="twitter" style={{ height: 30, width: 30 }}/>
+        <SocialIcon url={props.facebook}network="facebook" style={{ height: 30, width: 30 }}/>
+        <SocialIcon url={props.instagram} network="instagram" style={{ height: 30, width: 30 }}/>
+        <SocialIcon url={props.tumblr} network="tumblr" style={{ height: 30, width: 30 }}/>
       </CardContent>
       <CardActions className={classes.actions} disableActionSpacing />
     </Card>

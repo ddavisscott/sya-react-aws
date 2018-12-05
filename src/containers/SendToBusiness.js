@@ -54,7 +54,6 @@ class SendToBusiness extends Component {
             cols = {1}
           >
             {this.state.info.map(tileData => (
-              <div>{console.log(tileData)}
               <BusinessCardMedia
                 title = {tileData.businessName}                   //Account name
                 img = {tileData.avatar}                           //Avatar image
@@ -77,7 +76,6 @@ class SendToBusiness extends Component {
                     userSub = {this.props.userSub}
                 */
               />
-              </div>
             ))}
           </Grid>
         </div>
