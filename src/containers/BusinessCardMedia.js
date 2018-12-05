@@ -12,6 +12,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { connect } from "react-redux";
 import { requestBusinessAction } from "../actions/requestBusinessAction";
 import { LinkContainer } from "react-router-bootstrap";
+import { SocialIcon } from 'react-social-icons';
 
 //Styling
 const styles = theme => ({
@@ -69,6 +70,7 @@ function BusinessMediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
+      {console.log(props)}
       <CardHeader
         avatar={<Avatar src={props.img} className={classes.avatar} />}
         action={
@@ -111,6 +113,10 @@ function BusinessMediaCard(props) {
           children={props.addNotes}
           gutterBottom
         />
+        <SocialIcon url={props.twitter} network="twitter" style={{ height: 25, width: 25 }}/>
+        <SocialIcon url={props.facebook}network="facebook" style={{ height: 25, width: 25 }}/>
+        <SocialIcon url={props.instagram} network="instagram" style={{ height: 25, width: 25 }}/>
+        <SocialIcon url={props.tumblr} network="tumblr" style={{ height: 25, width: 25 }}/>
       </CardContent>
       <CardActions className={classes.actions} disableActionSpacing />
     </Card>

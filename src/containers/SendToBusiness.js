@@ -54,6 +54,7 @@ class SendToBusiness extends Component {
             cols = {1}
           >
             {this.state.info.map(tileData => (
+              <div>{console.log(tileData)}
               <BusinessCardMedia
                 title = {tileData.businessName}                   //Account name
                 img = {tileData.avatar}                           //Avatar image
@@ -62,6 +63,10 @@ class SendToBusiness extends Component {
                 worthKnowing = {tileData.worthKnowing}            //Worth Knowing Section
                 addNotes = {tileData.additionalNotes}             //Additional Notes section
                 id = {tileData.userID}
+                facebook = {tileData.facebook}
+                tumblr = {tileData.tumblr}
+                twitter = {tileData.twitter}
+                instagram = {tileData.instagram}
                 /*  REDUX MAPPING INFO                     
                     date = {this.props.date}
                     sourceKey = {this.props.sourceKey}
@@ -72,6 +77,7 @@ class SendToBusiness extends Component {
                     userSub = {this.props.userSub}
                 */
               />
+              </div>
             ))}
           </Grid>
         </div>

@@ -44,7 +44,7 @@ export default class BusinessSignUp extends Component {
     this.setState({ isLoading: true });
 
     try {
-      if (this.state.password === this.state.confirmPassword) {
+      if (this.state.password !== this.state.confirmPassword) {
         alert("Passwords must match. Please try again.");
         this.setState({ password: "" });
         this.setState({ confirmPassword: "" });
