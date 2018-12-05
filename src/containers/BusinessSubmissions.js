@@ -19,6 +19,7 @@ class BusinessSubmissions extends Component {
     try {
       await Auth.currentAuthenticatedUser().then(user => {
         this.setState({ mySub: user.attributes.sub });
+        console.log(user)
       });
 
       await Axios.get(
