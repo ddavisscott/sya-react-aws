@@ -24,43 +24,55 @@ const theme = createMuiTheme({
   }
 });
 
+/**
+ * The App component contains al
+ */
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isAuthenticated: false,
-      isAuthenticating: true,
-      clickedDrawer: false,
-      role: "",
-      credits: 0,
-      sub: ""
+      isAuthenticated: false,  // Boolean to check if the current user is authenticated
+      isAuthenticating: true,  // Boolean to handle if the current user is in the process of authenticating 
+      clickedDrawer: false,    // Boolean to handle opening/closing the left drawer 
+      role: "",                // Role of the current user, either 'artist' or 'business'
+      credits: 0,              // The number of credits an artist has when logged in
+      sub: ""                  // The unique ID of the current user
     };
   }
 
+  /**
+   * componentDidMount is the function that handles the components information 
+   * when the component is being used. It gets the current user and gets their
+   * role, sub, and if they are an artist the number of credits they currently have.
+   */
   async componentDidMount() {
     try {
+
+      // Cognito function that checks if the user is signed in.
       Auth.currentSession();
 
       this.setState({ isAuthenticated: true });
 
+      // Cognito function that gets the current authenticated user and sets
+      // the state of role and sub to the values of the user
       await Auth.currentAuthenticatedUser().then(user => {
         this.setState({ role: user.attributes["custom:role"] });
         this.setState({ sub: user.attributes.sub });
       });
 
-      Axios.get(
-        "https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" +
-          this.state.sub
-      )
-        .then(user => {
-          this.setState({
-            credits: user.data.Items[0].credits + user.data.Items[0].freeCredits
-          });
-        })
-        .catch(e => {
-          console.log(e.message);
-        });
+      // Axios GET function that gets the number of credits the current number of 
+      // credits an artist has.
+      if (this.state.role === 'artist') {
+
+        await Axios.get(
+          "https://65aztpj6k6.execute-api.us-east-1.amazonaws.com/prod/?role=artist&key=" +
+            this.state.sub
+        )
+        .then(user => { this.setState({credits: user.data.Items[0].credits + user.data.Items[0].freeCredits }); })
+        .catch(e => console.log(e.message));
+      }
+
     } catch (e) {
       if (e !== "No current user") {
         console.log(e);
@@ -84,6 +96,7 @@ class App extends Component {
     }
   };
 
+  // Logs out the current user, then routes to the home page.
   handleLogout = async event => {
     await Auth.signOut();
 
@@ -92,6 +105,7 @@ class App extends Component {
     this.props.history.push("/");
   };
 
+  // handleDrawer is the function that handles clicking the drawer open/closed.
   handleDrawer = event => {
     this.setState({
       clickedDrawer: this.state.clickedDrawer ? false : true
@@ -159,7 +173,6 @@ class App extends Component {
     return (
       !this.state.isAuthenticating && (
         <div className="App container">
-          {console.log(this.state)}
           <Navbar fluid collapseOnSelect style={{ whiteSpace: "nowrap" }}>
             <Navbar.Header>
               {this.state.isAuthenticated ? (

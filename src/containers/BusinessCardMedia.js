@@ -55,7 +55,6 @@ function BusinessMediaCard(props) {
   const handleSubmit = event => {
     //ibusinessName, ibusinessEmail,ibusinessID,
     //ibusinessSubheader,ibusinessTheGood,ibusinessIMG,ibusinessAddNotes
-    console.log("submit");
     props.rba(
       props.title,
       props.about,
