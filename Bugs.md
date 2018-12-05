@@ -12,3 +12,8 @@ though the content of the reviews are the same.
 * **Description:** Large files take the longest to show up on an artists dashboard, and they may fail to upload entirely. 
 
 * **Reason:** We're not sure how to approach fixing this bug since this seems to be an issue with AWS S3's file upload process. 
+
+### Updating Business Profile Information (Bug)
+* **Description** The first time you edit a business profile, if you dont change the information in every field, when you try and update the account information it wont successfully post to the database. It gives a 502 Server error.
+
+* **Reason:** This is a strange bug. The state of the class contains a string for every field the first time you edit a business account. So even if a user doesnt change a field, it should still be sent to the database.
