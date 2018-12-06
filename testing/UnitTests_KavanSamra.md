@@ -15,9 +15,11 @@ response object that determines if the code ran without error.
 In order to see if I correctly inserted into the DB the fields I expected, I then check the TEST Database for confirmation.
 
 All of the lambda functions look like the following:
-''''javascript
+'''javascript
+
     exports.handler = (event,context,callback) => {}
-''''
+
+'''
 ###Sample Test Data###
 **event** contains the actual data passed to the lambda function, this includes the test data
 that I pass in. **callback** allows me to return responses to the node console for debugging
@@ -32,6 +34,7 @@ All test data is passed in as a JSON object.
 database with new data if there was no infor
 **Test Data:**
 '''JSON
+
     {
         "body": {
             "userID":"c2bcbc67-9699-4795-806a-0c703d408f1f",
@@ -46,6 +49,7 @@ database with new data if there was no infor
             "url":
         }
     }
+
 '''
 
 **Result:** 
@@ -58,6 +62,7 @@ has new field name "instagram" with the value "cityScapes"
 **Goal:** Allows artists to send a review request to businesses, along with the artwork they have chosen.
 **Test Data:**
 '''JSON
+
     {
         "body": {
             "artTitle": "Mona Lisa",
@@ -74,6 +79,7 @@ has new field name "instagram" with the value "cityScapes"
             "submittedWithFreeCredit": "true"
         }
     }
+
 '''
 **Result:** "Success! The specified data was placed into the reviewTable."
 
@@ -81,6 +87,7 @@ has new field name "instagram" with the value "cityScapes"
 This time, since the user making the request has 0 credits, the request should *fail*
 
 '''
+
     {
         "body": {
             "artTitle": "Mona Lisa",
@@ -97,6 +104,7 @@ This time, since the user making the request has 0 credits, the request should *
             "submittedWithFreeCredit": "true"
         }
     }
+
 '''
 
 **Result**: "Failed! The user did not have enough credits to submit a request"
@@ -107,6 +115,7 @@ This time, since the user making the request has 0 credits, the request should *
 **Test Data:**
 
 '''
+
     {
         "body": {
             "artTitle": "Mona Lisa",
@@ -128,6 +137,7 @@ This time, since the user making the request has 0 credits, the request should *
             "replied": "true"
         }
     }
+
 '''
 
 **Result:** Success! The reviewRequest table has been updated with the new fields: "reply, radios, repliedDate, replied"
@@ -138,6 +148,7 @@ the artwork database.
 **Test Data:**
 
 '''
+
     {
         "body": {
             "imageName": "monaLisa",
@@ -148,6 +159,7 @@ the artwork database.
             "sourceKey": "monalisa"
         }
     }
+
 '''
 
 **Result:** Success! The data was placed in the artwork table
@@ -157,6 +169,7 @@ the artwork database.
 **Test Data:** 
 
 '''JSON
+
     {
         "body": {
             "userID": "someID",
@@ -166,6 +179,7 @@ the artwork database.
             "role": "artist"
         }
     }
+    
 '''
 **Result:** Success! The information has been placed into the user database.
 
