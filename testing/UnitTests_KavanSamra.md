@@ -15,11 +15,13 @@ response object that determines if the code ran without error.
 In order to see if I correctly inserted into the DB the fields I expected, I then check the TEST Database for confirmation.
 
 All of the lambda functions look like the following:
+
 '''javascript
 
     exports.handler = (event,context,callback) => {}
 
 '''
+
 ###Sample Test Data###
 **event** contains the actual data passed to the lambda function, this includes the test data
 that I pass in. **callback** allows me to return responses to the node console for debugging
@@ -33,7 +35,8 @@ All test data is passed in as a JSON object.
 **Goald:** Updates the user whose update their respective entry in the 
 database with new data if there was no infor
 **Test Data:**
-'''JSON
+
+'''
 
     {
         "body": {
@@ -61,7 +64,8 @@ has new field name "instagram" with the value "cityScapes"
 ###sendReviewRequest.js###
 **Goal:** Allows artists to send a review request to businesses, along with the artwork they have chosen.
 **Test Data:**
-'''JSON
+
+'''
 
     {
         "body": {
@@ -81,6 +85,7 @@ has new field name "instagram" with the value "cityScapes"
     }
 
 '''
+
 **Result:** "Success! The specified data was placed into the reviewTable."
 
 **Test Data 2**:
@@ -168,7 +173,7 @@ the artwork database.
 **Goal:** Write user data to user table after a user is confirmed to have signed up.
 **Test Data:** 
 
-'''JSON
+'''
 
     {
         "body": {
@@ -179,7 +184,8 @@ the artwork database.
             "role": "artist"
         }
     }
-    
+
 '''
+
 **Result:** Success! The information has been placed into the user database.
 
