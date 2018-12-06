@@ -103,7 +103,7 @@ This time, since the user making the request has 0 credits, the request should *
 **Goal:** Allow businesses to respond to a review request"
 
 **Test Data:**
-''''JSON
+'''JSON
     {
         "body": {
             "artTitle": "Mona Lisa",
@@ -125,7 +125,7 @@ This time, since the user making the request has 0 credits, the request should *
             "replied": "true"
         }
     }
-''''
+'''
 **Result:** Success! The reviewRequest table has been updated with the new fields: "reply, radios, repliedDate, replied"
 
 ###writeArtMetaDataToDB.js###
