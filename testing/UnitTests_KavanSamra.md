@@ -31,7 +31,7 @@ All test data is passed in as a JSON object.
 **Goald:** Updates the user whose update their respective entry in the 
 database with new data if there was no infor
 **Test Data:**
-''''JSON
+'''JSON
     {
         "body": {
             "userID":"c2bcbc67-9699-4795-806a-0c703d408f1f",
@@ -46,7 +46,7 @@ database with new data if there was no infor
             "url":
         }
     }
-''''
+'''
 
 **Result:** 
 Success! 
@@ -57,7 +57,7 @@ has new field name "instagram" with the value "cityScapes"
 ###sendReviewRequest.js###
 **Goal:** Allows artists to send a review request to businesses, along with the artwork they have chosen.
 **Test Data:**
-''''JSON
+'''JSON
     {
         "body": {
             "artTitle": "Mona Lisa",
@@ -74,12 +74,13 @@ has new field name "instagram" with the value "cityScapes"
             "submittedWithFreeCredit": "true"
         }
     }
-''''
+'''
 **Result:** "Success! The specified data was placed into the reviewTable."
 
 **Test Data 2**:
 This time, since the user making the request has 0 credits, the request should *fail*
-''''JSON
+
+'''
     {
         "body": {
             "artTitle": "Mona Lisa",
@@ -96,13 +97,15 @@ This time, since the user making the request has 0 credits, the request should *
             "submittedWithFreeCredit": "true"
         }
     }
-''''
+'''
+
 **Result**: "Failed! The user did not have enough credits to submit a request"
 
 ###sendReviewResponse.js###
 **Goal:** Allow businesses to respond to a review request"
 
 **Test Data:**
+
 '''
     {
         "body": {
@@ -126,13 +129,15 @@ This time, since the user making the request has 0 credits, the request should *
         }
     }
 '''
+
 **Result:** Success! The reviewRequest table has been updated with the new fields: "reply, radios, repliedDate, replied"
 
 ###writeArtMetaDataToDB.js###
 **Goal:** When an image is placed into the S3 bucket, upload the relative art metadata to
 the artwork database.
 **Test Data:**
-''''JSON
+
+'''
     {
         "body": {
             "imageName": "monaLisa",
@@ -143,13 +148,15 @@ the artwork database.
             "sourceKey": "monalisa"
         }
     }
-''''
+'''
+
 **Result:** Success! The data was placed in the artwork table
 
 ###fillUserTable.js###
 **Goal:** Write user data to user table after a user is confirmed to have signed up.
 **Test Data:** 
-''''JSON
+
+'''JSON
     {
         "body": {
             "userID": "someID",
@@ -159,5 +166,6 @@ the artwork database.
             "role": "artist"
         }
     }
+'''
 **Result:** Success! The information has been placed into the user database.
 
