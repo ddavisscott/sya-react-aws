@@ -212,6 +212,7 @@ class EditBusinessProfile extends Component {
                 page is, and what makes you a unique content creator.
               </h3>
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id = "standard-required"
                 label = "About"
@@ -227,6 +228,7 @@ class EditBusinessProfile extends Component {
                 makes you great. What can you offer these artists?
               </h3>
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id = "standard-required"
                 label = "Worth Knowing"
@@ -243,6 +245,7 @@ class EditBusinessProfile extends Component {
                 you didn't already include.
               </h3>
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id = "standard-required"
                 label = "Additional Notes"
@@ -255,6 +258,7 @@ class EditBusinessProfile extends Component {
               />
               <h2>Contact Handles: </h2>
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id = "standard-required"
                 label = "Instagram Handle"
@@ -264,6 +268,7 @@ class EditBusinessProfile extends Component {
                 value = {this.state.instagram}
               />
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id = "standard-required"
                 label = "Twitter Handle"
@@ -273,6 +278,7 @@ class EditBusinessProfile extends Component {
                 value = {this.state.twitter}
               />
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id = "standard-required"
                 label = "Tumblr"
@@ -282,6 +288,7 @@ class EditBusinessProfile extends Component {
                 value = {this.state.tumblr}
               />
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id = "standard-required"
                 label = "FaceBook"

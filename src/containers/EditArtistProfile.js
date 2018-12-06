@@ -133,6 +133,7 @@ class EditArtistProfile extends Component {
             <form onSubmit={this.handleSubmit}>
               <h2>Contact Handles: </h2>
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id="standard-required"
                 label="Instagram Handle"
@@ -142,6 +143,7 @@ class EditArtistProfile extends Component {
                 value={this.state.instagram}
               />
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id="standard-required"
                 label="Twitter Handle"
@@ -151,6 +153,7 @@ class EditArtistProfile extends Component {
                 value={this.state.twitter}
               />
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id="standard-required"
                 label="Tumblr"
@@ -160,9 +163,10 @@ class EditArtistProfile extends Component {
                 value={this.state.tumblr}
               />
               <TextField
+                InputLabelProps = {{shrink: true}}
                 required
                 id="standard-required"
-                label="FaceBook"
+                label="Facebook"
                 fullWidth
                 className="facebook"
                 onChange={this.handleChange("facebook")}
