@@ -103,7 +103,7 @@ This time, since the user making the request has 0 credits, the request should *
 **Goal:** Allow businesses to respond to a review request"
 
 **Test Data:**
-'''JSON
+'''
     {
         "body": {
             "artTitle": "Mona Lisa",
