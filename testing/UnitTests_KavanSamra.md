@@ -22,18 +22,20 @@ All of the lambda functions look like the following:
 
 '''
 
-###Sample Test Data###
+### Sample Test Data ###
 **event** contains the actual data passed to the lambda function, this includes the test data
 that I pass in. **callback** allows me to return responses to the node console for debugging
 purposes. 
 All test data is passed in as a JSON object.
 
 
-#Unit Tests#
+# Unit Tests #
 
-###updateProfile.js###
-**Goald:** Updates the user whose update their respective entry in the 
-database with new data if there was no infor
+### updateProfile.js ###
+
+**Goal:** Updates the user whose update their respective entry in the 
+database with new data.
+
 **Test Data:**
 
 '''
@@ -61,8 +63,10 @@ userID: c2bcbc67-9699-4795-806a-0c703d408f1f
 has new field name "instagram" with the value "cityScapes"
 
 
-###sendReviewRequest.js###
+### sendReviewRequest.js ###
+
 **Goal:** Allows artists to send a review request to businesses, along with the artwork they have chosen.
+
 **Test Data:**
 
 '''
@@ -114,7 +118,8 @@ This time, since the user making the request has 0 credits, the request should *
 
 **Result**: "Failed! The user did not have enough credits to submit a request"
 
-###sendReviewResponse.js###
+### sendReviewResponse.js ###
+
 **Goal:** Allow businesses to respond to a review request"
 
 **Test Data:**
@@ -147,9 +152,10 @@ This time, since the user making the request has 0 credits, the request should *
 
 **Result:** Success! The reviewRequest table has been updated with the new fields: "reply, radios, repliedDate, replied"
 
-###writeArtMetaDataToDB.js###
-**Goal:** When an image is placed into the S3 bucket, upload the relative art metadata to
-the artwork database.
+### writeArtMetaDataToDB.js ###
+
+**Goal:** When an image is placed into the S3 bucket, upload the relative art metadata to the artwork database.
+
 **Test Data:**
 
 '''
@@ -169,8 +175,10 @@ the artwork database.
 
 **Result:** Success! The data was placed in the artwork table
 
-###fillUserTable.js###
+### fillUserTable.js ###
+
 **Goal:** Write user data to user table after a user is confirmed to have signed up.
+
 **Test Data:** 
 
 '''
