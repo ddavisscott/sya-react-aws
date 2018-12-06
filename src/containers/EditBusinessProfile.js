@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import InputLabel from "@material-ui/core/InputLabel";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./ArtInfo.css";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
@@ -140,6 +138,7 @@ class EditBusinessProfile extends Component {
         .then(result => console.log(result))
         .catch(err => console.log(err));
 
+      
       this.setState({ redirect: true });
     }
   };
