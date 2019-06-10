@@ -1,0 +1,6 @@
+This directory is made to hold all queries for APIs deployed using AWS Lambda functions.
+
+Queries used for SYA Mobile application (though some APIs have recently been dropped).
+
+Node modules folder necessary for creating zip file to submit under AWS Lambda 
+(config description provided within this same directory).
